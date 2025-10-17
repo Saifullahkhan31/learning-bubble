@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Learning Bubble</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/logo.PNG">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/logo.PNG">
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="assets/images/logo.PNG" alt="Learning Bubble Logo" class="logo-img">
+                <span class="logo-text">Learning Bubble</span>
+            </div>
+            <div class="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="resources.html" class="nav-link">Resources</a>
+                <a href="courses.html" class="nav-link">Courses</a>
+                <a href="contact.html" class="nav-link active">Contact</a>
+                <button class="register-btn" onclick="window.location.href='courses.html'">Enroll Now</button>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contact Hero Section -->
+    <section class="page-hero">
+        <div class="container">
+            <div class="page-hero-content">
+                <h1 class="page-hero-title">Contact Us</h1>
+                <p class="page-hero-subtitle">Get in touch with our team for any questions or support</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form & Info -->
+    <section class="contact-section">
+        <div class="container">
+            <div class="contact-content">
+                <div class="contact-form-container">
+                    <h2>Send us a Message</h2>
+                    <form class="contact-form">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <select id="subject" name="subject" required>
+                                <option value="">Select a subject</option>
+                                <option value="enrollment">Course Enrollment</option>
+                                <option value="teacher">Teacher Application</option>
+                                <option value="technical">Technical Support</option>
+                                <option value="general">General Inquiry</option>
+                                <option value="feedback">Feedback</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="5" required placeholder="Tell us how we can help you..."></textarea>
+                        </div>
+                        <button type="submit" class="btn-primary">Send Message</button>
+                    </form>
+                </div>
+                
+                <div class="contact-info">
+                    <h2>Get in Touch</h2>
+                    <p>We're here to help you on your learning journey. Reach out to us through any of the following ways:</p>
+                    
+                    <div class="contact-methods">
+                        <div class="contact-method">
+                            <div class="method-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="method-info">
+                                <h3>Email Us</h3>
+                                <p>info@learningbubble.com</p>
+                                <p>support@learningbubble.com</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-method">
+                            <div class="method-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="method-info">
+                                <h3>Call Us</h3>
+                                <p>+1 (555) 123-4567</p>
+                                <p>Mon - Fri: 9:00 AM - 6:00 PM</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-method">
+                            <div class="method-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="method-info">
+                                <h3>Visit Us</h3>
+                                <p>123 Education Street</p>
+                                <p>Learning City, LC 12345</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-method">
+                            <div class="method-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="method-info">
+                                <h3>Office Hours</h3>
+                                <p>Monday - Friday: 9:00 AM - 6:00 PM</p>
+                                <p>Saturday: 10:00 AM - 4:00 PM</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Teacher Recruitment Section -->
+    <section class="teacher-recruitment" id="teacher-info" style="display: none;">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Join Our Teaching Team</h2>
+                <p class="section-subtitle">Make a difference in students' lives through online education</p>
+            </div>
+            <div class="teacher-content">
+                <div class="teacher-benefits">
+                    <h3>Why Teach with Learning Bubble?</h3>
+                    <div class="benefits-grid">
+                        <div class="benefit-item">
+                            <i class="fas fa-home"></i>
+                            <h4>Work from Home</h4>
+                            <p>Teach from the comfort of your home using Zoom and our platform</p>
+                        </div>
+                        <div class="benefit-item">
+                            <i class="fas fa-clock"></i>
+                            <h4>Flexible Schedule</h4>
+                            <p>Choose your own hours and create a schedule that works for you</p>
+                        </div>
+                        <div class="benefit-item">
+                            <i class="fas fa-dollar-sign"></i>
+                            <h4>Competitive Pay</h4>
+                            <p>Earn competitive rates for your expertise and dedication</p>
+                        </div>
+                        <div class="benefit-item">
+                            <i class="fas fa-users"></i>
+                            <h4>Small Classes</h4>
+                            <p>Focused attention with small class sizes for better learning</p>
+                        </div>
+                        <div class="benefit-item">
+                            <i class="fas fa-graduation-cap"></i>
+                            <h4>Professional Growth</h4>
+                            <p>Continuous training and support for your teaching career</p>
+                        </div>
+                        <div class="benefit-item">
+                            <i class="fas fa-heart"></i>
+                            <h4>Make an Impact</h4>
+                            <p>Help students achieve their academic goals and build confidence</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="teacher-requirements">
+                    <h3>What We're Looking For</h3>
+                    <ul class="requirements-list">
+                        <li>Bachelor's degree in relevant subject area</li>
+                        <li>Previous teaching or tutoring experience preferred</li>
+                        <li>Strong communication skills and patience with students</li>
+                        <li>Reliable internet connection and quiet workspace</li>
+                        <li>Comfortable with online teaching tools (Zoom, digital whiteboards)</li>
+                        <li>Passion for helping students learn and grow</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Frequently Asked Questions</h2>
+                <p class="section-subtitle">Quick answers to common questions</p>
+            </div>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h3>How do I enroll in a course?</h3>
+                    <p>You can enroll by clicking the "Register Now" button and following the enrollment process. Our team will guide you through course selection and payment options.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>What age groups do you serve?</h3>
+                    <p>We offer courses for K-12 students, as well as programs for adults including homemakers and professionals looking to enhance their skills.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Are classes live or recorded?</h3>
+                    <p>We offer both live interactive classes and recorded sessions. Live classes allow real-time interaction, while recorded sessions provide flexibility in scheduling.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Do you provide certificates?</h3>
+                    <p>Yes, we provide certificates of completion for all our courses. These certificates can be used to demonstrate your learning achievements.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>What technical requirements do I need?</h3>
+                    <p>You'll need a stable internet connection, a computer or tablet, and basic software like a web browser. We'll provide detailed technical requirements during enrollment.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Can I get a refund if I'm not satisfied?</h3>
+                    <p>We offer a satisfaction guarantee with our refund policy. Please contact our support team within the specified timeframe for refund requests.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="assets/images/logo.PNG" alt="Learning Bubble Logo" class="logo-img">
+                        <span class="logo-text">Learning Bubble</span>
+                    </div>
+                    <p>Transforming education through innovative online learning experiences.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="resources.html">Resources</a></li>
+                        <li><a href="courses.html">Courses</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> info@learningbubble.com</li>
+                        <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Follow Us</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Learning Bubble. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

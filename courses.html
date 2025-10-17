@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Courses - Learning Bubble</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/logo.PNG">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/logo.PNG">
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="assets/images/logo.PNG" alt="Learning Bubble Logo" class="logo-img">
+                <span class="logo-text">Learning Bubble</span>
+            </div>
+            <div class="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="resources.html" class="nav-link">Resources</a>
+                <a href="courses.html" class="nav-link active">Courses</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+                <button class="register-btn" onclick="window.location.href='courses.html'">Enroll Now</button>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Courses Hero Section -->
+    <section class="page-hero">
+        <div class="container">
+            <div class="page-hero-content">
+                <h1 class="page-hero-title">Our Courses</h1>
+                <p class="page-hero-subtitle">Discover comprehensive learning programs designed for your success</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Course -->
+    <section class="featured-course">
+        <div class="container">
+            <div class="announcement-card">
+                <div class="announcement-content">
+                    <div class="announcement-badge">New Course</div>
+                    <h3 class="announcement-title">English Communication Skills</h3>
+                    <p class="announcement-description">
+                        Perfect for Students, Homemakers, and Professionals looking to enhance their communication abilities.
+                        This comprehensive program covers speaking, writing, and presentation skills.
+                    </p>
+                    <div class="announcement-tags">
+                        <span class="tag">Students</span>
+                        <span class="tag">Homemakers</span>
+                        <span class="tag">Professionals</span>
+                    </div>
+                    <div class="course-features">
+                        <div class="feature">
+                            <i class="fas fa-clock"></i>
+                            <span>8 Weeks Duration</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-users"></i>
+                            <span>Small Class Size</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-certificate"></i>
+                            <span>Certificate Included</span>
+                        </div>
+                    </div>
+                    <button class="btn-primary">Enroll Now</button>
+                </div>
+                <div class="announcement-image">
+                    <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Communication Skills">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Course Categories -->
+    <section class="course-categories">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Course Categories</h2>
+                <p class="section-subtitle">Choose from our wide range of subjects and skill levels</p>
+            </div>
+            <div class="category-grid">
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <h3>Mathematics</h3>
+                    <p>From basic arithmetic to advanced calculus</p>
+                    <span class="course-count">12 Courses</span>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <h3>Science</h3>
+                    <p>Biology, Chemistry, Physics, and Earth Science</p>
+                    <span class="course-count">8 Courses</span>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h3>Language Arts</h3>
+                    <p>Reading, Writing, Grammar, and Literature</p>
+                    <span class="course-count">10 Courses</span>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3>Social Studies</h3>
+                    <p>History, Geography, Civics, and Culture</p>
+                    <span class="course-count">6 Courses</span>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <h3>Arts & Creativity</h3>
+                    <p>Visual Arts, Music, and Creative Expression</p>
+                    <span class="course-count">5 Courses</span>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3>Technology</h3>
+                    <p>Computer Skills, Programming, and Digital Literacy</p>
+                    <span class="course-count">7 Courses</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Popular Courses -->
+    <section class="popular-courses">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Popular Courses</h2>
+                <p class="section-subtitle">Most enrolled courses by our students</p>
+            </div>
+            <div class="courses-grid">
+                <div class="course-card">
+                    <div class="course-image">
+                        <img src="https://images.unsplash.com/photo-1596495578065-6e0763fa1178?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Elementary Math">
+                    </div>
+                    <div class="course-content">
+                        <div class="course-meta">
+                            <span class="course-level">Elementary</span>
+                            <span class="course-duration">6 weeks</span>
+                        </div>
+                        <h3>Elementary Mathematics</h3>
+                        <p>Foundation math skills including addition, subtraction, multiplication, and division.</p>
+                        <div class="course-stats">
+                            <div class="stat">
+                                <i class="fas fa-users"></i>
+                                <span>245 students</span>
+                            </div>
+                            <div class="stat">
+                                <i class="fas fa-star"></i>
+                                <span>4.8 rating</span>
+                            </div>
+                        </div>
+                        <button class="btn-secondary">Learn More</button>
+                    </div>
+                </div>
+                <div class="course-card">
+                    <div class="course-image">
+                        <img src="https://images.unsplash.com/photo-1532153955177-f59af40d6472?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Creative Writing">
+                    </div>
+                    <div class="course-content">
+                        <div class="course-meta">
+                            <span class="course-level">Intermediate</span>
+                            <span class="course-duration">8 weeks</span>
+                        </div>
+                        <h3>Creative Writing</h3>
+                        <p>Develop storytelling skills and express creativity through various writing forms.</p>
+                        <div class="course-stats">
+                            <div class="stat">
+                                <i class="fas fa-users"></i>
+                                <span>189 students</span>
+                            </div>
+                            <div class="stat">
+                                <i class="fas fa-star"></i>
+                                <span>4.7 rating</span>
+                            </div>
+                        </div>
+                        <button class="btn-secondary">Learn More</button>
+                    </div>
+                </div>
+                <div class="course-card">
+                    <div class="course-image">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Basic Science">
+                    </div>
+                    <div class="course-content">
+                        <div class="course-meta">
+                            <span class="course-level">Elementary</span>
+                            <span class="course-duration">10 weeks</span>
+                        </div>
+                        <h3>Introduction to Science</h3>
+                        <p>Explore the wonders of science through fun experiments and interactive lessons.</p>
+                        <div class="course-stats">
+                            <div class="stat">
+                                <i class="fas fa-users"></i>
+                                <span>312 students</span>
+                            </div>
+                            <div class="stat">
+                                <i class="fas fa-star"></i>
+                                <span>4.9 rating</span>
+                            </div>
+                        </div>
+                        <button class="btn-secondary">Learn More</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Advantages Section -->
+    <section class="course-advantages">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Why Choose Our Courses?</h2>
+                <p class="section-subtitle">Benefits that make our learning experience exceptional</p>
+            </div>
+            <div class="advantage-grid">
+                <div class="advantage-card">
+                    <div class="advantage-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Trusted & Authentic</h3>
+                    <p>Educational services you can rely on with proven results</p>
+                </div>
+                <div class="advantage-card">
+                    <div class="advantage-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3>Rich Learning Resources</h3>
+                    <p>Impactful materials for better understanding and retention</p>
+                </div>
+                <div class="advantage-card">
+                    <div class="advantage-icon">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <h3>Qualified Teachers</h3>
+                    <p>Highly qualified and engaging educators with expertise</p>
+                </div>
+                <div class="advantage-card">
+                    <div class="advantage-icon">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                    <h3>Economy & Ease</h3>
+                    <p>Affordable and accessible education for everyone</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="assets/images/logo.PNG" alt="Learning Bubble Logo" class="logo-img">
+                        <span class="logo-text">Learning Bubble</span>
+                    </div>
+                    <p>Transforming education through innovative online learning experiences.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="resources.html">Resources</a></li>
+                        <li><a href="courses.html">Courses</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> info@learningbubble.com</li>
+                        <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Follow Us</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Learning Bubble. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
