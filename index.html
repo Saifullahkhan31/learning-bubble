@@ -16,15 +16,15 @@
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
-            <div class="nav-logo">
+            <a href="index.html" class="nav-logo" aria-label="Learning Bubble home">
                 <img src="assets/images/logo.PNG" alt="Learning Bubble Logo" class="logo-img">
                 <span class="logo-text">Learning Bubble</span>
-            </div>
+            </a>
             <div class="nav-menu">
                 <a href="index.html" class="nav-link">Home</a>
                 <a href="about.html" class="nav-link">About</a>
-                <a href="resources.html" class="nav-link">Resources</a>
                 <a href="courses.html" class="nav-link">Courses</a>
+                <a href="resources.html" class="nav-link">Resources</a>
                 <a href="contact.html" class="nav-link">Contact</a>
                 <button class="register-btn" onclick="window.location.href='courses.html'">Enroll Now</button>
             </div>
@@ -69,6 +69,57 @@
         </div>
     </section>
 
+    <!-- Vision & Mission Section -->
+    <section id="vision-mission" class="vision-mission">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Our Vision & Mission</h2>
+                <p class="section-subtitle">What drives Learning Bubble every single day</p>
+            </div>
+
+            <div class="vm-tiles">
+                <div class="vm-tile">
+                    <span class="vm-icon"><i class="fas fa-eye"></i></span>
+                    <div class="vm-content">
+                        <div class="vm-heading">
+                            <h3>Vision</h3>
+                        </div>
+                        <p>
+                            To empower learners everywhere with accessible, engaging, and personalized tutoring that builds
+                            confidence, curiosity, and a lifelong love for learning. We create tailored learning pathways
+                            that adapt to each student's strengths and goals, combining data-informed instruction,
+                            interactive lessons, and real-world problem solving. Our aim is measurable growth — stronger
+                            skills, better study habits, and increased self-efficacy — all delivered in a safe, inclusive,
+                            and supportive online classroom.
+                        </p>
+                    </div>
+                </div>
+                <div class="vm-tile">
+                    <span class="vm-icon"><i class="fas fa-bullseye"></i></span>
+                    <div class="vm-content">
+                        <div class="vm-heading">
+                            <h3>Mission</h3>
+                        </div>
+                        <p>
+                            To deliver high‑impact, Zoom‑based tutoring led by caring teachers, combining a structured K‑12
+                            curriculum with adaptive practice, real‑world relevance and continuous feedback.
+                        </p>
+                        <ul class="vm-list">
+                            <li>Small groups and 1‑to‑1 sessions for focused attention</li>
+                            <li>Data‑informed teaching with clear goals and progress</li>
+                            <li>Supportive community of parents, students and educators</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="vm-cta">
+                <a class="btn-primary" href="courses.html">Explore Courses</a>
+                <a class="btn-secondary" href="contact.html?type=teacher">Teach With Us</a>
+            </div>
+        </div>
+    </section>
+
 
     <!-- Footer -->
     <footer class="footer">
@@ -85,15 +136,15 @@
                     <h4>Quick Links</h4>
                     <ul>
                         <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#resources">Resources</a></li>
-                        <li><a href="#courses">Courses</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="resources.html">Resources</a></li>
+                        <li><a href="courses.html">Courses</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
                     <h4>Contact</h4>
                     <ul>
-                        <li><i class="fas fa-envelope"></i> info@learningbubble.com</li>
+                        <li><i class="fas fa-envelope"></i> <a href="mailto:info@learningbubble.com">info@learningbubble.com</a></li>
                         <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
                     </ul>
                 </div>

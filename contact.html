@@ -16,15 +16,15 @@
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
-            <div class="nav-logo">
+            <a href="index.html" class="nav-logo" aria-label="Learning Bubble home">
                 <img src="assets/images/logo.PNG" alt="Learning Bubble Logo" class="logo-img">
                 <span class="logo-text">Learning Bubble</span>
-            </div>
+            </a>
             <div class="nav-menu">
                 <a href="index.html" class="nav-link">Home</a>
                 <a href="about.html" class="nav-link">About</a>
-                <a href="resources.html" class="nav-link">Resources</a>
                 <a href="courses.html" class="nav-link">Courses</a>
+                <a href="resources.html" class="nav-link">Resources</a>
                 <a href="contact.html" class="nav-link active">Contact</a>
                 <button class="register-btn" onclick="window.location.href='courses.html'">Enroll Now</button>
             </div>
@@ -67,7 +67,7 @@
                         </div>
                         <div class="form-group">
                             <label for="subject">Subject</label>
-                            <select id="subject" name="subject" required>
+                            <select id="subject" name="subject" class="modern-select" required>
                                 <option value="">Select a subject</option>
                                 <option value="enrollment">Course Enrollment</option>
                                 <option value="teacher">Teacher Application</option>
@@ -255,7 +255,7 @@
                 <div class="footer-section">
                     <h4>Contact</h4>
                     <ul>
-                        <li><i class="fas fa-envelope"></i> info@learningbubble.com</li>
+                        <li><i class="fas fa-envelope"></i> <a href="mailto:info@learningbubble.com">info@learningbubble.com</a></li>
                         <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
                     </ul>
                 </div>

@@ -99,12 +99,13 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Form handling (for registration buttons)
-    const registerButtons = document.querySelectorAll('.register-btn, .btn-primary');
-    registerButtons.forEach(button => {
+    // Demo notification handler (opt-in only)
+    // Add data-demo-notify="true" on any element to enable this temporary popup
+    const demoButtons = document.querySelectorAll('[data-demo-notify="true"]');
+    demoButtons.forEach(button => {
         button.addEventListener('click', function(e) {
             e.preventDefault();
-            
+
             // Add ripple effect
             const ripple = document.createElement('span');
             ripple.style.position = 'absolute';
@@ -116,16 +117,15 @@ document.addEventListener('DOMContentLoaded', function() {
             ripple.style.top = '50%';
             ripple.style.width = ripple.style.height = '100px';
             ripple.style.marginLeft = ripple.style.marginTop = '-50px';
-            
+
             this.style.position = 'relative';
             this.appendChild(ripple);
-            
+
             setTimeout(() => {
                 ripple.remove();
             }, 600);
-            
-            // Show alert for demo purposes
-            showNotification('Registration feature coming soon!', 'info');
+
+            showNotification('Feature coming soon!', 'info');
         });
     });
 
@@ -371,6 +371,16 @@ document.addEventListener('DOMContentLoaded', function() {
         
         if (subjectSelect) {
             subjectSelect.value = 'teacher';
+            // Sync custom select UI if present
+            const customWrapper = subjectSelect.closest('.custom-select');
+            if (customWrapper) {
+                const valEl = customWrapper.querySelector('.select-value');
+                const opt = subjectSelect.options[subjectSelect.selectedIndex];
+                if (valEl && opt) valEl.textContent = opt.text;
+                customWrapper.querySelectorAll('.select-menu li').forEach(li => {
+                    li.toggleAttribute('aria-selected', li.dataset.value === 'teacher');
+                });
+            }
         }
         
         if (messageTextarea) {
@@ -379,13 +389,84 @@ document.addEventListener('DOMContentLoaded', function() {
         
         if (teacherSection) {
             teacherSection.style.display = 'block';
-            // Scroll to show the teacher info section
+        }
+        // Gently scroll the contact form into view so "Send us a Message" is at the top
+        const contactFormContainer = document.querySelector('.contact-form-container');
+        if (contactFormContainer) {
             setTimeout(() => {
-                teacherSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }, 500);
+                contactFormContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 600);
         }
     }
     
+    // Transform modern selects into custom glass dropdowns
+    (function initCustomSelects() {
+        const selects = document.querySelectorAll('select.modern-select');
+        selects.forEach(select => {
+            // Build wrapper
+            const wrapper = document.createElement('div');
+            wrapper.className = 'custom-select';
+
+            // Create toggle
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'select-toggle';
+            btn.setAttribute('aria-haspopup', 'listbox');
+            btn.setAttribute('aria-expanded', 'false');
+            const val = document.createElement('span');
+            val.className = 'select-value';
+            val.textContent = select.options[select.selectedIndex]?.text || select.options[0]?.text || 'Select';
+            const caret = document.createElement('span');
+            caret.className = 'select-caret';
+            btn.appendChild(val);
+            btn.appendChild(caret);
+
+            // Create menu
+            const menu = document.createElement('ul');
+            menu.className = 'select-menu';
+            menu.setAttribute('role', 'listbox');
+            Array.from(select.options).forEach((opt, i) => {
+                const li = document.createElement('li');
+                li.textContent = opt.text;
+                li.dataset.value = opt.value;
+                if (opt.selected) li.setAttribute('aria-selected', 'true');
+                if (opt.value === '') li.style.color = '#6B7280';
+                li.addEventListener('click', () => {
+                    select.value = opt.value;
+                    val.textContent = opt.text;
+                    menu.querySelectorAll('li').forEach(el => el.removeAttribute('aria-selected'));
+                    li.setAttribute('aria-selected', 'true');
+                    btn.setAttribute('aria-expanded', 'false');
+                    wrapper.classList.remove('open');
+                    // Trigger change for downstream logic
+                    const evt = new Event('change', { bubbles: true });
+                    select.dispatchEvent(evt);
+                });
+                menu.appendChild(li);
+            });
+
+            // Toggle open
+            btn.addEventListener('click', () => {
+                const isOpen = wrapper.classList.toggle('open');
+                btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+            });
+
+            // Click outside
+            document.addEventListener('click', (e) => {
+                if (!wrapper.contains(e.target)) {
+                    wrapper.classList.remove('open');
+                    btn.setAttribute('aria-expanded', 'false');
+                }
+            });
+
+            // Insert into DOM
+            select.parentNode.insertBefore(wrapper, select);
+            wrapper.appendChild(select);
+            wrapper.appendChild(btn);
+            wrapper.appendChild(menu);
+        });
+    })();
+
     // Contact form handling
     const contactForm = document.querySelector('.contact-form');
     if (contactForm) {
