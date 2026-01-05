@@ -313,18 +313,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
     images.forEach(img => imageObserver.observe(img));
 
-    // Add loading states to buttons
+    // Add loading states to buttons (excluding filter buttons)
     document.querySelectorAll('button').forEach(button => {
-        button.addEventListener('click', function() {
-            const originalText = this.textContent;
-            this.textContent = 'Loading...';
-            this.disabled = true;
-            
-            setTimeout(() => {
-                this.textContent = originalText;
-                this.disabled = false;
-            }, 2000);
-        });
+        if (!button.classList.contains('age-filter-button')) {
+            button.addEventListener('click', function() {
+                const originalText = this.textContent;
+                this.textContent = 'Loading...';
+                this.disabled = true;
+                
+                setTimeout(() => {
+                    this.textContent = originalText;
+                    this.disabled = false;
+                }, 2000);
+            });
+        }
     });
 
     // Theme switcher (optional feature)
@@ -522,3 +524,343 @@ function debounce(func, wait) {
 const optimizedScroll = debounce(function() {
     // Add any scroll-based functionality here
 }, 100);
+
+// Course Data Structure
+const coursesData = [
+    // Literature, History & Storytelling
+    { id: 1, name: "The World of Sherlock Holmes", category: "Literature, History & Storytelling", fee: 20000, startingFee: 20000, duration: "10 sessions | 2 months", ages: "12–16", about: "Step into the world of mystery, logic, and deduction through Holmes' lens.", pricingOptions: null },
+    { id: 2, name: "History Mystery", category: "Literature, History & Storytelling", fee: 6000, startingFee: 6000, duration: "6 sessions | 1.5 months", ages: "12–16", about: "Explore untold stories and hidden corners of history.", pricingOptions: null },
+    { id: 3, name: "Tales and Telling", category: "Literature, History & Storytelling", fee: 10000, startingFee: 10000, duration: "8 sessions | 2 months", ages: "8–14", about: "Develop storytelling skills, imagination, and confidence.", pricingOptions: null },
+    
+    // Technology & Coding
+    { id: 4, name: "Artificial Intelligence for Kids", category: "Technology & Coding", fee: 18000, startingFee: 18000, duration: "10 sessions | 2 months", ages: "12–16", about: "", pricingOptions: null },
+    { id: 5, name: "Fun with Coding", category: "Technology & Coding", fee: 10000, startingFee: 10000, duration: "8 sessions | 2 months", ages: "10–16", about: "An engaging introduction to programming.", pricingOptions: null },
+    { id: 6, name: "Learn Python", category: "Technology & Coding", fee: 10000, startingFee: 10000, duration: "8 sessions | 2 months", ages: "", about: "A beginner-friendly Python programming course.", pricingOptions: null },
+    { id: 7, name: "Graphic Designing using Canva & Illustrator", category: "Technology & Coding", fee: 8000, startingFee: 8000, duration: "8 sessions | 2 months", ages: "10–16", about: "Learn the basics of digital design.", pricingOptions: null },
+    { id: 8, name: "MS Office for Kids", category: "Technology & Coding", fee: 8000, startingFee: 8000, duration: "8 sessions | 2 months", ages: "10–16", about: "Word, PowerPoint, Excel — kid-friendly and practical.", pricingOptions: null },
+    
+    // Creative Writing & Literature Development
+    { id: 9, name: "Poet's Corner", category: "Creative Writing & Literature Development", fee: 8000, startingFee: 8000, duration: "8 sessions | 2 months", ages: "10–14", about: "", pricingOptions: null },
+    { id: 10, name: "Poet's Corner", category: "Creative Writing & Literature Development", fee: 16000, startingFee: 16000, duration: "10 sessions | 3 months", ages: "15–20", about: "", pricingOptions: null },
+    { id: 11, name: "Creative Writing", category: "Creative Writing & Literature Development", fee: 8000, startingFee: 8000, duration: "8 sessions | 2 months", ages: "8–10", about: "", pricingOptions: null },
+    { id: 12, name: "Creative Writing", category: "Creative Writing & Literature Development", fee: 10000, startingFee: 10000, duration: "8 sessions | 2 months", ages: "11–14", about: "", pricingOptions: null },
+    { id: 13, name: "Creative Writing", category: "Creative Writing & Literature Development", fee: 10000, startingFee: 10000, duration: "8 sessions | 2 months", ages: "15–18", about: "", pricingOptions: null },
+    { id: 14, name: "Vocabulary Quest", category: "Creative Writing & Literature Development", fee: 10000, startingFee: 10000, duration: "10 sessions (40 minutes each)", ages: "14–18", about: "", pricingOptions: null },
+    
+    // Arts & Creativity
+    { id: 15, name: "Art Rebels", category: "Arts & Creativity", fee: 12000, startingFee: 12000, duration: "8 sessions | 2 months", ages: "12–18", about: "A bold journey for young artists to experiment and express.", pricingOptions: null },
+    { id: 16, name: "Bubbles and Beakers Club (Science)", category: "Arts & Creativity", fee: 10000, startingFee: 10000, duration: "8 sessions | 2 months", ages: "10–16", about: "Hands-on science experiments in a virtual lab.", pricingOptions: null },
+    
+    // Math, Logic & Skills
+    { id: 17, name: "Math Magic!", category: "Math, Logic & Skills", fee: 8000, startingFee: 8000, duration: "8 sessions | 2 months", ages: "6–10", about: "Fun numbers, puzzles, and patterns.", pricingOptions: null },
+    { id: 18, name: "Young Entrepreneurs", category: "Math, Logic & Skills", fee: 8000, startingFee: 8000, duration: "6 sessions | 1.5 months", ages: "10–14", about: "Build entrepreneurial mindset and skills.", pricingOptions: null },
+    { id: 19, name: "Financial Literacy", category: "Math, Logic & Skills", fee: 8000, startingFee: 8000, duration: "1 month | 4–5 sessions", ages: "10–14", about: "", pricingOptions: null },
+    { id: 20, name: "Financial Literacy", category: "Math, Logic & Skills", fee: 14000, startingFee: 14000, duration: "8 sessions | 2 months", ages: "15–18", about: "For every financial literacy course you would sign up for, we would teach one underprivileged kid about financial literacy.", pricingOptions: null },
+    { id: 21, name: "Become a Climate Activist – Beginner", category: "Math, Logic & Skills", fee: 12000, startingFee: 12000, duration: "2 months", ages: "8–12", about: "", pricingOptions: null },
+    
+    // IGCSE ACADEMICS
+    { id: 22, name: "IGCSE ACADEMICS", category: "IGCSE ACADEMICS", fee: 1500, startingFee: 1500, duration: "Per class / 8–10 sessions per month", ages: "", about: "Focus on concept clarity, past papers, and exam readiness. Subjects: Physics, Biology, Chemistry, Mathematics, English, Islamiat, Pakistan Studies, Accounting, Economics, Business Studies. Group size: 2–5 students.", pricingOptions: [
+        { label: "Individual Class", price: 1500, description: "PKR 1,500 per class" },
+        { label: "Group Class", price: 8000, description: "PKR 8,000 per month (8–10 sessions)" }
+    ]},
+    
+    // Test Preparation
+    { id: 23, name: "IELTS Academic", category: "Test Preparation", fee: 1500, startingFee: 1500, duration: "Flexible", ages: "", about: "", pricingOptions: [
+        { label: "Per Hour", price: "1,500–5,000", description: "PKR 1,500–5,000 per hour" },
+        { label: "One Module", price: 30000, description: "PKR 30,000 for one module" },
+        { label: "Four Modules", price: 60000, description: "PKR 60,000 for 4 modules" }
+    ]},
+    { id: 24, name: "IELTS General", category: "Test Preparation", fee: 1200, startingFee: 1200, duration: "Flexible", ages: "", about: "", pricingOptions: [
+        { label: "Per Hour", price: "1,200–4,000", description: "PKR 1,200–4,000 per hour" },
+        { label: "One Module", price: 25000, description: "PKR 25,000 for 1 module" },
+        { label: "All Modules", price: 75000, description: "PKR 75,000 for all 4 modules" }
+    ]},
+    { id: 25, name: "SAT Prep (Group Tuition)", category: "Test Preparation", fee: 50000, startingFee: 50000, duration: "4 months", ages: "", about: "Group size: 4–10 students. University admission test plans coming soon.", pricingOptions: null },
+    
+    // English Language Courses
+    { id: 26, name: "English Language – Basic", category: "English Language Courses", fee: 10000, startingFee: 10000, duration: "10 sessions", ages: "", about: "", pricingOptions: null },
+    { id: 27, name: "English Language – Intermediate", category: "English Language Courses", fee: 12000, startingFee: 12000, duration: "10 sessions", ages: "", about: "", pricingOptions: null },
+    { id: 28, name: "English Language – Advanced", category: "English Language Courses", fee: 12000, startingFee: 12000, duration: "8 sessions", ages: "", about: "", pricingOptions: null },
+    
+    // Workshops
+    { id: 29, name: "Poetry Writing Workshop (2 days)", category: "Workshops", fee: 3000, startingFee: 3000, duration: "2 days", ages: "", about: "Fee: PKR 3,000 or $12", pricingOptions: null },
+    { id: 30, name: "Explore Shakespeare (1 day)", category: "Workshops", fee: 3000, startingFee: 3000, duration: "1 day", ages: "", about: "Fee: PKR 3,000 or $12", pricingOptions: null },
+    { id: 31, name: "Creative Writing Workshop (2 days)", category: "Workshops", fee: 3500, startingFee: 3500, duration: "2 days", ages: "", about: "", pricingOptions: null },
+    { id: 32, name: "Professional Email Writing (2 days)", category: "Workshops", fee: 5000, startingFee: 5000, duration: "2 days", ages: "", about: "", pricingOptions: null }
+];
+
+// Category colors for placeholder images
+const categoryColors = {
+    "All Categories": "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+    "Literature, History & Storytelling": "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
+    "Technology & Coding": "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)",
+    "Creative Writing & Literature Development": "linear-gradient(135deg, #fa709a 0%, #fee140 100%)",
+    "Arts & Creativity": "linear-gradient(135deg, #30cfd0 0%, #330867 100%)",
+    "Math, Logic & Skills": "linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)",
+    "IGCSE ACADEMICS": "linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%)",
+    "Test Preparation": "linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%)",
+    "English Language Courses": "linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%)",
+    "Workshops": "linear-gradient(135deg, #ffd89b 0%, #19547b 100%)"
+};
+
+// Courses Page Functionality
+function initCoursesPage() {
+    const categoryTiles = document.querySelectorAll('.category-tile');
+    const categoryTilesSection = document.querySelector('.category-tiles-section');
+    const scrollIndicator = document.querySelector('.category-scroll-indicator');
+    const ageFilterDropdown = document.querySelector('.age-filter-dropdown');
+    const ageFilterButton = document.querySelector('.age-filter-button');
+    const ageFilterMenu = document.querySelector('.age-filter-menu');
+    const ageCheckboxes = document.querySelectorAll('.age-checkbox');
+    const coursesContainer = document.querySelector('.courses-grid-container');
+    
+    let selectedCategory = 'All Categories';
+    let selectedAges = ['All Ages'];
+    
+    // Initialize: Show all courses
+    renderCourses(coursesData);
+    
+    // Handle scroll indicator visibility
+    function updateScrollIndicator() {
+        if (!categoryTilesSection || !scrollIndicator) return;
+        
+        const isScrollable = categoryTilesSection.scrollWidth > categoryTilesSection.clientWidth;
+        const isAtStart = categoryTilesSection.scrollLeft <= 10;
+        const isAtEnd = categoryTilesSection.scrollLeft + categoryTilesSection.clientWidth >= categoryTilesSection.scrollWidth - 10;
+        
+        if (isScrollable) {
+            if (!isAtEnd) {
+                // Show right arrow
+                scrollIndicator.classList.add('visible');
+                scrollIndicator.classList.remove('left');
+                scrollIndicator.querySelector('i').className = 'fas fa-chevron-right';
+            } else if (!isAtStart) {
+                // Show left arrow
+                scrollIndicator.classList.add('visible');
+                scrollIndicator.classList.add('left');
+                scrollIndicator.querySelector('i').className = 'fas fa-chevron-left';
+            } else {
+                scrollIndicator.classList.remove('visible');
+            }
+        } else {
+            scrollIndicator.classList.remove('visible');
+        }
+    }
+    
+    // Check on load and resize
+    updateScrollIndicator();
+    window.addEventListener('resize', updateScrollIndicator);
+    
+    // Check after a short delay to ensure content is fully rendered
+    setTimeout(updateScrollIndicator, 100);
+    
+    // Check on scroll
+    if (categoryTilesSection) {
+        categoryTilesSection.addEventListener('scroll', updateScrollIndicator);
+    }
+    
+    // Scroll indicator click handler
+    if (scrollIndicator) {
+        scrollIndicator.addEventListener('click', function() {
+            if (categoryTilesSection) {
+                if (scrollIndicator.classList.contains('left')) {
+                    categoryTilesSection.scrollTo({ left: 0, behavior: 'smooth' });
+                } else {
+                    categoryTilesSection.scrollTo({ left: categoryTilesSection.scrollWidth, behavior: 'smooth' });
+                }
+            }
+        });
+    }
+    
+    // Category tile click handlers
+    if (categoryTiles.length > 0) {
+        categoryTiles.forEach(tile => {
+            tile.addEventListener('click', function() {
+                const category = this.dataset.category;
+                selectedCategory = category;
+                
+                // Update active state
+                categoryTiles.forEach(t => {
+                    if (t.dataset.category === category) {
+                        t.classList.add('active');
+                    } else {
+                        t.classList.remove('active');
+                    }
+                });
+                
+                // Filter and render courses
+                filterAndRenderCourses();
+            });
+        });
+    }
+    
+    // Age filter dropdown toggle
+    if (ageFilterButton && ageFilterMenu && ageFilterDropdown) {
+        ageFilterButton.addEventListener('click', function(e) {
+            e.stopPropagation();
+            ageFilterDropdown.classList.toggle('open');
+            ageFilterMenu.classList.toggle('open');
+        });
+        
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!ageFilterDropdown.contains(e.target)) {
+                ageFilterDropdown.classList.remove('open');
+                ageFilterMenu.classList.remove('open');
+            }
+        });
+    }
+    
+    // Age checkbox handlers - don't apply immediately, just update UI
+    if (ageCheckboxes.length > 0) {
+        ageCheckboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                const ageValue = this.value;
+                
+                if (ageValue === 'all') {
+                    // If "All Ages" is checked, uncheck others
+                    if (this.checked) {
+                        ageCheckboxes.forEach(cb => {
+                            if (cb.value !== 'all') cb.checked = false;
+                        });
+                    }
+                } else {
+                    // If specific age is checked, uncheck "All Ages"
+                    const allAgesCheckbox = document.querySelector('.age-checkbox[value="all"]');
+                    if (allAgesCheckbox && this.checked) {
+                        allAgesCheckbox.checked = false;
+                    }
+                }
+                
+                // Update button preview (but don't apply filter yet)
+                updateAgeFilterButtonPreview();
+            });
+        });
+    }
+    
+    // Apply filter button handler
+    const applyFilterButton = document.querySelector('.age-filter-apply-button');
+    if (applyFilterButton) {
+        applyFilterButton.addEventListener('click', function() {
+            // Get selected ages from checkboxes
+            const checkedBoxes = Array.from(ageCheckboxes).filter(cb => cb.checked);
+            
+            if (checkedBoxes.length === 0 || checkedBoxes.some(cb => cb.value === 'all')) {
+                selectedAges = ['All Ages'];
+            } else {
+                selectedAges = checkedBoxes.map(cb => cb.value);
+            }
+            
+            // Apply the filter
+            updateAgeFilterButton();
+            filterAndRenderCourses();
+            
+            // Close dropdown
+            if (ageFilterMenu && ageFilterDropdown) {
+                ageFilterMenu.classList.remove('open');
+                ageFilterDropdown.classList.remove('open');
+            }
+        });
+    }
+    
+    function updateAgeFilterButtonPreview() {
+        if (ageFilterButton) {
+            const checkedBoxes = Array.from(ageCheckboxes).filter(cb => cb.checked && cb.value !== 'all');
+            const count = checkedBoxes.length;
+            
+            ageFilterButton.querySelector('.filter-text').textContent = 'Filter by Age Group';
+            if (count === 0 || document.querySelector('.age-checkbox[value="all"]').checked) {
+                ageFilterButton.querySelector('.filter-count').textContent = '';
+            } else {
+                ageFilterButton.querySelector('.filter-count').textContent = `(${count})`;
+            }
+        }
+    }
+    
+    function updateAgeFilterButton() {
+        if (ageFilterButton) {
+            const count = selectedAges.length;
+            ageFilterButton.querySelector('.filter-text').textContent = 'Filter by Age Group';
+            if (selectedAges.includes('All Ages') || count === 0) {
+                ageFilterButton.querySelector('.filter-count').textContent = '';
+            } else {
+                ageFilterButton.querySelector('.filter-count').textContent = `(${count})`;
+            }
+        }
+    }
+    
+    function filterAndRenderCourses() {
+        let filtered = coursesData;
+        
+        // Filter by category
+        if (selectedCategory !== 'All Categories') {
+            filtered = filtered.filter(course => course.category === selectedCategory);
+        }
+        
+        // Filter by age
+        if (!selectedAges.includes('All Ages') && selectedAges.length > 0) {
+            filtered = filtered.filter(course => {
+                if (!course.ages) return false; // Exclude courses without specified age when filtering
+                return selectedAges.some(ageRange => {
+                    const [minAge, maxAge] = ageRange.split('-').map(Number);
+                    // Handle both en dash (–) and hyphen (-)
+                    const courseAges = course.ages.split(/[–-]/).map(a => parseInt(a.trim()));
+                    if (courseAges.length === 2) {
+                        const [courseMin, courseMax] = courseAges;
+                        // Check if age ranges overlap
+                        return (courseMin <= maxAge && courseMax >= minAge);
+                    }
+                    return false;
+                });
+            });
+        }
+        
+        renderCourses(filtered);
+    }
+    
+    function renderCourses(courses) {
+        if (!coursesContainer) return;
+        
+        if (courses.length === 0) {
+            coursesContainer.innerHTML = `
+                <div class="no-courses-message">
+                    <i class="fas fa-search"></i>
+                    <h3>No courses found</h3>
+                    <p>Try adjusting your filters to see more courses.</p>
+                </div>
+            `;
+            return;
+        }
+        
+        coursesContainer.innerHTML = courses.map(course => {
+            const categoryColor = categoryColors[course.category] || categoryColors["All Categories"];
+            const ageDisplay = course.ages ? `<span class="course-age"><i class="fas fa-user"></i> ${course.ages} years</span>` : '';
+            const aboutDisplay = course.about ? `<p class="course-about">${course.about}</p>` : '';
+            
+            return `
+                <div class="course-card-new" data-course-id="${course.id}">
+                    <div class="course-card-header" style="background: ${categoryColor}">
+                        <span class="course-category-badge">${course.category}</span>
+                    </div>
+                    <div class="course-card-body">
+                        <h3 class="course-name">${course.name}</h3>
+                        ${ageDisplay}
+                        <div class="course-meta-info">
+                            <span class="course-fee">Rs. ${course.startingFee.toLocaleString()}</span>
+                            <span class="course-duration-new"><i class="fas fa-clock"></i> ${course.duration}</span>
+                        </div>
+                        ${aboutDisplay}
+                        <a href="course-detail.html?id=${course.id}" class="btn-view-course">View Course</a>
+                    </div>
+                </div>
+            `;
+        }).join('');
+    }
+}
+
+// Initialize courses page when DOM is ready
+document.addEventListener('DOMContentLoaded', function() {
+    if (document.querySelector('.courses-page-container')) {
+        initCoursesPage();
+    }
+});

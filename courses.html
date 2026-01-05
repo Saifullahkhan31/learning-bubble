@@ -46,187 +46,130 @@
         </div>
     </section>
 
-    <!-- Featured Course -->
-    <section class="featured-course">
-        <div class="container">
-            <div class="announcement-card">
-                <div class="announcement-content">
-                    <div class="announcement-badge">New Course</div>
-                    <h3 class="announcement-title">English Communication Skills</h3>
-                    <p class="announcement-description">
-                        Perfect for Students, Homemakers, and Professionals looking to enhance their communication abilities.
-                        This comprehensive program covers speaking, writing, and presentation skills.
-                    </p>
-                    <div class="announcement-tags">
-                        <span class="tag">Students</span>
-                        <span class="tag">Homemakers</span>
-                        <span class="tag">Professionals</span>
-                    </div>
-                    <div class="course-features">
-                        <div class="feature">
-                            <i class="fas fa-clock"></i>
-                            <span>8 Weeks Duration</span>
-                        </div>
-                        <div class="feature">
-                            <i class="fas fa-users"></i>
-                            <span>Small Class Size</span>
-                        </div>
-                        <div class="feature">
-                            <i class="fas fa-certificate"></i>
-                            <span>Certificate Included</span>
-                        </div>
-                    </div>
-                    <button class="btn-primary">Enroll Now</button>
-                </div>
-                <div class="announcement-image">
-                    <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Communication Skills">
+    <!-- Courses Page Container -->
+    <section class="courses-page-container">
+        <!-- Category Tiles Section -->
+        <div class="category-tiles-wrapper">
+            <div class="category-tiles-section">
+                <div class="category-tile active" data-category="All Categories">
+                <div class="category-tile-image" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);"></div>
+                <div class="category-tile-overlay">
+                    <h3>All Categories</h3>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Course Categories -->
-    <section class="course-categories">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Course Categories</h2>
-                <p class="section-subtitle">Choose from our wide range of subjects and skill levels</p>
+            <div class="category-tile" data-category="Literature, History & Storytelling">
+                <div class="category-tile-image" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);"></div>
+                <div class="category-tile-overlay">
+                    <h3>Literature, History & Storytelling</h3>
+                </div>
             </div>
-            <div class="category-grid">
-                <div class="category-card">
-                    <div class="category-icon">
-                        <i class="fas fa-calculator"></i>
-                    </div>
-                    <h3>Mathematics</h3>
-                    <p>From basic arithmetic to advanced calculus</p>
-                    <span class="course-count">12 Courses</span>
+            <div class="category-tile" data-category="Technology & Coding">
+                <div class="category-tile-image" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);"></div>
+                <div class="category-tile-overlay">
+                    <h3>Technology & Coding</h3>
                 </div>
-                <div class="category-card">
-                    <div class="category-icon">
-                        <i class="fas fa-flask"></i>
-                    </div>
-                    <h3>Science</h3>
-                    <p>Biology, Chemistry, Physics, and Earth Science</p>
-                    <span class="course-count">8 Courses</span>
+            </div>
+            <div class="category-tile" data-category="Creative Writing & Literature Development">
+                <div class="category-tile-image" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);"></div>
+                <div class="category-tile-overlay">
+                    <h3>Creative Writing & Literature Development</h3>
                 </div>
-                <div class="category-card">
-                    <div class="category-icon">
-                        <i class="fas fa-book"></i>
-                    </div>
-                    <h3>Language Arts</h3>
-                    <p>Reading, Writing, Grammar, and Literature</p>
-                    <span class="course-count">10 Courses</span>
-                </div>
-                <div class="category-card">
-                    <div class="category-icon">
-                        <i class="fas fa-globe"></i>
-                    </div>
-                    <h3>Social Studies</h3>
-                    <p>History, Geography, Civics, and Culture</p>
-                    <span class="course-count">6 Courses</span>
-                </div>
-                <div class="category-card">
-                    <div class="category-icon">
-                        <i class="fas fa-paint-brush"></i>
-                    </div>
+            </div>
+            <div class="category-tile" data-category="Arts & Creativity">
+                <div class="category-tile-image" style="background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);"></div>
+                <div class="category-tile-overlay">
                     <h3>Arts & Creativity</h3>
-                    <p>Visual Arts, Music, and Creative Expression</p>
-                    <span class="course-count">5 Courses</span>
                 </div>
-                <div class="category-card">
-                    <div class="category-icon">
-                        <i class="fas fa-laptop-code"></i>
-                    </div>
-                    <h3>Technology</h3>
-                    <p>Computer Skills, Programming, and Digital Literacy</p>
-                    <span class="course-count">7 Courses</span>
+            </div>
+            <div class="category-tile" data-category="Math, Logic & Skills">
+                <div class="category-tile-image" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);"></div>
+                <div class="category-tile-overlay">
+                    <h3>Math, Logic & Skills</h3>
+                </div>
+            </div>
+            <div class="category-tile" data-category="IGCSE ACADEMICS">
+                <div class="category-tile-image" style="background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);"></div>
+                <div class="category-tile-overlay">
+                    <h3>IGCSE ACADEMICS</h3>
+                </div>
+            </div>
+            <div class="category-tile" data-category="Test Preparation">
+                <div class="category-tile-image" style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);"></div>
+                <div class="category-tile-overlay">
+                    <h3>Test Preparation</h3>
+                </div>
+            </div>
+            <div class="category-tile" data-category="English Language Courses">
+                <div class="category-tile-image" style="background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);"></div>
+                <div class="category-tile-overlay">
+                    <h3>English Language Courses</h3>
+                </div>
+            </div>
+            <div class="category-tile" data-category="Workshops">
+                <div class="category-tile-image" style="background: linear-gradient(135deg, #ffd89b 0%, #19547b 100%);"></div>
+                <div class="category-tile-overlay">
+                    <h3>Workshops</h3>
                 </div>
             </div>
         </div>
-    </section>
+        <div class="category-scroll-indicator">
+            <i class="fas fa-chevron-right"></i>
+        </div>
+    </div>
 
-    <!-- Popular Courses -->
-    <section class="popular-courses">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Popular Courses</h2>
-                <p class="section-subtitle">Most enrolled courses by our students</p>
-            </div>
-            <div class="courses-grid">
-                <div class="course-card">
-                    <div class="course-image">
-                        <img src="https://images.unsplash.com/photo-1596495578065-6e0763fa1178?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Elementary Math">
-                    </div>
-                    <div class="course-content">
-                        <div class="course-meta">
-                            <span class="course-level">Elementary</span>
-                            <span class="course-duration">6 weeks</span>
-                        </div>
-                        <h3>Elementary Mathematics</h3>
-                        <p>Foundation math skills including addition, subtraction, multiplication, and division.</p>
-                        <div class="course-stats">
-                            <div class="stat">
-                                <i class="fas fa-users"></i>
-                                <span>245 students</span>
-                            </div>
-                            <div class="stat">
-                                <i class="fas fa-star"></i>
-                                <span>4.8 rating</span>
-                            </div>
-                        </div>
-                        <button class="btn-secondary">Learn More</button>
-                    </div>
-                </div>
-                <div class="course-card">
-                    <div class="course-image">
-                        <img src="https://images.unsplash.com/photo-1532153955177-f59af40d6472?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Creative Writing">
-                    </div>
-                    <div class="course-content">
-                        <div class="course-meta">
-                            <span class="course-level">Intermediate</span>
-                            <span class="course-duration">8 weeks</span>
-                        </div>
-                        <h3>Creative Writing</h3>
-                        <p>Develop storytelling skills and express creativity through various writing forms.</p>
-                        <div class="course-stats">
-                            <div class="stat">
-                                <i class="fas fa-users"></i>
-                                <span>189 students</span>
-                            </div>
-                            <div class="stat">
-                                <i class="fas fa-star"></i>
-                                <span>4.7 rating</span>
-                            </div>
-                        </div>
-                        <button class="btn-secondary">Learn More</button>
-                    </div>
-                </div>
-                <div class="course-card">
-                    <div class="course-image">
-                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Basic Science">
-                    </div>
-                    <div class="course-content">
-                        <div class="course-meta">
-                            <span class="course-level">Elementary</span>
-                            <span class="course-duration">10 weeks</span>
-                        </div>
-                        <h3>Introduction to Science</h3>
-                        <p>Explore the wonders of science through fun experiments and interactive lessons.</p>
-                        <div class="course-stats">
-                            <div class="stat">
-                                <i class="fas fa-users"></i>
-                                <span>312 students</span>
-                            </div>
-                            <div class="stat">
-                                <i class="fas fa-star"></i>
-                                <span>4.9 rating</span>
-                            </div>
-                        </div>
-                        <button class="btn-secondary">Learn More</button>
+    <div class="filter-container">
+        <!-- Age Filter Section -->
+        <div class="age-filter-section">
+            <div class="age-filter-dropdown">
+                <button class="age-filter-button">
+                    <span class="filter-text">Filter by Age Group</span>
+                    <span class="filter-count"></span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="age-filter-menu">
+                    <label class="age-filter-option">
+                        <input type="checkbox" class="age-checkbox" value="all" checked>
+                        <span>All Ages</span>
+                    </label>
+                    <label class="age-filter-option">
+                        <input type="checkbox" class="age-checkbox" value="6-10">
+                        <span>6-10 years</span>
+                    </label>
+                    <label class="age-filter-option">
+                        <input type="checkbox" class="age-checkbox" value="8-12">
+                        <span>8-12 years</span>
+                    </label>
+                    <label class="age-filter-option">
+                        <input type="checkbox" class="age-checkbox" value="10-14">
+                        <span>10-14 years</span>
+                    </label>
+                    <label class="age-filter-option">
+                        <input type="checkbox" class="age-checkbox" value="12-16">
+                        <span>12-16 years</span>
+                    </label>
+                    <label class="age-filter-option">
+                        <input type="checkbox" class="age-checkbox" value="14-18">
+                        <span>14-18 years</span>
+                    </label>
+                    <label class="age-filter-option">
+                        <input type="checkbox" class="age-checkbox" value="15-20">
+                        <span>15-20 years</span>
+                    </label>
+                    <div class="age-filter-apply">
+                        <button class="age-filter-apply-button">Apply Filter</button>
                     </div>
                 </div>
             </div>
         </div>
+
+        <!-- Courses Section -->
+        <div class="courses-section">
+            <!-- Courses Grid -->
+            <div class="courses-grid-container">
+                <!-- Courses will be dynamically rendered here -->
+            </div>
+        </div>
+    </div>
     </section>
 
     <!-- Advantages Section -->
