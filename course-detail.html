@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Details - Learning Bubble</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/logo.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/logo.png">
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo" aria-label="Learning Bubble home">
+                <img src="assets/images/logo.png" alt="Learning Bubble Logo" class="logo-img">
+                <span class="logo-text">Learning Bubble</span>
+            </a>
+            <div class="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="courses.html" class="nav-link active">Courses</a>
+                <a href="resources.html" class="nav-link">Resources</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+                <button class="register-btn" onclick="window.location.href='courses.html'">Enroll Now</button>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb-section">
+        <div class="container">
+            <a href="index.html" class="breadcrumb-link">Home</a>
+            <span class="breadcrumb-separator">/</span>
+            <a href="courses.html" class="breadcrumb-link">Courses</a>
+            <span class="breadcrumb-separator">/</span>
+            <span class="breadcrumb-current" id="courseBreadcrumb">Course</span>
+        </div>
+    </div>
+
+    <!-- Course Detail Hero -->
+    <section class="course-detail-hero">
+        <div class="container">
+            <div class="course-detail-header" id="courseDetailHeader">
+                <!-- Course Image -->
+                <div class="course-image-container" id="courseImageContainer">
+                    <img src="assets/images/placeholder.png" alt="Course" class="course-image" id="courseImage">
+                </div>
+                <!-- Course Info -->
+                <div class="course-info-hero">
+                    <h1 class="course-name-hero" id="courseNameHero">Course Name</h1>
+                    <p class="course-category-hero" id="courseCategoryHero">Category</p>
+                    <div class="course-meta-hero" id="courseMetaHero">
+                        <span class="meta-item-hero">
+                            <i class="fas fa-clock"></i>
+                            <span id="courseDurationHero">8 sessions | 2 months</span>
+                        </span>
+                        <span class="meta-item-hero">
+                            <i class="fas fa-user"></i>
+                            <span id="courseAgeHero">10–16 years</span>
+                        </span>
+                        <span class="meta-item-hero">
+                            <i class="fas fa-tag"></i>
+                            <span id="coursePriceHero">Rs. 10,000</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Course Content -->
+    <section class="course-detail-content">
+        <div class="container">
+            <div class="course-detail-grid">
+                <!-- Main Content -->
+                <div class="course-detail-main">
+                    <!-- Course Info Cards -->
+                    <div class="course-info-cards">
+                        <div class="info-card">
+                            <div class="info-card-icon">
+                                <i class="fas fa-book"></i>
+                            </div>
+                            <div class="info-card-content">
+                                <label>Category</label>
+                                <p id="courseCategory">Technology & Coding</p>
+                            </div>
+                        </div>
+
+                        <div class="info-card">
+                            <div class="info-card-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="info-card-content">
+                                <label>Duration & Sessions</label>
+                                <p id="courseDuration">8 sessions | 2 months</p>
+                            </div>
+                        </div>
+
+                        <div class="info-card">
+                            <div class="info-card-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="info-card-content">
+                                <label>Age Group</label>
+                                <p id="courseAgeGroup">10–16 years</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Course Description -->
+                    <div class="course-description-section">
+                        <h2>About This Course</h2>
+                        <p id="courseDescription">This course is designed to introduce students to the fundamentals of programming in a fun and engaging way. Through hands-on projects and interactive lessons, students will learn core coding concepts and build their programming foundation.</p>
+                    </div>
+
+                    <!-- Course Highlights -->
+                    <div class="course-highlights-section">
+                        <h2>Course Highlights</h2>
+                        <ul id="highlightsList">
+                            <li><i class="fas fa-check-circle"></i> Expert Instructors</li>
+                            <li><i class="fas fa-check-circle"></i> Interactive Learning</li>
+                            <li><i class="fas fa-check-circle"></i> Flexible Schedule</li>
+                            <li><i class="fas fa-check-circle"></i> Certificate on Completion</li>
+                            <li><i class="fas fa-check-circle"></i> 24/7 Support</li>
+                        </ul>
+                    </div>
+
+                    <!-- Contact Card -->
+                    <div class="contact-info-section">
+                        <h2>Have Questions?</h2>
+                        <p>Get in touch with our team for more information about this course.</p>
+                        <a href="contact.html" class="btn-contact-main">Contact Us</a>
+                    </div>
+
+                    <!-- What You'll Learn -->
+                    <div class="course-benefits-section" id="courseBenefitsSection" style="display: none;">
+                        <h2>What You'll Learn</h2>
+                        <div class="benefits-grid" id="courseBeefitsGrid">
+                            <!-- Will be populated by JavaScript if data exists -->
+                        </div>
+                    </div>
+
+                    <!-- Course Modules -->
+                    <div class="course-modules-section" id="courseModulesSection" style="display: none;">
+                        <h2>Course Modules</h2>
+                        <div class="modules-list" id="courseModulesList">
+                            <!-- Will be populated by JavaScript if data exists -->
+                        </div>
+                    </div>
+
+                    <!-- Pricing Options (for courses with multiple pricing tiers) -->
+                    <div class="course-pricing-section" id="coursePricingSection" style="display: none;">
+                        <h2>Pricing Options</h2>
+                        <div class="pricing-options" id="pricingOptions">
+                            <!-- Will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sidebar -->
+                <aside class="course-detail-sidebar">
+                    <!-- Enrollment Card -->
+                    <div class="enrollment-card">
+                        <h3>Enroll in This Course</h3>
+                        <div class="enrollment-summary">
+                            <div class="summary-item">
+                                <span>Course Price:</span>
+                                <span class="price" id="sidebarPrice">Rs. 10,000</span>
+                            </div>
+                            <div class="summary-item">
+                                <span>Duration:</span>
+                                <span id="sidebarDuration">8 sessions</span>
+                            </div>
+                            <div class="summary-item">
+                                <span>Age Group:</span>
+                                <span id="sidebarAgeGroup">10–16 years</span>
+                            </div>
+                        </div>
+                        <button class="btn-enroll" onclick="handleEnroll()">Enroll Now</button>
+                        <p class="enrollment-note">Start your learning journey today!</p>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </section>
+
+    <!-- Related Courses -->
+    <section class="related-courses-section">
+        <div class="container">
+            <h2 class="section-title">Related Courses</h2>
+            <p class="section-subtitle">Check out other courses in the same category</p>
+            <div class="related-courses-grid" id="relatedCoursesGrid">
+                <!-- Will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="assets/images/logo.png" alt="Learning Bubble Logo" class="logo-img">
+                        <span class="logo-text">Learning Bubble</span>
+                    </div>
+                    <p>Transforming education through innovative online learning experiences.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="resources.html">Resources</a></li>
+                        <li><a href="courses.html">Courses</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> <a href="mailto:info@learningbubble.com">info@learningbubble.com</a></li>
+                        <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Follow Us</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Learning Bubble. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="course-detail.js"></script>
+</body>
+</html>
