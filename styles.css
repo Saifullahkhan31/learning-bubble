@@ -85,6 +85,9 @@ body {
     display: flex;
     align-items: center;
     gap: 2rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
 .nav-link {
@@ -116,13 +119,14 @@ body {
 
 .register-btn {
     background: linear-gradient(135deg, #4F46E5, #7C3AED);
-    color: white;
+    color: white !important;
     border: none;
     padding: 0.5rem 1.5rem;
     border-radius: 50px;
     font-weight: 500;
     cursor: pointer;
     transition: all 0.3s ease;
+    text-decoration: none !important;
 }
 
 .register-btn:hover {
@@ -2436,6 +2440,21 @@ section {
     margin: 0 0 1.5rem 0;
 }
 
+.price-select {
+    width: 100%;
+    padding: 0.6rem 0.75rem;
+    border-radius: 8px;
+    border: 1px solid #E5E7EB;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+}
+
+.single-price {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    color: #1F2937;
+}
+
 .enrollment-summary {
     background: #F9FAFB;
     border-radius: 8px;
@@ -2446,8 +2465,9 @@ section {
 .summary-item {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     margin-bottom: 1rem;
+    gap: 1rem;
 }
 
 .summary-item:last-child {
@@ -2457,6 +2477,11 @@ section {
 .summary-item span:first-child {
     color: #6B7280;
     font-size: 0.95rem;
+    flex-shrink: 0;
+}
+
+.summary-item span:last-child {
+    text-align: right;
 }
 
 .summary-item .price {
@@ -2654,5 +2679,610 @@ section {
 
     .related-courses-grid {
         grid-template-columns: 1fr;
+    }
+
+    .enrollment-container {
+        flex-direction: column;
+    }
+
+    .enrollment-cart,
+    .enrollment-form-container {
+        width: 100%;
+    }
+
+    .enrollment-form {
+        max-width: 100%;
+    }
+}
+
+/* ============================================
+   ENROLLMENT PAGE STYLES
+   ============================================ */
+
+.enrollment-section {
+    padding: 8rem 0 3rem 0;
+    background: #f9fafb;
+    min-height: calc(100vh - 300px);
+}
+
+.enrollment-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.enrollment-header h1 {
+    font-size: 2.5rem;
+    color: #1f2937;
+    margin-bottom: 0.5rem;
+}
+
+.enrollment-header p {
+    font-size: 1.1rem;
+    color: #6b7280;
+}
+
+.enrollment-container {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 2rem;
+    align-items: start;
+}
+
+/* Cart Section */
+.enrollment-cart {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 100px;
+}
+
+.enrollment-cart h2 {
+    font-size: 1.5rem;
+    color: #1f2937;
+    margin-bottom: 1.5rem;
+}
+
+.cart-items {
+    margin-bottom: 2rem;
+    min-height: 150px;
+}
+
+.empty-cart {
+    text-align: center;
+    padding: 2rem;
+    background: #f3f4f6;
+    border-radius: 8px;
+    color: #6b7280;
+}
+
+.empty-cart i {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    display: block;
+    color: #d1d5db;
+}
+
+.empty-cart p {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.empty-cart small {
+    display: block;
+    font-size: 0.85rem;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 1rem;
+    background: #f9fafb;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    border: 1px solid #e5e7eb;
+}
+
+.cart-item-info h4 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1rem;
+    color: #1f2937;
+}
+
+.cart-item-category {
+    font-size: 0.85rem;
+    color: #9ca3af;
+    margin-bottom: 0.5rem;
+}
+
+.cart-item-price {
+    font-size: 1.1rem;
+    color: #4f46e5;
+    font-weight: 600;
+}
+
+.btn-remove {
+    background: none;
+    border: none;
+    color: #ef4444;
+    cursor: pointer;
+    padding: 0.5rem;
+    font-size: 1.2rem;
+    transition: all 0.2s;
+}
+
+.btn-remove:hover {
+    transform: scale(1.2);
+}
+
+.btn-add-more {
+    width: 100%;
+    padding: 0.875rem;
+    background: #4f46e5;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.btn-add-more:hover {
+    background: #4338ca;
+    transform: translateY(-2px);
+}
+
+.cart-summary {
+    background: #f0f4ff;
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid #dbeafe;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+    font-size: 0.95rem;
+    color: #4b5563;
+}
+
+.summary-row.total {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #4f46e5;
+    border-top: 1px solid #bfdbfe;
+    padding-top: 0.75rem;
+    margin-top: 0.75rem;
+}
+
+.payment-note {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #bfdbfe;
+    font-size: 0.85rem;
+    color: #6366f1;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+}
+
+.payment-note i {
+    margin-top: 0.2rem;
+    flex-shrink: 0;
+}
+
+/* Enrollment Form */
+.enrollment-form-container {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.enrollment-form-container h2 {
+    font-size: 1.5rem;
+    color: #1f2937;
+    margin-bottom: 1.5rem;
+}
+
+.enrollment-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #1f2937;
+    font-size: 0.95rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    padding: 0.875rem;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: all 0.3s;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #4f46e5;
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+.form-group small {
+    margin-top: 0.25rem;
+    font-size: 0.85rem;
+    color: #6b7280;
+}
+
+.form-group.checkbox {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 0.75rem;
+}
+
+.form-group.checkbox input {
+    margin-top: 0.25rem;
+    cursor: pointer;
+    width: auto;
+}
+
+.form-group.checkbox label {
+    margin-bottom: 0;
+    font-weight: 500;
+    font-size: 0.95rem;
+    cursor: pointer;
+}
+
+.btn-submit {
+    padding: 1rem 1.5rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 700;
+    margin-top: 1rem;
+    transition: all 0.3s;
+}
+
+.btn-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(102, 126, 234, 0.4);
+}
+
+.btn-submit:active {
+    transform: translateY(0);
+}
+
+/* Courses Modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.modal-content {
+    background: white;
+    border-radius: 10px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+    animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.modal-large {
+    width: 90%;
+    max-width: 900px;
+}
+
+.modal-small {
+    width: 90%;
+    max-width: 500px;
+}
+
+.modal-header {
+    padding: 1.5rem;
+    border-bottom: 1px solid #e5e7eb;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #1f2937;
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: #6b7280;
+    padding: 0;
+    line-height: 1;
+    transition: color 0.2s;
+}
+
+.modal-close:hover {
+    color: #1f2937;
+}
+
+.modal-body {
+    padding: 2rem;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.courses-search {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.courses-search input,
+.courses-search select {
+    padding: 0.75rem;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+.courses-search input {
+    flex: 1;
+}
+
+.courses-search select {
+    min-width: 200px;
+}
+
+.courses-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.course-card-enrollment {
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all 0.3s;
+}
+
+.course-card-enrollment:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.course-card-header {
+    padding: 1rem;
+    color: white;
+    position: relative;
+}
+
+.course-category-badge {
+    background: rgba(255, 255, 255, 0.3);
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    display: inline-block;
+}
+
+.course-card-body {
+    padding: 1.25rem;
+}
+
+.course-name {
+    margin: 0 0 0.75rem 0;
+    font-size: 1.1rem;
+    color: #1f2937;
+    font-weight: 600;
+}
+
+.course-age {
+    display: block;
+    font-size: 0.85rem;
+    color: #6b7280;
+    margin-bottom: 0.75rem;
+}
+
+.course-age i {
+    margin-right: 0.25rem;
+}
+
+.course-meta-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.course-fee {
+    font-size: 1rem;
+    color: #4f46e5;
+    font-weight: 700;
+}
+
+.course-duration {
+    font-size: 0.85rem;
+    color: #6b7280;
+}
+
+.course-duration i {
+    margin-right: 0.25rem;
+}
+
+.btn-add-course {
+    width: 100%;
+    padding: 0.75rem;
+    background: #4f46e5;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.btn-add-course:hover:not(:disabled) {
+    background: #4338ca;
+    transform: translateY(-2px);
+}
+
+.btn-add-course.added {
+    background: #10b981;
+    cursor: default;
+}
+
+.btn-add-course:disabled {
+    opacity: 0.7;
+}
+
+/* Success Modal */
+.success-icon {
+    font-size: 4rem;
+    color: #10b981;
+    margin-bottom: 1rem;
+}
+
+.success-icon i {
+    animation: bounce 0.6s ease-out;
+}
+
+@keyframes bounce {
+    0% {
+        transform: scale(0);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.success-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.btn-primary,
+.btn-secondary {
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s;
+    display: inline-block;
+    text-align: center;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(102, 126, 234, 0.4);
+}
+
+.btn-secondary {
+    background: #e5e7eb;
+    color: #1f2937;
+}
+
+.btn-secondary:hover {
+    background: #d1d5db;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .enrollment-header h1 {
+        font-size: 1.8rem;
+    }
+
+    .enrollment-container {
+        grid-template-columns: 1fr;
+    }
+
+    .enrollment-cart {
+        position: static;
+    }
+
+    .courses-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+
+    .courses-search {
+        flex-direction: column;
+    }
+
+    .courses-search select {
+        min-width: 100%;
+    }
+
+    .success-actions {
+        flex-direction: column;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+        width: 100%;
     }
 }

@@ -164,29 +164,67 @@ function displayCourseDetails(course) {
         document.getElementById('courseDescription').textContent = description;
 
         // Update sidebar
-        document.getElementById('sidebarPrice').textContent = `Rs. ${course.startingFee.toLocaleString()}`;
+        const sidebarPriceEl = document.getElementById('sidebarPrice');
+        if (sidebarPriceEl) sidebarPriceEl.textContent = `Rs. ${course.startingFee.toLocaleString()}`;
         document.getElementById('sidebarDuration').textContent = course.duration;
         document.getElementById('sidebarAgeGroup').textContent = course.ages || 'All Ages';
 
-        // Handle pricing options (for courses with multiple tiers)
-        if (course.pricingOptions && course.pricingOptions.length > 0) {
-            const pricingSection = document.getElementById('coursePricingSection');
-            const pricingOptionsContainer = document.getElementById('pricingOptions');
-            
-            pricingSection.style.display = 'block';
-            
-            pricingOptionsContainer.innerHTML = course.pricingOptions.map(option => `
-                <div class="pricing-option">
-                    <div class="pricing-option-header">
-                        <h4>${option.label}</h4>
-                        <span class="pricing-option-price">${option.price.toString().includes(',') ? option.price : `${option.price.toLocaleString()}`}</span>
-                    </div>
-                    <p class="pricing-option-description">${option.description}</p>
-                </div>
-            `).join('');
+        // Handle pricing options: inject dropdown into enrollment card when there are multiple options
+        const priceOptionsContainer = document.getElementById('priceOptionsContainer');
+        if (priceOptionsContainer) {
+            priceOptionsContainer.innerHTML = '';
+            if (course.pricingOptions && course.pricingOptions.length > 0) {
+                const selectId = 'priceSelect';
+                const select = document.createElement('select');
+                select.id = selectId;
+                select.className = 'price-select';
+
+                // Add default label option
+                const defaultOpt = document.createElement('option');
+                defaultOpt.value = '';
+                defaultOpt.textContent = 'Select price option';
+                select.appendChild(defaultOpt);
+
+                course.pricingOptions.forEach((opt, idx) => {
+                    const o = document.createElement('option');
+                    // store both machine price and human label
+                    o.value = typeof opt.price === 'number' ? opt.price : opt.price.toString();
+                    o.textContent = `${opt.label} — ${opt.price}`;
+                    o.dataset.label = opt.label;
+                    select.appendChild(o);
+                });
+
+                priceOptionsContainer.appendChild(select);
+
+                // Update sidebar price when selection changes
+                select.addEventListener('change', function() {
+                    const val = this.value;
+                    if (!val) {
+                        sidebarPriceEl.textContent = `Rs. ${course.startingFee.toLocaleString()}`;
+                    } else {
+                        // show chosen value (keep formatting if numeric)
+                        const numeric = parseInt(String(val).replace(/\D/g, ''));
+                        sidebarPriceEl.textContent = isNaN(numeric) ? val : `Rs. ${numeric.toLocaleString()}`;
+                    }
+                });
+            } else {
+                // No multiple pricing options — keep container empty to avoid duplicate price display
+                priceOptionsContainer.innerHTML = '';
+            }
         }
     } catch (error) {
         console.error('Error updating course details:', error);
+    }
+
+    // Setup enroll button
+    const enrollBtn = document.getElementById('enrollBtn');
+    if (enrollBtn) {
+        enrollBtn.addEventListener('click', function() {
+            // If a price option is selected, pass it to enrollment page
+            const priceSelect = document.getElementById('priceSelect');
+            const selectedPrice = priceSelect && priceSelect.value ? priceSelect.value : '';
+            handleEnroll(course.id, selectedPrice);
+        });
     }
 }
 
@@ -228,8 +266,14 @@ function displayRelatedCourses(currentCourse) {
     `).join('');
 }
 
-function handleEnroll() {
-    showNotification('Enrollment feature coming soon! Please contact us for details.', 'info');
+function handleEnroll(courseId, selectedPrice = '') {
+    // Redirect to enrollment page with course ID and optional price override
+    let url = `enrollment.html?id=${courseId}`;
+    if (selectedPrice) {
+        // encode price (could be numeric or string range)
+        url += `&price=${encodeURIComponent(selectedPrice)}`;
+    }
+    window.location.href = url;
 }
 
 // Notification function (reuse from main script)

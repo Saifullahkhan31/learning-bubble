@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enrollment - Learning Bubble</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <img src="assets/images/logo.png" alt="Learning Bubble Logo" class="logo-img">
+                <span class="logo-text">Learning Bubble</span>
+            </a>
+            <button class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="courses.html" class="nav-link">Courses</a></li>
+                <li><a href="resources.html" class="nav-link">Resources</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+                <li><a href="enrollment.html" class="nav-link register-btn">Enroll Now</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Enrollment Section -->
+    <section class="enrollment-section">
+        <div class="container">
+            <div class="enrollment-header">
+                <h1>Complete Your Enrollment</h1>
+                <p>Add courses and fill your details to get started</p>
+            </div>
+
+            <div class="enrollment-container">
+                <!-- Left Column: Cart -->
+                <div class="enrollment-cart">
+                    <h2>Your Courses</h2>
+                    <div class="cart-items" id="cartItems">
+                        <!-- Populated by JavaScript -->
+                    </div>
+
+                    <!-- Add More Courses Button -->
+                    <button class="btn-add-more" id="btnAddMore">
+                        <i class="fas fa-plus"></i> Add More Courses
+                    </button>
+
+                    <!-- Cart Summary -->
+                    <div class="cart-summary">
+                        <div class="summary-row">
+                            <span>Subtotal:</span>
+                            <span id="subtotal">Rs. 0</span>
+                        </div>
+                        <div class="summary-row total">
+                            <span>Total Amount:</span>
+                            <span id="totalAmount">Rs. 0</span>
+                        </div>
+                        <p class="payment-note">
+                            <i class="fas fa-info-circle"></i> 
+                            You'll receive payment instructions after submission
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Right Column: Enrollment Form -->
+                <div class="enrollment-form-container">
+                    <h2>Your Information</h2>
+                    <form id="enrollmentForm" class="enrollment-form">
+                        <div class="form-group">
+                            <label for="name">Full Name *</label>
+                            <input type="text" id="name" name="name" required placeholder="Enter your full name">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" required placeholder="your@email.com">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Phone Number (WhatsApp) *</label>
+                            <input type="tel" id="phone" name="phone" required placeholder="03001234567" pattern="[0-9\+\-\s\(\)]+">
+                            <small>We'll contact you on this number via WhatsApp</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="age">Age Group</label>
+                            <select id="age" name="age">
+                                <option value="">Select age group</option>
+                                <option value="6-10">6-10 years</option>
+                                <option value="10-14">10-14 years</option>
+                                <option value="14-18">14-18 years</option>
+                                <option value="18+">18+ years</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="parentName">Parent/Guardian Name (if applicable)</label>
+                            <input type="text" id="parentName" name="parentName" placeholder="Enter parent's name">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Message (Optional)</label>
+                            <textarea id="message" name="message" rows="4" placeholder="Any questions or special requests?"></textarea>
+                        </div>
+
+                        <div class="form-group checkbox">
+                            <input type="checkbox" id="terms" name="terms" required>
+                            <label for="terms">I agree to be contacted for enrollment confirmation</label>
+                        </div>
+
+                        <button type="submit" class="btn-submit">Complete Enrollment</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Courses Modal -->
+    <div class="modal" id="coursesModal">
+        <div class="modal-content modal-large">
+            <div class="modal-header">
+                <h2>Select Courses</h2>
+                <button class="modal-close" id="closeModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="courses-search">
+                    <input type="text" id="courseSearch" placeholder="Search courses...">
+                    <select id="categoryFilter">
+                        <option value="">All Categories</option>
+                    </select>
+                </div>
+                <div class="courses-grid" id="coursesGrid">
+                    <!-- Populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="modal" id="successModal">
+        <div class="modal-content modal-small">
+            <div class="modal-body text-center">
+                <div class="success-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h2>Enrollment Submitted!</h2>
+                <p>Thank you for your interest in Learning Bubble courses.</p>
+                <p>We'll contact you on WhatsApp at <strong id="successPhone"></strong> with payment details shortly.</p>
+                <div class="success-actions">
+                    <a href="courses.html" class="btn-primary">Browse More Courses</a>
+                    <a href="index.html" class="btn-secondary">Back to Home</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="assets/images/logo.png" alt="Learning Bubble Logo" class="logo-img">
+                        <span class="logo-text">Learning Bubble</span>
+                    </div>
+                    <p>Transforming education through innovative online learning experiences.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="resources.html">Resources</a></li>
+                        <li><a href="courses.html">Courses</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> <a href="mailto:info@learningbubble.com">info@learningbubble.com</a></li>
+                        <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Follow Us</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Learning Bubble. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="enrollment.js"></script>
+</body>
+</html>

@@ -158,13 +158,7 @@
                         </div>
                     </div>
 
-                    <!-- Pricing Options (for courses with multiple pricing tiers) -->
-                    <div class="course-pricing-section" id="coursePricingSection" style="display: none;">
-                        <h2>Pricing Options</h2>
-                        <div class="pricing-options" id="pricingOptions">
-                            <!-- Will be populated by JavaScript -->
-                        </div>
-                    </div>
+                    <!-- (Pricing moved into the enrollment card) -->
                 </div>
 
                 <!-- Sidebar -->
@@ -172,6 +166,7 @@
                     <!-- Enrollment Card -->
                     <div class="enrollment-card">
                         <h3>Enroll in This Course</h3>
+                        <div id="priceOptionsContainer"></div>
                         <div class="enrollment-summary">
                             <div class="summary-item">
                                 <span>Course Price:</span>
@@ -186,7 +181,7 @@
                                 <span id="sidebarAgeGroup">10–16 years</span>
                             </div>
                         </div>
-                        <button class="btn-enroll" onclick="handleEnroll()">Enroll Now</button>
+                        <button class="btn-enroll" id="enrollBtn">Enroll Now</button>
                         <p class="enrollment-note">Start your learning journey today!</p>
                     </div>
                 </aside>
