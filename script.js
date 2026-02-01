@@ -46,6 +46,11 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
+    // Add a page-specific body class for pages where we want to tweak nav visuals
+    if (currentPage === 'enrollment.html') {
+        document.body.classList.add('page-enrollment');
+    }
+
     // Navbar scroll effect
     window.addEventListener('scroll', function() {
         if (window.scrollY > 50) {

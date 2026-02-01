@@ -859,6 +859,63 @@ body {
     width: 100%;
 }
 
+/* Do not show underline for the Enroll/Register nav button when it's the active page */
+.nav-link.register-btn.active::after,
+.register-btn.active::after {
+    display: none !important;
+}
+
+/* Keep the Enroll/Register button visually stable (no size/weight jump) */
+.nav-link.register-btn,
+.register-btn {
+    /* match other nav links' text weight and spacing to stay consistent across pages */
+    font-weight: 500;
+    line-height: normal;
+    font-size: inherit;
+    font-family: inherit;
+}
+
+/* Modern selected indicator for the Enroll button only (does not affect other nav links) */
+.nav-link.register-btn.active,
+body.page-enrollment .nav-link.register-btn {
+    /* keep the same appearance as other pages */
+    color: white !important;
+    background: linear-gradient(135deg, #4F46E5, #7C3AED) !important;
+    border-radius: 50px;
+    padding: 0.5rem 1.5rem;
+    box-shadow: 0 10px 30px rgba(79, 70, 229, 0.18);
+    transform: translateY(0);
+}
+
+/* Make the selected indicator subtle and modern without changing font-size */
+.nav-link.register-btn.active::before {
+    content: '';
+    position: absolute;
+    inset: -6px;
+    border-radius: 999px;
+    background: radial-gradient(ellipse at center, rgba(124,58,237,0.12), transparent 40%);
+    z-index: -1;
+}
+
+/* Final safeguard: force-remove any pseudo-underline for the register/enroll button
+   (high specificity and !important to override previously defined rules or inline styles) */
+.nav-menu a.register-btn::after,
+.nav-menu a.register-btn.active::after,
+.nav-menu .register-btn::after,
+.register-btn::after {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+    background: transparent !important;
+    pointer-events: none !important;
+}
+
+/* Enrollment page specific: ensure no underline for the nav enroll button on that page */
+body.page-enrollment .nav-link.register-btn::after,
+body.page-enrollment a.register-btn::after {
+    display: none !important;
+}
+
 /* About Page Styles */
 .about-detailed {
     padding: 6rem 0;
