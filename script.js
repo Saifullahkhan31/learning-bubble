@@ -840,7 +840,6 @@ function initCoursesPage() {
         coursesContainer.innerHTML = courses.map(course => {
             const categoryColor = categoryColors[course.category] || categoryColors["All Categories"];
             const ageDisplay = course.ages ? `<span class="course-age"><i class="fas fa-user"></i> ${course.ages} years</span>` : '';
-            const aboutDisplay = course.about ? `<p class="course-about">${course.about}</p>` : '';
             
             return `
                 <div class="course-card-new" data-course-id="${course.id}">
@@ -854,7 +853,6 @@ function initCoursesPage() {
                             <span class="course-fee">Rs. ${course.startingFee.toLocaleString()}</span>
                             <span class="course-duration-new"><i class="fas fa-clock"></i> ${course.duration}</span>
                         </div>
-                        ${aboutDisplay}
                         <a href="course-detail.html?id=${course.id}" class="btn-view-course">View Course</a>
                     </div>
                 </div>
