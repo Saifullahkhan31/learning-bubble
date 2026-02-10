@@ -1590,7 +1590,7 @@ section {
 }
 
 .category-tile:not(.active) {
-    opacity: 0.4;
+    opacity: 1;
     filter: grayscale(0.3);
 }
 
@@ -1864,10 +1864,15 @@ section {
 
 .course-card-header {
     height: 180px;
+    width: 100%;
     position: relative;
     display: flex;
     align-items: flex-end;
     padding: 1rem;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    aspect-ratio: 300 / 180;
 }
 
 .course-category-badge {
@@ -2102,7 +2107,8 @@ section {
 }
 
 .course-image-container {
-    height: 300px;
+    height: 280px;
+    width: 100%;
     border-radius: 16px;
     background-size: cover;
     background-position: center;

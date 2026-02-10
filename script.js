@@ -841,9 +841,12 @@ function initCoursesPage() {
             const categoryColor = categoryColors[course.category] || categoryColors["All Categories"];
             const ageDisplay = course.ages ? `<span class="course-age"><i class="fas fa-user"></i> ${course.ages} years</span>` : '';
             
+            // Try to load course image, fallback to gradient if not found
+            const courseImagePath = `assets/images/courses/course-${course.id}.jpg`;
+            
             return `
                 <div class="course-card-new" data-course-id="${course.id}">
-                    <div class="course-card-header" style="background: ${categoryColor}">
+                    <div class="course-card-header" style="background-image: url('${courseImagePath}'), ${categoryColor}; background-size: cover; background-position: center;">
                         <span class="course-category-badge">${course.category}</span>
                     </div>
                     <div class="course-card-body">

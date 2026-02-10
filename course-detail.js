@@ -146,9 +146,22 @@ function displayCourseDetails(course) {
         document.getElementById('courseAgeHero').textContent = course.ages || 'All Ages';
         document.getElementById('coursePriceHero').textContent = `Rs. ${course.startingFee.toLocaleString()}`;
         
-        // Update course image container background with gradient
+        // Update course image container with image, fallback to gradient
         const imageContainer = document.getElementById('courseImageContainer');
-        if (imageContainer) imageContainer.style.background = categoryColor;
+        if (imageContainer) {
+            const courseImagePath = `assets/images/courses/course-${course.id}.jpg`;
+            // Set background image with gradient fallback
+            imageContainer.style.backgroundImage = `url('${courseImagePath}'), ${categoryColor}`;
+            imageContainer.style.backgroundSize = 'cover';
+            imageContainer.style.backgroundPosition = 'center';
+            
+            // Also set the img src if it exists (for <img> tag)
+            const imgEl = imageContainer.querySelector('.course-image');
+            if (imgEl) {
+                imgEl.src = courseImagePath;
+                imgEl.style.objectFit = 'cover';
+            }
+        }
     } catch (error) {
         console.error('Error in displayCourseDetails:', error);
     }

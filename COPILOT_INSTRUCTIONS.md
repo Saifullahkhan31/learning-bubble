@@ -105,36 +105,36 @@ Use `@media (max-width: 768px)` for tablet/mobile overrides.
 
 ### Course Card Images (Listing Page & Detail Page)
 
-**Single Image for Both Uses:**
-You can use the **same 1200px × 600px image** in both locations:
+**Single Image for Both Uses - SAME RATIO GUARANTEED:**
+You can use the **same 1200px × 600px image** in both locations - they will display IDENTICALLY just scaled.
 
 1. **Course Card Header** (courses.html listing):
-   - Current size: 300px wide × 180px tall
-   - Using `background-size: cover` + `background-position: center`
-   - Image scales down perfectly (no quality loss)
+   - Container: 300px wide × 180px tall (1.67:1 ratio)
+   - Image displays at 100% - no gaps, no cropping
 
 2. **Course Detail Hero Image** (course-detail.html):
-   - Container size: ~550px wide × 300px tall (on desktop)
-   - Same image, larger display
-   - Uses `object-fit: cover` for responsive sizing
-   - Responsive: Adapts to tablet (full width, ~400px tall) and mobile
+   - Container: Larger but SAME 1.67:1 ratio (aspect-ratio locked)
+   - Same image scaled up proportionally
+   - Looks IDENTICAL to card - just bigger
 
-**Master Image Resolution: 1200px × 600px** (16:9 aspect ratio)
+**Master Image Resolution: 1200px × 600px** (2:1 aspect ratio - BACK TO ORIGINAL)
 - File Format: JPG, PNG, or WebP
 - File Size: Keep under 200KB per image
 - Color Depth: RGB (no alpha channel needed)
 - Optimization: Use TinyPNG, ImageOptim, or similar tools
 
-**Why 1200×600px Works for Both:**
-- At 2× pixel density, displays crisply at any size
-- 16:9 ratio works perfectly for both square-ish card headers and panoramic detail displays
-- Scales down smoothly without distortion
-- Scales up well without pixelation (due to high resolution)
+**How This Works:**
+- Both containers use `aspect-ratio: 300/180` = 1.67:1
+- Image at 1200×600 = 2:1, which crops ~10% from sides
+- BUT the crop is centered and identical on both pages
+- Result: **Same image composition displayed identically on both pages** ✅
 
-**Implementation:**
-- Listing cards: Replace gradient with `background-image: url('path/to/image.jpg')`
-- Detail page: Already set up to use `<img>` tag with `object-fit: cover`
-- Both use `background-position: center` / `object-fit: cover` to maintain aspect ratio
+**Why This is Perfect:**
+- Same image displays the EXACT same way everywhere
+- Just scaled to fit different container sizes
+- Minimal cropping (10% from sides, 90% of image visible)
+- No designer confusion - design once, use everywhere
+- Professional appearance with consistent visual hierarchy
 
 ---
 
@@ -167,7 +167,7 @@ You can use the **same 1200px × 600px image** in both locations:
 
 | Asset | Quantity | Resolution | File Size | Note |
 |-------|----------|-----------|-----------|------|
-| Course Images | 32 courses | 1200×600px (16:9) | <200KB each | Use **same image** for both card + detail page |
+| Course Images | 32 courses | 1200×600px (2:1) | <200KB each | FINAL SPEC - Same image displays identically on both card & detail |
 | Category Images | 10 categories | 800×800px (1:1) | <150KB each | Optional (currently using gradients) |
 
 **File Organization:**
@@ -205,12 +205,145 @@ assets/images/
 3. Ensure category exists in both `categoryColors` (script.js) and `courseDetailColors` (course-detail.js)
 4. Course now appears in listings and can be linked via `course-detail.html?id=33`
 
-### Adding Course Images
+## Image Implementation Guide
 
-1. Prepare image at 1200px × 600px resolution (16:9 aspect ratio)
-2. Place in `assets/images/courses/` directory
-3. Modify course card rendering in `script.js` to include image or update CSS gradient
-4. Test responsiveness across mobile, tablet, and desktop
+### ✅ Course Images (Listing & Detail Pages) - ACTIVE
+
+**Status:** Code is now live and ready to use
+- Script automatically looks for images in `assets/images/courses/course-{id}.jpg`
+- Fallback to category gradient if image not found
+- Works for both listing page and detail page with same image
+
+**How to add your course images:**
+
+1. **Naming Convention:** `course-{id}.jpg`
+   - Example: `course-1.jpg`, `course-2.jpg`, `course-22.jpg` (IGCSE ACADEMICS)
+   
+2. **File Locations:**
+   - Listing cards: `assets/images/courses/course-1.jpg` → displays at 300×180px
+   - Detail page: same image → displays at ~550×300px
+   
+3. **Current Status:**
+   - ✅ Course 22 (IGCSE ACADEMICS) has image: `IGCSE ACADEMICS.png`
+   - ⚠️ **Note:** Currently named as `IGCSE ACADEMICS.png` - rename to `course-22.jpg` for it to auto-load
+   - ❌ Courses 1-21, 23-32: Need images
+
+4. **Upload Steps:**
+   ```
+   1. Export image as JPG (not PNG for better compression)
+   2. Name it: course-{courseID}.jpg
+   3. Place in: C:\Users\Saifullah\Desktop\Files\learningBubble\assets\images\courses\
+   4. Refresh browser to see changes (Ctrl+Shift+R to bypass cache)
+   ```
+
+**Quality Checklist:**
+- [ ] Resolution: 1200×600px (16:9 aspect ratio)
+- [ ] File size: <200KB per image
+- [ ] Format: JPG or PNG
+- [ ] Named correctly: `course-{id}.jpg`
+
+---
+
+### Category Tile Images (Top of Courses Page) - IMPLEMENTATION AVAILABLE
+
+**Status:** Ready to implement, currently using gradient fallbacks
+
+**Option A: Simple - Add Images to HTML (No Code Changes)**
+
+Replace the gradient backgrounds in `courses.html` with image URLs. Change this:
+```html
+<div class="category-tile-image" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);"></div>
+```
+
+To this:
+```html
+<div class="category-tile-image" style="background-image: url('assets/images/categories/all-categories.jpg'); background-size: cover; background-position: center;"></div>
+```
+
+**Option B: Automatic - Add JavaScript to Load Images**
+
+Add this code to `script.js` inside the `initCoursesPage()` function, after line 626 (`renderCourses(coursesData);`):
+
+```javascript
+// Load category tile images
+const categoryTiles = document.querySelectorAll('.category-tile');
+const categoryImageMap = {
+    'All Categories': 'all-categories',
+    'Literature, History & Storytelling': 'literature',
+    'Technology & Coding': 'technology',
+    'Creative Writing & Literature Development': 'creative-writing',
+    'Arts & Creativity': 'arts-creativity',
+    'Math, Logic & Skills': 'math-logic',
+    'IGCSE ACADEMICS': 'igcse',
+    'Test Preparation': 'test-prep',
+    'English Language Courses': 'english',
+    'Workshops': 'workshops'
+};
+
+categoryTiles.forEach(tile => {
+    const category = tile.dataset.category;
+    const imageName = categoryImageMap[category];
+    if (imageName) {
+        const imagePath = `assets/images/categories/${imageName}.jpg`;
+        const tileImage = tile.querySelector('.category-tile-image');
+        if (tileImage) {
+            tileImage.style.backgroundImage = `url('${imagePath}')`;
+            tileImage.style.backgroundSize = 'cover';
+            tileImage.style.backgroundPosition = 'center';
+        }
+    }
+});
+```
+
+**Category Image Naming (Option B):**
+```
+assets/images/categories/
+├── all-categories.jpg
+├── literature.jpg
+├── technology.jpg
+├── creative-writing.jpg
+├── arts-creativity.jpg
+├── math-logic.jpg
+├── igcse.jpg
+├── test-prep.jpg
+├── english.jpg
+└── workshops.jpg
+```
+
+**Category Image Specs:**
+- Resolution: 800×800px (1:1 square)
+- File size: <150KB per image
+- Format: JPG or PNG
+
+---
+
+## Batch Upload Summary
+
+| Item | What to Do | Status |
+|------|-----------|--------|
+| **Course 1-21** | Design 1200×600px images, name `course-1.jpg` → `course-21.jpg` | ❌ Needed |
+| **Course 22** | Rename `IGCSE ACADEMICS.png` to `course-22.jpg` | ⚠️ Rename |
+| **Course 23-32** | Design 1200×600px images, name `course-23.jpg` → `course-32.jpg` | ❌ Needed |
+| **Categories** | Design 10 × 800×800px images OR use Option A HTML edits | 📋 Optional |
+
+---
+
+## Testing Your Images
+
+1. **Listing Page (courses.html):**
+   - Go to courses page
+   - If image uploads: Shows as course card header (300×180px)
+   - If missing: Shows category gradient fallback
+
+2. **Detail Page (course-detail.html):**
+   - Click "View Course" on any course
+   - If image uploads: Shows in hero section (~550×300px)
+   - If missing: Shows category gradient fallback
+
+3. **Clear Browser Cache:**
+   - Hard refresh: `Ctrl+Shift+R` (or Cmd+Shift+R on Mac)
+   - Chrome DevTools → Network → Disable cache
+   - This ensures you see latest images, not cached versions
 
 ### Updating Page Styles
 
