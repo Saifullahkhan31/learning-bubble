@@ -1876,19 +1876,8 @@ section {
 }
 
 .course-category-badge {
-    background: rgba(255, 255, 255, 0.9);
-    color: #374151;
-    padding: 0.4rem 0.8rem;
-    border-radius: 20px;
-    font-size: 0.75rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    display: inline-block;
-    max-width: 100%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    /* badge hidden since category text overlays image */
+    display: none !important;
 }
 
 .course-card-body {

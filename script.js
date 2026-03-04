@@ -847,7 +847,7 @@ function initCoursesPage() {
             return `
                 <div class="course-card-new" data-course-id="${course.id}">
                     <div class="course-card-header" style="background-image: url('${courseImagePath}'), ${categoryColor}; background-size: cover; background-position: center;">
-                        <span class="course-category-badge">${course.category}</span>
+                        <!-- category badge removed to avoid blocking image -->
                     </div>
                     <div class="course-card-body">
                         <h3 class="course-name">${course.name}</h3>
