@@ -12,6 +12,13 @@
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Preload critical hero image so it's ready before the slide-in animation fires -->
+    <link rel="preload" as="image" href="assets/images/heroSectionImage.png">
+    <!-- Prefetch nav pages so they load instantly on click -->
+    <link rel="prefetch" href="about.html">
+    <link rel="prefetch" href="courses.html">
+    <link rel="prefetch" href="resources.html">
+    <link rel="prefetch" href="contact.html">
 </head>
 
 <body>
@@ -41,19 +48,23 @@
     <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="hero-background"></div>
+        <!-- Ambient floating orbs -->
+        <div class="hero-orb hero-orb--1" aria-hidden="true"></div>
+        <div class="hero-orb hero-orb--2" aria-hidden="true"></div>
+        <div class="hero-orb hero-orb--3" aria-hidden="true"></div>
         <div class="container">
             <div class="hero-content">
                 <div class="hero-text">
-                    <h1 class="hero-title" id="hero-title">
+                    <h1 class="hero-title hero-animate" id="hero-title" data-delay="0">
                         Experiential, Immersive and
                         <span class="highlight">Fulfilling</span>
                         Learning Experience
                     </h1>
-                    <p class="hero-description">
+                    <p class="hero-description hero-animate" data-delay="180">
                         Learning Bubble is an online interactive school for homeschooling and enhancement learning,
                         catering to student needs through curiosity-based interactive teaching.
                     </p>
-                    <div class="hero-buttons">
+                    <div class="hero-buttons hero-animate" data-delay="340">
                         <div class="button-group">
                             <button class="btn-primary" onclick="window.location.href='courses.html'">Enroll
                                 Now</button>
@@ -61,9 +72,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="hero-image">
-                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                        alt="Students Learning">
+                <div class="hero-image hero-animate hero-animate--right" data-delay="100">
+                    <img src="assets/images/heroSectionImage.png" alt="Students Learning">
                 </div>
             </div>
         </div>

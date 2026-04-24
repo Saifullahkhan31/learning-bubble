@@ -60,23 +60,45 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Intersection Observer for animations
+    // ── Intersection Observer — scroll-triggered reveals ─────────────────
     const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
+        threshold: 0.12,
+        rootMargin: '0px 0px -40px 0px'
     };
 
     const observer = new IntersectionObserver(function(entries) {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('fade-in-up');
+                observer.unobserve(entry.target); // fire once
             }
         });
     }, observerOptions);
 
-    // Observe elements for animations
-    const animateElements = document.querySelectorAll('.feature-card, .advantage-card, .announcement-card, .section-header');
-    animateElements.forEach(el => observer.observe(el));
+    // Observe section cards
+    document.querySelectorAll('.feature-card, .advantage-card, .announcement-card, .section-header')
+        .forEach(el => observer.observe(el));
+
+    // Vision & Mission tiles — staggered
+    document.querySelectorAll('.vm-tile').forEach((tile, i) => {
+        tile.style.opacity = '0';
+        tile.style.transform = 'translateY(28px)';
+        const vmObs = new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    setTimeout(() => {
+                        tile.style.transition = 'opacity 0.65s ease, transform 0.65s cubic-bezier(0.22,1,0.36,1)';
+                        tile.style.opacity = '1';
+                        tile.style.transform = 'translateY(0)';
+                    }, i * 140);
+                    vmObs.unobserve(tile);
+                }
+            });
+        }, { threshold: 0.12 });
+        vmObs.observe(tile);
+    });
+
+
 
     // Counter animation for statistics (if we had any)
     function animateCounter(element, target) {
@@ -141,7 +163,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Set icon and colors based on type
         let icon = 'fa-info-circle';
-        let bgColor = '#4F46E5';
+        let bgColor = '#1c2f72';
         
         switch(type) {
             case 'success':
@@ -158,7 +180,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 break;
             default:
                 icon = 'fa-info-circle';
-                bgColor = '#4F46E5';
+                bgColor = '#1c2f72';
         }
         
         notification.innerHTML = `
@@ -289,18 +311,58 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Simple fade-in effect for hero title (instead of typing effect)
-    const heroTitle = document.querySelector('.hero-title');
-    if (heroTitle) {
-        heroTitle.style.opacity = '0';
-        heroTitle.style.transform = 'translateY(20px)';
-        
-        // Fade in the title
-        setTimeout(() => {
-            heroTitle.style.transition = 'all 1s ease';
-            heroTitle.style.opacity = '1';
-            heroTitle.style.transform = 'translateY(0)';
-        }, 500);
+    // ── Hero entry animations (staggered by data-delay) ──────────────────
+    const heroAnimEls = document.querySelectorAll('.hero-animate');
+    if (heroAnimEls.length) {
+        const BASE_DELAY = 120;
+
+        heroAnimEls.forEach(el => {
+            const extra = parseInt(el.dataset.delay || '0', 10);
+
+            if (el.classList.contains('hero-animate--right')) {
+                // Wait for the hero image to load before sliding it in
+                const img = el.querySelector('img');
+                const triggerSlide = () => {
+                    setTimeout(() => {
+                        el.classList.add('is-visible'); // slide-in + start float
+                    }, BASE_DELAY + extra);
+                };
+                if (img && !img.complete) {
+                    img.addEventListener('load',  triggerSlide, { once: true });
+                    img.addEventListener('error', triggerSlide, { once: true }); // still animate on broken img
+                } else {
+                    triggerSlide(); // already in cache
+                }
+            } else {
+                setTimeout(() => el.classList.add('is-visible'), BASE_DELAY + extra);
+            }
+        });
+    }
+
+    // ── Cycling synonyms on the hero highlight word ───────────────────────
+    const highlightEl = document.querySelector('.hero-title .highlight');
+    if (highlightEl) {
+        const words = ['Fulfilling', 'Enriching', 'Rewarding', 'Inspiring', 'Empowering'];
+        let idx = 0;
+
+        setInterval(() => {
+            // Fade & slide out
+            highlightEl.style.opacity   = '0';
+            highlightEl.style.transform = 'translateY(-8px)';
+
+            setTimeout(() => {
+                idx = (idx + 1) % words.length;
+                highlightEl.textContent = words[idx];
+                // Reset to bottom before fading in
+                highlightEl.style.transform = 'translateY(8px)';
+
+                // Force a reflow so the transition fires
+                void highlightEl.offsetWidth;
+
+                highlightEl.style.opacity   = '1';
+                highlightEl.style.transform = 'translateY(0)';
+            }, 320); // matches the CSS transition duration
+        }, 2800); // swap every 2.8 s
     }
 
     // Image lazy loading
@@ -347,7 +409,7 @@ document.addEventListener('DOMContentLoaded', function() {
             height: 50px;
             border-radius: 50%;
             border: none;
-            background: #4F46E5;
+            background: #1c2f72;
             color: white;
             font-size: 1.5rem;
             cursor: pointer;
@@ -596,7 +658,7 @@ const coursesData = [
 
 // Category colors for placeholder images
 const categoryColors = {
-    "All Categories": "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+    "All Categories": "linear-gradient(135deg, #1c2f72 0%, #243a9e 100%)",
     "Literature, History & Storytelling": "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
     "Technology & Coding": "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)",
     "Creative Writing & Literature Development": "linear-gradient(135deg, #fa709a 0%, #fee140 100%)",
