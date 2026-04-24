@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,6 +13,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
+
 <body>
     <!-- Navigation -->
     <nav class="navbar">
@@ -52,125 +54,142 @@
         <div class="category-tiles-wrapper">
             <div class="category-tiles-section">
                 <div class="category-tile active" data-category="All Categories">
-                <div class="category-tile-image" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);"></div>
-                <div class="category-tile-overlay">
-                    <h3>All Categories</h3>
+                    <div class="category-tile-image"
+                        style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);"></div>
+                    <div class="category-tile-overlay">
+                        <h3>All Categories</h3>
+                    </div>
                 </div>
-            </div>
-            <div class="category-tile" data-category="Literature, History & Storytelling">
-                <div class="category-tile-image" style="background-image: url('assets/images/categories/literatureHistoryAndStorytelling.jpeg'); background-size: cover; background-position: center;"></div>
-                <div class="category-tile-overlay">
-                    <!-- <h3>Literature, History & Storytelling</h3> -->
+                <div class="category-tile" data-category="Literature, History & Storytelling">
+                    <div class="category-tile-image"
+                        style="background-image: url('assets/images/categories/literatureHistoryAndStorytelling.jpeg'); background-size: cover; background-position: center;">
+                    </div>
+                    <div class="category-tile-overlay">
+                        <!-- <h3>Literature, History & Storytelling</h3> -->
+                    </div>
                 </div>
-            </div>
-            <div class="category-tile" data-category="Technology & Coding">
-                <div class="category-tile-image" style="background-image: url('assets/images/categories/technologyAndCoding.jpeg'); background-size: cover; background-position: center;"></div>
-                <div class="category-tile-overlay">
-                    <!-- <h3>Technology & Coding</h3> -->
+                <div class="category-tile" data-category="Technology & Coding">
+                    <div class="category-tile-image"
+                        style="background-image: url('assets/images/categories/technologyAndCoding.jpeg'); background-size: cover; background-position: center;">
+                    </div>
+                    <div class="category-tile-overlay">
+                        <!-- <h3>Technology & Coding</h3> -->
+                    </div>
                 </div>
-            </div>
-            <div class="category-tile" data-category="Creative Writing & Literature Development">
-                <div class="category-tile-image" style="background-image: url('assets/images/categories/creativeWritingLiterature.jpeg'); background-size: cover; background-position: center;"></div>
-                <div class="category-tile-overlay">
-                    
-                    
-                </div>
-            </div>
-            <div class="category-tile" data-category="Arts & Creativity">
-                <div class="category-tile-image" style="background-image: url('assets/images/categories/artsCreativity.jpeg'); background-size: cover; background-position: center;"></div>
-                <div class="category-tile-overlay">
-                    <!-- <h3>Arts & Creativity</h3> -->
-                </div>
-            </div>
-            <div class="category-tile" data-category="Math, Logic & Skills">
-                <div class="category-tile-image" style="background-image: url('assets/images/categories/Math\,\ Logic\ &\ Skills.jpeg'); background-size: cover; background-position: center;"></div>
-                <div class="category-tile-overlay">
-                    <!-- <h3>Math, Logic & Skills</h3> -->
-                </div>
-            </div>
-            <div class="category-tile" data-category="IGCSE ACADEMICS">
-                <div class="category-tile-image" style="background-image: url('assets/images/categories/IGCSE\ Academics.jpeg'); background-size: cover; background-position: center;"></div>
-                <div class="category-tile-overlay">
-                    <!-- <h3>IGCSE ACADEMICS</h3> -->
-                </div>
-            </div>
-            <div class="category-tile" data-category="Test Preparation">
-                <div class="category-tile-image" style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);"></div>
-                <div class="category-tile-overlay">
-                    <h3>Test Preparation</h3>
-                </div>
-            </div>
-            <div class="category-tile" data-category="English Language Courses">
-                <div class="category-tile-image" style="background-image: url('assets/images/categories/englishLangCourses.jpeg'); background-size: cover; background-position: center;"></div>
-                <div class="category-tile-overlay">
-                    <!-- <h3>English Language Courses</h3> -->
-                </div>
-            </div>
-            <div class="category-tile" data-category="Workshops">
-                <div class="category-tile-image" style="background: linear-gradient(135deg, #ffd89b 0%, #19547b 100%);"></div>
-                <div class="category-tile-overlay">
-                    <h3>Workshops</h3>
-                </div>
-            </div>
-        </div>
-        <div class="category-scroll-indicator">
-            <i class="fas fa-chevron-right"></i>
-        </div>
-    </div>
+                <div class="category-tile" data-category="Creative Writing & Literature Development">
+                    <div class="category-tile-image"
+                        style="background-image: url('assets/images/categories/creativeWritingLiterature.jpeg'); background-size: cover; background-position: center;">
+                    </div>
+                    <div class="category-tile-overlay">
 
-    <div class="filter-container">
-        <!-- Age Filter Section -->
-        <div class="age-filter-section">
-            <div class="age-filter-dropdown">
-                <button class="age-filter-button">
-                    <span class="filter-text">Filter by Age Group</span>
-                    <span class="filter-count"></span>
-                    <i class="fas fa-chevron-down"></i>
-                </button>
-                <div class="age-filter-menu">
-                    <label class="age-filter-option">
-                        <input type="checkbox" class="age-checkbox" value="all" checked>
-                        <span>All Ages</span>
-                    </label>
-                    <label class="age-filter-option">
-                        <input type="checkbox" class="age-checkbox" value="6-10">
-                        <span>6-10 years</span>
-                    </label>
-                    <label class="age-filter-option">
-                        <input type="checkbox" class="age-checkbox" value="8-12">
-                        <span>8-12 years</span>
-                    </label>
-                    <label class="age-filter-option">
-                        <input type="checkbox" class="age-checkbox" value="10-14">
-                        <span>10-14 years</span>
-                    </label>
-                    <label class="age-filter-option">
-                        <input type="checkbox" class="age-checkbox" value="12-16">
-                        <span>12-16 years</span>
-                    </label>
-                    <label class="age-filter-option">
-                        <input type="checkbox" class="age-checkbox" value="14-18">
-                        <span>14-18 years</span>
-                    </label>
-                    <label class="age-filter-option">
-                        <input type="checkbox" class="age-checkbox" value="15-20">
-                        <span>15-20 years</span>
-                    </label>
-                    <div class="age-filter-apply">
-                        <button class="age-filter-apply-button">Apply Filter</button>
+
+                    </div>
+                </div>
+                <div class="category-tile" data-category="Arts & Creativity">
+                    <div class="category-tile-image"
+                        style="background-image: url('assets/images/categories/artsCreativity.jpeg'); background-size: cover; background-position: center;">
+                    </div>
+                    <div class="category-tile-overlay">
+                        <!-- <h3>Arts & Creativity</h3> -->
+                    </div>
+                </div>
+                <div class="category-tile" data-category="Math, Logic & Skills">
+                    <div class="category-tile-image"
+                        style="background-image: url('assets/images/categories/Math\,\ Logic\ &\ Skills.jpeg'); background-size: cover; background-position: center;">
+                    </div>
+                    <div class="category-tile-overlay">
+                        <!-- <h3>Math, Logic & Skills</h3> -->
+                    </div>
+                </div>
+                <div class="category-tile" data-category="IGCSE ACADEMICS">
+                    <div class="category-tile-image"
+                        style="background-image: url('assets/images/categories/IGCSE\ Academics.jpeg'); background-size: cover; background-position: center;">
+                    </div>
+                    <div class="category-tile-overlay">
+                        <!-- <h3>IGCSE ACADEMICS</h3> -->
+                    </div>
+                </div>
+                <div class="category-tile" data-category="Test Preparation">
+                    <div class="category-tile-image"
+                        style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);"></div>
+                    <div class="category-tile-overlay">
+                        <h3>Test Preparation</h3>
+                    </div>
+                </div>
+                <div class="category-tile" data-category="English Language Courses">
+                    <div class="category-tile-image"
+                        style="background-image: url('assets/images/categories/englishLangCourses.jpeg'); background-size: cover; background-position: center;">
+                    </div>
+                    <div class="category-tile-overlay">
+                        <!-- <h3>English Language Courses</h3> -->
+                    </div>
+                </div>
+                <div class="category-tile" data-category="Workshops">
+                    <div class="category-tile-image"
+                        style="background: linear-gradient(135deg, #ffd89b 0%, #19547b 100%);"></div>
+                    <div class="category-tile-overlay">
+                        <h3>Workshops</h3>
                     </div>
                 </div>
             </div>
-        </div>
-
-        <!-- Courses Section -->
-        <div class="courses-section">
-            <!-- Courses Grid -->
-            <div class="courses-grid-container">
-                <!-- Courses will be dynamically rendered here -->
+            <div class="category-scroll-indicator">
+                <i class="fas fa-chevron-right"></i>
             </div>
         </div>
-    </div>
+
+        <div class="filter-container">
+            <!-- Age Filter Section -->
+            <div class="age-filter-section">
+                <div class="age-filter-dropdown">
+                    <button class="age-filter-button">
+                        <span class="filter-text">Filter by Age Group</span>
+                        <span class="filter-count"></span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="age-filter-menu">
+                        <label class="age-filter-option">
+                            <input type="checkbox" class="age-checkbox" value="all" checked>
+                            <span>All Ages</span>
+                        </label>
+                        <label class="age-filter-option">
+                            <input type="checkbox" class="age-checkbox" value="6-10">
+                            <span>6-10 years</span>
+                        </label>
+                        <label class="age-filter-option">
+                            <input type="checkbox" class="age-checkbox" value="8-12">
+                            <span>8-12 years</span>
+                        </label>
+                        <label class="age-filter-option">
+                            <input type="checkbox" class="age-checkbox" value="10-14">
+                            <span>10-14 years</span>
+                        </label>
+                        <label class="age-filter-option">
+                            <input type="checkbox" class="age-checkbox" value="12-16">
+                            <span>12-16 years</span>
+                        </label>
+                        <label class="age-filter-option">
+                            <input type="checkbox" class="age-checkbox" value="14-18">
+                            <span>14-18 years</span>
+                        </label>
+                        <label class="age-filter-option">
+                            <input type="checkbox" class="age-checkbox" value="15-20">
+                            <span>15-20 years</span>
+                        </label>
+                        <div class="age-filter-apply">
+                            <button class="age-filter-apply-button">Apply Filter</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Courses Section -->
+            <div class="courses-section">
+                <!-- Courses Grid -->
+                <div class="courses-grid-container">
+                    <!-- Courses will be dynamically rendered here -->
+                </div>
+            </div>
+        </div>
     </section>
 
     <!-- Advantages Section -->
@@ -236,8 +255,9 @@
                 <div class="footer-section">
                     <h4>Contact</h4>
                     <ul>
-                        <li><i class="fas fa-envelope"></i> <a href="mailto:info@learningbubble.com">info@learningbubble.com</a></li>
-                        <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
+                        <li><i class="fas fa-envelope"></i> <a
+                                href="mailto:learningbubblee@gmail.com">learningbubblee@gmail.com</a></li>
+                        <li><i class="fas fa-phone"></i>+92 321 2481610</li>
                     </ul>
                 </div>
                 <div class="footer-section">
@@ -245,17 +265,19 @@
                     <div class="social-links">
                         <a href="#"><i class="fab fa-facebook"></i></a>
                         <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.instagram.com/learningbubbleofficial?igsh=c210OHA3cjZnZ2Nh"><i
+                                class="fab fa-instagram"></i></a>
                         <a href="#"><i class="fab fa-linkedin"></i></a>
                     </div>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2024 Learning Bubble. All rights reserved.</p>
+                <p>&copy; 2026 Learning Bubble. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
     <script src="script.js"></script>
 </body>
+
 </html>
