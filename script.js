@@ -398,31 +398,28 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Theme switcher (optional feature)
     function createThemeToggle() {
+        // Restore saved preference (applied to <html> so anti-flash script works)
+        const saved = localStorage.getItem('lb-theme');
+        if (saved === 'dark') document.documentElement.classList.add('dark-theme');
+
         const themeToggle = document.createElement('button');
-        themeToggle.innerHTML = '🌙';
         themeToggle.className = 'theme-toggle';
-        themeToggle.style.cssText = `
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            border: none;
-            background: #1c2f72;
-            color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-            z-index: 1000;
-        `;
-        
-        themeToggle.addEventListener('click', function() {
-            document.body.classList.toggle('dark-theme');
-            this.innerHTML = document.body.classList.contains('dark-theme') ? '☀️' : '🌙';
+        themeToggle.setAttribute('aria-label', 'Toggle dark mode');
+        themeToggle.setAttribute('title', 'Toggle dark mode');
+        const isDark = () => document.documentElement.classList.contains('dark-theme');
+        const updateIcon = () => {
+            themeToggle.innerHTML = isDark()
+                ? '<i class="fas fa-sun"></i>'
+                : '<i class="fas fa-moon"></i>';
+        };
+        updateIcon();
+
+        themeToggle.addEventListener('click', function () {
+            document.documentElement.classList.toggle('dark-theme');
+            localStorage.setItem('lb-theme', isDark() ? 'dark' : 'light');
+            updateIcon();
         });
-        
+
         document.body.appendChild(themeToggle);
     }
 

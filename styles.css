@@ -3663,3 +3663,484 @@ section {
         width: 100%;
     }
 }
+
+/* ============================================================
+   THEME TOGGLE BUTTON
+   ============================================================ */
+.theme-toggle {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(255, 255, 255, 0.18);
+    background: linear-gradient(135deg, #1c2f72, #2d4db5);
+    color: white;
+    font-size: 1.1rem;
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(28, 47, 114, 0.45), inset 0 1px 0 rgba(255,255,255,0.12);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.4s ease, border-color 0.4s ease;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.theme-toggle:hover {
+    transform: scale(1.12) rotate(18deg);
+    box-shadow: 0 8px 32px rgba(28, 47, 114, 0.6);
+}
+html.dark-theme .theme-toggle {
+    background: linear-gradient(135deg, #c9a227, #e8b923);
+    color: #1c2f72;
+    border-color: rgba(232, 185, 35, 0.35);
+    box-shadow: 0 4px 20px rgba(201, 162, 39, 0.45), inset 0 1px 0 rgba(255,255,255,0.2);
+}
+html.dark-theme .theme-toggle:hover {
+    box-shadow: 0 8px 32px rgba(201, 162, 39, 0.6);
+}
+
+/* ============================================================
+   DARK THEME — html.dark-theme
+   Palette:
+     bg-base    : #0b1022  (deep navy-black)
+     bg-surface : #111b35  (card/tile backgrounds)
+     bg-input   : #0d1630  (form fields)
+     text-1     : #dce4f5  (primary text)
+     text-2     : #7a90b8  (secondary / muted)
+     gold       : #e8b923  (accent, unchanged)
+     navy-light : #243a9e  (interactive navy)
+   ============================================================ */
+
+/* Base */
+html.dark-theme,
+html.dark-theme body {
+    background: #0b1022;
+    color: #dce4f5;
+    color-scheme: dark;
+}
+
+/* Smooth transition on theme switch */
+html.dark-theme body,
+html.dark-theme .navbar,
+html.dark-theme .vm-tile,
+html.dark-theme .feature-card,
+html.dark-theme .advantage-card,
+html.dark-theme .course-card,
+html.dark-theme .course-card-new,
+html.dark-theme .resource-card,
+html.dark-theme .contact-method,
+html.dark-theme .contact-card {
+    transition: background 0.35s ease, color 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+}
+
+/* ── Navbar ─────────────────────────────────────────────── */
+html.dark-theme .navbar {
+    background: rgba(11, 16, 34, 0.97);
+    border-bottom-color: rgba(255, 255, 255, 0.06);
+}
+html.dark-theme .navbar.scrolled {
+    background: rgba(8, 12, 26, 0.99) !important;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+}
+html.dark-theme .logo-text {
+    color: #dce4f5;
+    background: none;
+    -webkit-text-fill-color: #dce4f5;
+}
+html.dark-theme .nav-link        { color: #94a8cc; }
+html.dark-theme .nav-link:hover  { color: #e8b923; }
+html.dark-theme .nav-link::after { background: #e8b923; }
+html.dark-theme .hamburger span  { background: #dce4f5; }
+html.dark-theme .nav-menu.active {
+    background: #0e1530;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+}
+
+/* ── Hero ───────────────────────────────────────────────── */
+html.dark-theme .hero {
+    background:
+        radial-gradient(ellipse at 75% 15%, rgba(255,255,255,0.09) 0%, transparent 55%),
+        radial-gradient(ellipse at 15% 85%, rgba(255,255,255,0.04) 0%, transparent 45%),
+        linear-gradient(135deg, #060f2a 0%, #0f1e68 50%, #08133c 100%);
+}
+
+/* ── Page hero banners (About / Courses / etc.) ────────── */
+html.dark-theme .page-hero {
+    background: linear-gradient(135deg, #08112a 20%, #10206a 100%);
+}
+
+/* ── Section backgrounds ────────────────────────────────── */
+html.dark-theme .vision-mission,
+html.dark-theme .advantage,
+html.dark-theme .about           { background: #0b1022; }
+
+html.dark-theme .resources,
+html.dark-theme .partners-section { background: #0d1530; }
+
+html.dark-theme .announcement {
+    background: linear-gradient(135deg, #15110000, #211c0000);
+    background-color: #0d1530;
+}
+html.dark-theme .contact-section { background: #0b1022; }
+
+/* ── Cards & Tiles ──────────────────────────────────────── */
+html.dark-theme .vm-tile {
+    background: #111b35;
+    border-color: rgba(255, 255, 255, 0.07);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.45);
+}
+html.dark-theme .feature-card {
+    background: #111b35;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.35);
+}
+html.dark-theme .feature-card:hover { box-shadow: 0 8px 28px rgba(0,0,0,0.55); }
+
+html.dark-theme .advantage-card {
+    background: linear-gradient(135deg, #111b35, #0f1a32);
+    border-color: rgba(255, 255, 255, 0.07);
+}
+html.dark-theme .advantage-card:hover {
+    background: #141f3e;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+}
+html.dark-theme .partner-card          { background: #111b35; }
+html.dark-theme .partner-card:hover    { background: #162040; }
+html.dark-theme .announcement-card     { background: #111b35; box-shadow: 0 20px 60px rgba(0,0,0,0.5); }
+
+/* ── Text ───────────────────────────────────────────────── */
+html.dark-theme .section-title         { color: #dce4f5; }
+html.dark-theme .section-subtitle      { color: #7a90b8; }
+html.dark-theme .vm-content h3         { color: #dce4f5; }
+html.dark-theme .vm-content p,
+html.dark-theme .vm-list li            { color: #7a90b8; }
+html.dark-theme .feature-card h3,
+html.dark-theme .advantage-card h3     { color: #dce4f5; }
+html.dark-theme .advantage-card p      { color: #7a90b8; }
+html.dark-theme .announcement-title    { color: #dce4f5; }
+html.dark-theme .announcement-description { color: #7a90b8; }
+html.dark-theme .tag { background: #1a2545; color: #94a8cc; }
+html.dark-theme .about-text p,
+html.dark-theme .resource-text p       { color: #7a90b8; }
+
+/* ── Courses page ───────────────────────────────────────── */
+html.dark-theme .category-tile {
+    background: #111b35;
+    border-color: rgba(255,255,255,0.08);
+    color: #94a8cc;
+}
+html.dark-theme .category-tile:hover:not(.active) { background: #162040; color: #dce4f5; }
+html.dark-theme .category-tile.active {
+    background: linear-gradient(135deg, #1c2f72, #243a9e);
+    color: white;
+}
+html.dark-theme .course-card,
+html.dark-theme .course-card-new {
+    background: #111b35;
+    border-color: rgba(255,255,255,0.07);
+}
+html.dark-theme .course-card:hover,
+html.dark-theme .course-card-new:hover { box-shadow: 0 10px 30px rgba(0,0,0,0.55); }
+html.dark-theme .course-card-body,
+html.dark-theme .course-card h3        { color: #dce4f5; }
+html.dark-theme .course-meta,
+html.dark-theme .course-category       { color: #7a90b8; }
+
+/* ── Resource cards ─────────────────────────────────────── */
+html.dark-theme .resource-card {
+    background: #111b35;
+    border-color: rgba(255,255,255,0.07);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.35);
+}
+html.dark-theme .resource-card h3      { color: #dce4f5; }
+html.dark-theme .resource-card ul li   { color: #7a90b8; }
+
+/* ── Contact page ───────────────────────────────────────── */
+html.dark-theme .contact-form-container { background: #111b35; }
+html.dark-theme .contact-method,
+html.dark-theme .contact-card {
+    background: #111b35;
+    border-color: rgba(255,255,255,0.07);
+}
+html.dark-theme .contact-method h3,
+html.dark-theme .contact-card h3       { color: #dce4f5; }
+html.dark-theme .contact-method p,
+html.dark-theme .contact-card p        { color: #7a90b8; }
+html.dark-theme .contact-info-section  { background: #0d1530; }
+html.dark-theme .contact-info-section h2 { color: #dce4f5; }
+html.dark-theme .contact-info-section p  { color: #7a90b8; }
+
+/* ── Form inputs ────────────────────────────────────────── */
+html.dark-theme input,
+html.dark-theme textarea,
+html.dark-theme select {
+    background: #0d1630;
+    color: #dce4f5;
+    border-color: rgba(255, 255, 255, 0.12);
+}
+html.dark-theme input:focus,
+html.dark-theme textarea:focus,
+html.dark-theme select:focus {
+    border-color: #243a9e;
+    background: #101e46;
+    outline: none;
+}
+html.dark-theme input::placeholder,
+html.dark-theme textarea::placeholder  { color: #4a5a7a; }
+html.dark-theme label                  { color: #94a8cc; }
+
+/* ── Footer ─────────────────────────────────────────────── */
+html.dark-theme .footer                { background: #060c1e; }
+html.dark-theme .footer-section ul li { color: #7a90b8; }
+html.dark-theme .footer-section ul li a { color: #7a90b8; }
+html.dark-theme .footer-section ul li a:hover { color: #e8b923; }
+html.dark-theme .footer-bottom        { border-top-color: rgba(255,255,255,0.06); color: #4a5a7a; }
+html.dark-theme .social-links a       { background: #111b35; }
+html.dark-theme .social-links a:hover { background: #e8b923; color: #1c2f72; }
+
+/* ── Scrollbar ──────────────────────────────────────────── */
+html.dark-theme ::-webkit-scrollbar        { width: 8px; background: #0b1022; }
+html.dark-theme ::-webkit-scrollbar-track  { background: #0b1022; }
+html.dark-theme ::-webkit-scrollbar-thumb  { background: #1c2f72; border-radius: 4px; }
+html.dark-theme ::-webkit-scrollbar-thumb:hover { background: #243a9e; }
+
+@media (prefers-reduced-motion: reduce) {
+    html.dark-theme body,
+    html.dark-theme .navbar { transition: none; }
+}
+
+/* ============================================================
+   DARK MODE — PATCH 2 (additional sections missed in initial pass)
+   ============================================================ */
+
+/* ── Active nav link text in dark mode ──────────────────── */
+html.dark-theme .nav-link.active {
+    color: #e8b923;   /* gold text for active page link */
+}
+
+/* ── About page — values & team sections ───────────────── */
+html.dark-theme .values-section       { background: #0e1530; }
+html.dark-theme .value-card {
+    background: #111b35;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.35);
+}
+html.dark-theme .value-card:hover     { box-shadow: 0 8px 25px rgba(0,0,0,0.5); }
+html.dark-theme .value-card h3        { color: #dce4f5; }
+html.dark-theme .value-card p         { color: #7a90b8; }
+
+/* ── Resources page ─────────────────────────────────────── */
+html.dark-theme .resources-overview   { background: #0b1022; }
+html.dark-theme .resource-types       { background: #0e1530; }
+html.dark-theme .resource-text h2,
+html.dark-theme .resource-text h3     { color: #dce4f5; }
+html.dark-theme .resource-text p      { color: #7a90b8; }
+
+/* ── Courses page — filter button & dropdown ────────────── */
+html.dark-theme .age-filter-button {
+    background: #111b35;
+    border-color: rgba(255,255,255,0.12);
+    color: #dce4f5;
+}
+html.dark-theme .age-filter-button:hover {
+    border-color: #243a9e;
+    box-shadow: 0 4px 12px rgba(28, 47, 114, 0.3);
+}
+html.dark-theme .age-filter-button i  { color: #94a8cc; }
+html.dark-theme .age-filter-menu {
+    background: #111b35;
+    border-color: rgba(255,255,255,0.10);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+}
+html.dark-theme .age-filter-option    { color: #dce4f5; }
+html.dark-theme .age-filter-option:hover { background: #162040; }
+html.dark-theme .age-filter-apply     { border-top-color: rgba(255,255,255,0.08); }
+
+/* ── Courses page — course card body text ───────────────── */
+html.dark-theme .course-name          { color: #dce4f5; }
+html.dark-theme .course-age          { color: #7a90b8; }
+html.dark-theme .course-meta-info     { border-bottom-color: rgba(255,255,255,0.08); }
+html.dark-theme .course-price         { color: #e8b923; }
+html.dark-theme .courses-page-container { background: #0b1022; }
+
+/* ── Courses page — "Why choose / highlights" ───────────── */
+html.dark-theme .course-highlights-section {
+    background: #111b35;
+    border-color: rgba(255,255,255,0.08);
+}
+html.dark-theme .course-highlights-section h2 { color: #dce4f5; }
+html.dark-theme .course-highlights-section li,
+html.dark-theme .course-highlights-section p  { color: #7a90b8; }
+
+/* ── Contact page — FAQ ─────────────────────────────────── */
+html.dark-theme .faq-section          { background: #0e1530; }
+html.dark-theme .faq-item {
+    background: #111b35;
+    border-left-color: #e8b923;   /* gold accent border matches highlight */
+}
+html.dark-theme .faq-item h3          { color: #dce4f5; }
+html.dark-theme .faq-item p           { color: #7a90b8; }
+
+/* ── Contact page — form wrapper ────────────────────────── */
+html.dark-theme .contact-section      { background: #0b1022; }
+html.dark-theme .contact-form         { background: #111b35; }
+html.dark-theme .contact-form h2      { color: #dce4f5; }
+
+/* ── Enrollment page ────────────────────────────────────── */
+html.dark-theme .enrollment-section,
+html.dark-theme .enrollment-form-container { background: #0b1022; }
+html.dark-theme .enrollment-form      { background: #111b35; }
+html.dark-theme .course-card-enrollment {
+    background: #111b35;
+    border-color: rgba(255,255,255,0.07);
+}
+html.dark-theme .course-card-enrollment h3 { color: #dce4f5; }
+
+/* ============================================================
+   DARK MODE — PATCH 3 (final missing sections)
+   ============================================================ */
+
+/* ── About page — main content area ─────────────────────── */
+html.dark-theme .about-detailed      { background: #0b1022; }
+html.dark-theme .about-content h2,
+html.dark-theme .about-text h2,
+html.dark-theme .about-text h3       { color: #dce4f5; }
+html.dark-theme .about-text p,
+html.dark-theme .about-text a        { color: #7a90b8; }
+html.dark-theme .about-text a:hover  { color: #e8b923; }
+
+/* ── Course card — price visible in gold ─────────────────── */
+html.dark-theme .course-price,
+html.dark-theme .course-card .price,
+html.dark-theme .cart-item-price     { color: #e8b923; }
+
+/* ── Courses page — "Why Choose Our Courses?" section ────── */
+/* This section reuses .advantage / .feature-card on courses.html */
+html.dark-theme .courses-page-container .advantage,
+html.dark-theme .courses-page-container .features,
+html.dark-theme .courses-page-container section:not(.category-tiles-wrapper):not(.courses-section) {
+    background: #0b1022;
+}
+
+/* ── Custom select (subject dropdown & others) ───────────── */
+html.dark-theme .custom-select .select-toggle {
+    background: linear-gradient(180deg, rgba(17,27,53,0.95), rgba(13,22,48,0.9));
+    border-color: rgba(255,255,255,0.12);
+    color: #dce4f5;
+}
+html.dark-theme .custom-select .select-value  { color: #dce4f5; }
+html.dark-theme .custom-select .select-caret {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2394a8cc' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+}
+html.dark-theme .custom-select .select-menu {
+    background: #111b35;
+    border-color: rgba(255,255,255,0.10);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+}
+html.dark-theme .custom-select .select-menu li        { color: #dce4f5; }
+html.dark-theme .custom-select .select-menu li:hover  { background: #162040; }
+html.dark-theme .custom-select .select-menu li[aria-selected='true'] {
+    background: rgba(28,47,114,0.4);
+    color: #e8b923;
+}
+
+/* ── Course detail page ──────────────────────────────────── */
+html.dark-theme .course-detail-hero {
+    background: linear-gradient(135deg, #0b1022 0%, #111b35 100%);
+}
+html.dark-theme .course-detail-content  { background: #0b1022; }
+html.dark-theme .course-detail-grid > * { color: #dce4f5; }
+html.dark-theme .course-info-card {
+    background: #111b35;
+    border-color: rgba(255,255,255,0.07);
+}
+html.dark-theme .course-info-card h4,
+html.dark-theme .course-info-card p    { color: #dce4f5; }
+html.dark-theme .course-info-label     { color: #7a90b8; }
+html.dark-theme .course-title-detail   { color: #dce4f5; }
+html.dark-theme .course-category-label { color: #e8b923; }
+
+/* Enroll sidebar card */
+html.dark-theme .enrollment-card {
+    background: #111b35;
+    border-color: rgba(255,255,255,0.07);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+}
+html.dark-theme .enrollment-card h3   { color: #dce4f5; }
+html.dark-theme .enrollment-summary   { background: #0d1630; border-color: rgba(255,255,255,0.08); }
+html.dark-theme .enrollment-note      { color: #7a90b8; }
+
+/* About this course / detail sections */
+html.dark-theme .course-about,
+html.dark-theme .course-curriculum,
+html.dark-theme .course-objectives    { background: #0b1022; }
+html.dark-theme .course-about h2,
+html.dark-theme .course-objectives h2 { color: #dce4f5; }
+html.dark-theme .course-about p,
+html.dark-theme .course-objectives li { color: #7a90b8; }
+
+/* ── Enrollment page ─────────────────────────────────────── */
+html.dark-theme .enrollment-section   { background: #0b1022; }
+html.dark-theme .enrollment-header h1 { color: #dce4f5; }
+html.dark-theme .enrollment-header p  { color: #7a90b8; }
+
+html.dark-theme .enrollment-cart,
+html.dark-theme .enrollment-form-container {
+    background: #111b35;
+    border-color: rgba(255,255,255,0.07);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.35);
+}
+html.dark-theme .enrollment-cart h2,
+html.dark-theme .enrollment-form-container h2 { color: #dce4f5; }
+
+/* Cart items */
+html.dark-theme .cart-item {
+    background: #0d1630;
+    border-color: rgba(255,255,255,0.08);
+}
+html.dark-theme .cart-item-info h4    { color: #dce4f5; }
+html.dark-theme .cart-item-category   { color: #7a90b8; }
+html.dark-theme .empty-cart           { background: #0d1630; color: #7a90b8; }
+
+/* Cart summary */
+html.dark-theme .cart-summary {
+    background: rgba(28,47,114,0.2);
+    border-color: rgba(28,47,114,0.3);
+}
+html.dark-theme .summary-row          { color: #94a8cc; }
+html.dark-theme .summary-row.total    { color: #e8b923; border-top-color: rgba(255,255,255,0.1); }
+
+/* ── Modal (Add More Courses) ───────────────────────────── */
+html.dark-theme .modal-content {
+    background: #111b35;
+    border: 1px solid rgba(255,255,255,0.08);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+}
+html.dark-theme .modal-header         { border-bottom-color: rgba(255,255,255,0.08); }
+html.dark-theme .modal-header h2      { color: #dce4f5; }
+html.dark-theme .modal-close          { color: #7a90b8; }
+html.dark-theme .modal-close:hover    { color: #e8b923; }
+html.dark-theme .modal-body           { color: #dce4f5; }
+
+/* ── Contact page — "Get in Touch" info section ─────────── */
+html.dark-theme .contact-info-section  { background: #0d1530; }
+html.dark-theme .contact-info-card {
+    background: #111b35;
+    border-color: rgba(255,255,255,0.07);
+}
+html.dark-theme .contact-info-card h3 { color: #dce4f5; }
+html.dark-theme .contact-info-card p  { color: #7a90b8; }
+
+/* Remove the "box" effect (white outline on inputs) */
+html.dark-theme input,
+html.dark-theme textarea,
+html.dark-theme select {
+    outline: none;
+    box-shadow: none;
+}
+html.dark-theme input:focus,
+html.dark-theme textarea:focus {
+    box-shadow: 0 0 0 2px rgba(36, 58, 158, 0.5);
+}
+
+
