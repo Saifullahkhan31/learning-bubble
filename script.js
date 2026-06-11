@@ -589,83 +589,8 @@ const optimizedScroll = debounce(function() {
     // Add any scroll-based functionality here
 }, 100);
 
-// Course Data Structure
-const coursesData = [
-    // Literature, History & Storytelling
-    { id: 1, name: "The World of Sherlock Holmes", category: "Literature, History & Storytelling", fee: 20000, startingFee: 20000, duration: "10 sessions | 2 months", ages: "12–16", about: "Step into the world of mystery, logic, and deduction through Holmes' lens.", pricingOptions: null },
-    { id: 2, name: "History Mystery", category: "Literature, History & Storytelling", fee: 6000, startingFee: 6000, duration: "6 sessions | 1.5 months", ages: "12–16", about: "Explore untold stories and hidden corners of history.", pricingOptions: null },
-    { id: 3, name: "Tales and Telling", category: "Literature, History & Storytelling", fee: 10000, startingFee: 10000, duration: "8 sessions | 2 months", ages: "8–14", about: "Develop storytelling skills, imagination, and confidence.", pricingOptions: null },
-    
-    // Technology & Coding
-    { id: 4, name: "Artificial Intelligence for Kids", category: "Technology & Coding", fee: 18000, startingFee: 18000, duration: "10 sessions | 2 months", ages: "12–16", about: "", pricingOptions: null },
-    { id: 5, name: "Fun with Coding", category: "Technology & Coding", fee: 10000, startingFee: 10000, duration: "8 sessions | 2 months", ages: "10–16", about: "An engaging introduction to programming.", pricingOptions: null },
-    { id: 6, name: "Learn Python", category: "Technology & Coding", fee: 10000, startingFee: 10000, duration: "8 sessions | 2 months", ages: "", about: "A beginner-friendly Python programming course.", pricingOptions: null },
-    { id: 7, name: "Graphic Designing using Canva & Illustrator", category: "Technology & Coding", fee: 8000, startingFee: 8000, duration: "8 sessions | 2 months", ages: "10–16", about: "Learn the basics of digital design.", pricingOptions: null },
-    { id: 8, name: "MS Office for Kids", category: "Technology & Coding", fee: 8000, startingFee: 8000, duration: "8 sessions | 2 months", ages: "10–16", about: "Word, PowerPoint, Excel — kid-friendly and practical.", pricingOptions: null },
-    
-    // Creative Writing & Literature Development
-    { id: 9, name: "Poet's Corner", category: "Creative Writing & Literature Development", fee: 8000, startingFee: 8000, duration: "8 sessions | 2 months", ages: "10–14", about: "", pricingOptions: null },
-    { id: 10, name: "Poet's Corner", category: "Creative Writing & Literature Development", fee: 16000, startingFee: 16000, duration: "10 sessions | 3 months", ages: "15–20", about: "", pricingOptions: null },
-    { id: 11, name: "Creative Writing", category: "Creative Writing & Literature Development", fee: 8000, startingFee: 8000, duration: "8 sessions | 2 months", ages: "8–10", about: "", pricingOptions: null },
-    { id: 12, name: "Creative Writing", category: "Creative Writing & Literature Development", fee: 10000, startingFee: 10000, duration: "8 sessions | 2 months", ages: "11–14", about: "", pricingOptions: null },
-    { id: 13, name: "Creative Writing", category: "Creative Writing & Literature Development", fee: 10000, startingFee: 10000, duration: "8 sessions | 2 months", ages: "15–18", about: "", pricingOptions: null },
-    { id: 14, name: "Vocabulary Quest", category: "Creative Writing & Literature Development", fee: 10000, startingFee: 10000, duration: "10 sessions (40 minutes each)", ages: "14–18", about: "", pricingOptions: null },
-    
-    // Arts & Creativity
-    { id: 15, name: "Art Rebels", category: "Arts & Creativity", fee: 12000, startingFee: 12000, duration: "8 sessions | 2 months", ages: "12–18", about: "A bold journey for young artists to experiment and express.", pricingOptions: null },
-    { id: 16, name: "Bubbles and Beakers Club (Science)", category: "Arts & Creativity", fee: 10000, startingFee: 10000, duration: "8 sessions | 2 months", ages: "10–16", about: "Hands-on science experiments in a virtual lab.", pricingOptions: null },
-    
-    // Math, Logic & Skills
-    { id: 17, name: "Math Magic!", category: "Math, Logic & Skills", fee: 8000, startingFee: 8000, duration: "8 sessions | 2 months", ages: "6–10", about: "Fun numbers, puzzles, and patterns.", pricingOptions: null },
-    { id: 18, name: "Young Entrepreneurs", category: "Math, Logic & Skills", fee: 8000, startingFee: 8000, duration: "6 sessions | 1.5 months", ages: "10–14", about: "Build entrepreneurial mindset and skills.", pricingOptions: null },
-    { id: 19, name: "Financial Literacy", category: "Math, Logic & Skills", fee: 8000, startingFee: 8000, duration: "1 month | 4–5 sessions", ages: "10–14", about: "", pricingOptions: null },
-    { id: 20, name: "Financial Literacy", category: "Math, Logic & Skills", fee: 14000, startingFee: 14000, duration: "8 sessions | 2 months", ages: "15–18", about: "For every financial literacy course you would sign up for, we would teach one underprivileged kid about financial literacy.", pricingOptions: null },
-    { id: 21, name: "Become a Climate Activist – Beginner", category: "Math, Logic & Skills", fee: 12000, startingFee: 12000, duration: "2 months", ages: "8–12", about: "", pricingOptions: null },
-    
-    // IGCSE ACADEMICS
-    { id: 22, name: "IGCSE ACADEMICS", category: "IGCSE ACADEMICS", fee: 1500, startingFee: 1500, duration: "Per class / 8–10 sessions per month", ages: "", about: "Focus on concept clarity, past papers, and exam readiness. Subjects: Physics, Biology, Chemistry, Mathematics, English, Islamiat, Pakistan Studies, Accounting, Economics, Business Studies. Group size: 2–5 students.", pricingOptions: [
-        { label: "Individual Class", price: 1500, description: "PKR 1,500 per class" },
-        { label: "Group Class", price: 8000, description: "PKR 8,000 per month (8–10 sessions)" }
-    ]},
-    
-    // Test Preparation
-    { id: 23, name: "IELTS Academic", category: "Test Preparation", fee: 1500, startingFee: 1500, duration: "Flexible", ages: "", about: "", pricingOptions: [
-        { label: "Per Hour", price: "1,500–5,000", description: "PKR 1,500–5,000 per hour" },
-        { label: "One Module", price: 30000, description: "PKR 30,000 for one module" },
-        { label: "Four Modules", price: 60000, description: "PKR 60,000 for 4 modules" }
-    ]},
-    { id: 24, name: "IELTS General", category: "Test Preparation", fee: 1200, startingFee: 1200, duration: "Flexible", ages: "", about: "", pricingOptions: [
-        { label: "Per Hour", price: "1,200–4,000", description: "PKR 1,200–4,000 per hour" },
-        { label: "One Module", price: 25000, description: "PKR 25,000 for 1 module" },
-        { label: "All Modules", price: 75000, description: "PKR 75,000 for all 4 modules" }
-    ]},
-    { id: 25, name: "SAT Prep (Group Tuition)", category: "Test Preparation", fee: 50000, startingFee: 50000, duration: "4 months", ages: "", about: "Group size: 4–10 students. University admission test plans coming soon.", pricingOptions: null },
-    
-    // English Language Courses
-    { id: 26, name: "English Language – Basic", category: "English Language Courses", fee: 10000, startingFee: 10000, duration: "10 sessions", ages: "", about: "", pricingOptions: null },
-    { id: 27, name: "English Language – Intermediate", category: "English Language Courses", fee: 12000, startingFee: 12000, duration: "10 sessions", ages: "", about: "", pricingOptions: null },
-    { id: 28, name: "English Language – Advanced", category: "English Language Courses", fee: 12000, startingFee: 12000, duration: "8 sessions", ages: "", about: "", pricingOptions: null },
-    
-    // Workshops
-    { id: 29, name: "Poetry Writing Workshop (2 days)", category: "Workshops", fee: 3000, startingFee: 3000, duration: "2 days", ages: "", about: "Fee: PKR 3,000 or $12", pricingOptions: null },
-    { id: 30, name: "Explore Shakespeare (1 day)", category: "Workshops", fee: 3000, startingFee: 3000, duration: "1 day", ages: "", about: "Fee: PKR 3,000 or $12", pricingOptions: null },
-    { id: 31, name: "Creative Writing Workshop (2 days)", category: "Workshops", fee: 3500, startingFee: 3500, duration: "2 days", ages: "", about: "", pricingOptions: null },
-    { id: 32, name: "Professional Email Writing (2 days)", category: "Workshops", fee: 5000, startingFee: 5000, duration: "2 days", ages: "", about: "", pricingOptions: null }
-];
+// Course Data and Category Colors are now loaded from courses-data.js
 
-// Category colors for placeholder images
-const categoryColors = {
-    "All Categories": "linear-gradient(135deg, #1c2f72 0%, #243a9e 100%)",
-    "Literature, History & Storytelling": "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
-    "Technology & Coding": "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)",
-    "Creative Writing & Literature Development": "linear-gradient(135deg, #fa709a 0%, #fee140 100%)",
-    "Arts & Creativity": "linear-gradient(135deg, #30cfd0 0%, #330867 100%)",
-    "Math, Logic & Skills": "linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)",
-    "IGCSE ACADEMICS": "linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%)",
-    "Test Preparation": "linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%)",
-    "English Language Courses": "linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%)",
-    "Workshops": "linear-gradient(135deg, #ffd89b 0%, #19547b 100%)"
-};
 
 // Courses Page Functionality
 function initCoursesPage() {
@@ -928,4 +853,147 @@ document.addEventListener('DOMContentLoaded', function() {
     if (document.querySelector('.courses-page-container')) {
         initCoursesPage();
     }
+    
+    // Initialize Featured Courses Carousel
+    initFeaturedCoursesCarousel();
 });
+
+// Featured Courses Carousel
+function initFeaturedCoursesCarousel() {
+    const carouselSlides = document.getElementById('carousel-slides');
+    const carouselDots = document.getElementById('carousel-dots');
+    const carouselWrapper = document.querySelector('.carousel-wrapper');
+    
+    if (!carouselSlides) return; // Exit if carousel not on page
+    
+    // Featured courses: select 5 diverse courses
+    const featuredCourseIds = [1, 4, 9, 15, 18]; // Diverse course selection
+    const featuredCourses = coursesData.filter(course => featuredCourseIds.includes(course.id));
+    
+    // Motivational descriptions for each featured course
+    const motivationalDescriptions = {
+        1: "Unlock the detective within! Master deduction, logical thinking, and observational skills through the world's most famous detective.",
+        4: "Demystify AI and learn how technology is shaping our future. Explore real-world applications and create your own AI experiments.",
+        9: "Find your poetic voice! Discover the beauty of words, learn timeless techniques, and share your creative expression with confidence.",
+        15: "Break free and express yourself through art! Explore diverse mediums, styles, and techniques in a judgment-free creative space.",
+        18: "Ready to turn ideas into reality? Learn the essentials of entrepreneurship and launch your very own business venture."
+    };
+    
+    let currentSlide = 0;
+    let autoplayTimer = null;
+    const AUTOPLAY_INTERVAL = 5000; // 5 seconds
+    
+    // Populate slides
+    carouselSlides.innerHTML = featuredCourses.map((course, index) => {
+        const description = motivationalDescriptions[course.id] || course.about;
+        const categoryGradient = categoryColors[course.category] || categoryColors['All Categories'];
+        
+        return `
+            <div class="carousel-slide" data-slide="${index}">
+                <div class="featured-course-card" style="background: ${categoryGradient};">
+                    <div class="featured-course-overlay"></div>
+                    <div class="featured-course-content">
+                        <span class="featured-course-category">${course.category}</span>
+                        <h3 class="featured-course-title">${course.name}</h3>
+                        <p class="featured-course-description">${description}</p>
+                        <div class="featured-course-meta">
+                            <span><i class="fas fa-clock"></i> ${course.duration}</span>
+                            ${course.ages ? `<span><i class="fas fa-users"></i> Ages ${course.ages}</span>` : ''}
+                        </div>
+                        <div class="featured-course-footer">
+                            <div class="featured-course-price">
+                                Rs. ${course.startingFee.toLocaleString()}
+                            </div>
+                            <a href="course-detail.html?id=${course.id}" class="featured-course-btn">
+                                View Course
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+    }).join('');
+    
+    // Populate dots
+    carouselDots.innerHTML = featuredCourses.map((_, index) => `
+        <button class="carousel-dot ${index === 0 ? 'active' : ''}" data-slide="${index}" aria-label="Go to slide ${index + 1}"></button>
+    `).join('');
+    
+    // Show slide function
+    function showSlide(n) {
+        const slides = carouselSlides.querySelectorAll('.carousel-slide');
+        const dots = carouselDots.querySelectorAll('.carousel-dot');
+        
+        // Wrap around
+        if (n >= slides.length) {
+            currentSlide = 0;
+        } else if (n < 0) {
+            currentSlide = slides.length - 1;
+        } else {
+            currentSlide = n;
+        }
+        
+        // Update transform
+        carouselSlides.style.transform = `translateX(-${currentSlide * 100}%)`;
+        
+        // Update active dot and restart progress animation
+        dots.forEach((dot, index) => {
+            if (index === currentSlide) {
+                dot.classList.add('active');
+                dot.classList.remove('paused');
+                // Trigger animation restart by removing and re-adding the animation
+                dot.style.animation = 'none';
+                setTimeout(() => {
+                    dot.style.animation = '';
+                }, 10);
+            } else {
+                dot.classList.remove('active', 'paused');
+            }
+        });
+    }
+    
+    // Auto-advance slides
+    function startAutoplay() {
+        autoplayTimer = setInterval(() => {
+            showSlide(currentSlide + 1);
+        }, AUTOPLAY_INTERVAL);
+    }
+    
+    function stopAutoplay() {
+        if (autoplayTimer) {
+            clearInterval(autoplayTimer);
+            autoplayTimer = null;
+        }
+        // Pause the progress animation on active dot
+        const activeDot = carouselDots.querySelector('.carousel-dot.active');
+        if (activeDot) {
+            activeDot.classList.add('paused');
+        }
+    }
+    
+    function resumeAutoplay() {
+        // Resume the progress animation on active dot
+        const activeDot = carouselDots.querySelector('.carousel-dot.active');
+        if (activeDot) {
+            activeDot.classList.remove('paused');
+        }
+        startAutoplay();
+    }
+    
+    // Dot click listeners
+    carouselDots.querySelectorAll('.carousel-dot').forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+            stopAutoplay();
+            showSlide(index);
+            resumeAutoplay();
+        });
+    });
+    
+    // Pause autoplay on hover, resume on mouse leave
+    carouselWrapper?.addEventListener('mouseenter', stopAutoplay);
+    carouselWrapper?.addEventListener('mouseleave', resumeAutoplay);
+    
+    // Initialize first slide and start autoplay
+    showSlide(0);
+    startAutoplay();
+}

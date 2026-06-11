@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <script>if(localStorage.getItem('lb-theme')==="dark")document.documentElement.classList.add("dark-theme");</script>
+    <script>if (localStorage.getItem('lb-theme') === "dark") document.documentElement.classList.add("dark-theme");</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Learning Bubble - Interactive Online Learning Experience</title>
@@ -11,7 +11,7 @@
     <link rel="apple-touch-icon" sizes="180x180" href="assets/images/logo.png">
     <link rel="shortcut icon" href="favicon.ico">
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <!-- Preload critical hero image so it's ready before the slide-in animation fires -->
     <link rel="preload" as="image" href="assets/images/heroSectionImage.png">
@@ -69,13 +69,40 @@
                         <div class="button-group">
                             <button class="btn-primary" onclick="window.location.href='courses.html'">Enroll
                                 Now</button>
-                            <small class="button-subtitle">Start your learning journey today</small>
+                            <small class="button-subtitle">Start your online learning journey today</small>
                         </div>
                     </div>
                 </div>
                 <div class="hero-image hero-animate hero-animate--right" data-delay="100">
                     <img src="assets/images/heroSectionImage.png" alt="Students Learning">
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Courses Carousel -->
+    <section id="featured-courses" class="featured-courses">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Featured Courses</h2>
+                <p class="section-subtitle">Explore our most popular and engaging learning experiences</p>
+            </div>
+
+            <div class="carousel-container">
+                <div class="carousel-wrapper">
+                    <div class="carousel-slides" id="carousel-slides">
+                        <!-- Slides will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Dots -->
+                <div class="carousel-dots" id="carousel-dots">
+                    <!-- Dots will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <div class="featured-cta">
+                <a class="btn-primary" href="courses.html">View All Courses</a>
             </div>
         </div>
     </section>
@@ -96,15 +123,8 @@
                             <h3>Vision</h3>
                         </div>
                         <p>
-                            To empower learners everywhere with accessible, engaging, and personalized tutoring that
-                            builds
-                            confidence, curiosity, and a lifelong love for learning. We create tailored learning
-                            pathways
-                            that adapt to each student's strengths and goals, combining data-informed instruction,
-                            interactive lessons, and real-world problem solving. Our aim is measurable growth — stronger
-                            skills, better study habits, and increased self-efficacy — all delivered in a safe,
-                            inclusive,
-                            and supportive online classroom.
+                            A world where every child explores ideas freely, builds original thinking, and grows with
+                            the confidence to shape their own path.
                         </p>
                     </div>
                 </div>
@@ -115,15 +135,9 @@
                             <h3>Mission</h3>
                         </div>
                         <p>
-                            To deliver high‑impact, Zoom‑based tutoring led by caring teachers, combining a structured
-                            K‑12
-                            curriculum with adaptive practice, real‑world relevance and continuous feedback.
+                            To foster a generation with strong creative skills and a solid foundation, enabling them to
+                            discover and reach their full potential.
                         </p>
-                        <ul class="vm-list">
-                            <li>Small groups and 1‑to‑1 sessions for focused attention</li>
-                            <li>Data‑informed teaching with clear goals and progress</li>
-                            <li>Supportive community of parents, students and educators</li>
-                        </ul>
                     </div>
                 </div>
             </div>
@@ -133,7 +147,6 @@
             </div>
         </div>
     </section>
-
 
     <!-- Footer -->
     <footer class="footer">
@@ -159,7 +172,7 @@
                     <h4>Contact</h4>
                     <ul>
                         <li><i class="fas fa-envelope"></i> <a
-                                href="mailto:info@learningbubble.com">learningbubblee@gmail.com</a></li>
+                                href="mailto:Learningbubblepk@gmail.com">Learningbubblepk@gmail.com</a></li>
                         <li><i class="fas fa-phone"></i>+92 321 2481610</li>
                     </ul>
                 </div>
@@ -180,6 +193,7 @@
         </div>
     </footer>
 
+    <script src="courses-data.js"></script>
     <script src="script.js"></script>
 </body>
 
