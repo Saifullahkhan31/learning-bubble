@@ -2853,14 +2853,32 @@ html.dark-theme .age-filter-option span {
         font-size: 0.85rem;
     }
 
-    .category-scroll-indicator {
-        width: 70px;
-        padding-right: 1rem;
+    /* Compact scroll indicator on mobile */
+    .category-tiles-wrapper .category-scroll-indicator {
+        width: 50px;
+        height: 150px;
+        max-height: 150px;
+        padding-right: 0.5rem;
+    }
+
+    .category-scroll-indicator i {
+        font-size: 1rem;
     }
 
     .courses-grid-container {
         grid-template-columns: 1fr;
         gap: 1.5rem;
+    }
+
+    /* Fix filter button alignment */
+    .age-filter-section {
+        padding-left: 0;
+        width: 100%;
+    }
+
+    .age-filter-dropdown {
+        max-width: 100%;
+        width: 100%;
     }
 }
 
@@ -2879,13 +2897,16 @@ html.dark-theme .age-filter-option span {
         font-size: 0.75rem;
     }
 
-    .category-scroll-indicator {
-        width: 60px;
-        padding-right: 0.75rem;
+    /* Even smaller indicator on phones */
+    .category-tiles-wrapper .category-scroll-indicator {
+        width: 38px;
+        height: 120px;
+        max-height: 120px;
+        padding-right: 0.35rem;
     }
 
     .category-scroll-indicator i {
-        font-size: 1.2rem;
+        font-size: 0.85rem;
     }
 }
 
@@ -5276,6 +5297,855 @@ html.dark-theme .la-tagline {
     border-left-color: #e8b923;
 }
 
+
 html.dark-theme .la-tagline i {
     color: #e8b923;
 }
+
+/* ============================================================
+   COMPREHENSIVE MOBILE RESPONSIVE OVERHAUL
+   Covers: all iPhones (SE → Pro Max), Android, tablets, desktop
+   Breakpoints:
+     375px  iPhone SE / 13 mini
+     390px  iPhone 14/15/16
+     430px  iPhone 14/15/16 Plus & Pro Max
+     480px  small Androids (already handled above, extended here)
+     600px  large phones / small tablets landscape
+     768px  tablets portrait (already handled, extended here)
+     1024px tablets landscape / small laptops
+   ============================================================ */
+
+/* ─── Global Safety ─────────────────────────────────────── */
+*, *::before, *::after {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-text-size-adjust: 100%;
+}
+
+/* Prevent inputs zooming on iOS Safari */
+@media (max-width: 768px) {
+    input, select, textarea, button {
+        font-size: 16px !important;
+    }
+}
+
+/* ─── Navbar Mobile ─────────────────────────────────────── */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 0;
+    }
+
+    .nav-container {
+        padding: 0 1rem;
+        height: 64px;
+    }
+
+    .logo-text {
+        font-size: 1.2rem;
+    }
+
+    .logo-img {
+        width: 44px;
+        height: 44px;
+    }
+
+    /* Mobile dropdown menu */
+    .nav-menu {
+        display: none;
+        flex-direction: column;
+        position: fixed;
+        top: 64px;
+        left: 0;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-bottom: 1px solid rgba(229, 231, 235, 0.8);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+        z-index: 999;
+        padding: 1rem 0 1.5rem;
+        gap: 0;
+        list-style: none;
+        margin: 0;
+        overflow-y: auto;
+        max-height: calc(100vh - 64px);
+    }
+
+    .nav-menu.active {
+        display: flex;
+    }
+
+    .nav-menu li {
+        width: 100%;
+    }
+
+    .nav-menu .nav-link {
+        display: block;
+        padding: 0.85rem 1.5rem;
+        font-size: 1rem;
+        border-bottom: 1px solid rgba(229, 231, 235, 0.4);
+        width: 100%;
+    }
+
+    .nav-menu .nav-link::after {
+        display: none;
+    }
+
+    .nav-menu li:last-child .nav-link,
+    .nav-menu li:last-child button.register-btn {
+        border-bottom: none;
+    }
+
+    .register-btn {
+        margin: 0.75rem 1.5rem 0;
+        width: calc(100% - 3rem);
+        text-align: center;
+        border-radius: 8px;
+        padding: 0.75rem 1rem;
+    }
+
+    /* Hamburger animation */
+    .hamburger.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .hamburger.active span:nth-child(2) {
+        opacity: 0;
+        transform: translateX(-10px);
+    }
+
+    .hamburger.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(5px, -5px);
+    }
+}
+
+/* ─── Hero Section ──────────────────────────────────────── */
+@media (max-width: 768px) {
+    .hero {
+        padding-top: 64px;
+        min-height: auto;
+        padding-bottom: 3rem;
+    }
+
+    .hero-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        text-align: center;
+        padding-top: 2rem;
+        padding-left: 0;
+    }
+
+    .hero-text {
+        padding-left: 0;
+        order: 2;
+    }
+
+    .hero-image {
+        order: 1;
+        max-width: 360px;
+        margin: 0 auto;
+    }
+
+    .hero-image img {
+        transform: none;
+        max-width: 100%;
+    }
+
+    .hero-title {
+        font-size: 2rem;
+        line-height: 1.25;
+    }
+
+    .highlight2 {
+        white-space: normal;
+    }
+
+    .hero-description {
+        font-size: 1rem;
+    }
+
+    .hero-buttons {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    .button-group {
+        align-items: center;
+        width: 100%;
+    }
+
+    .btn-primary, .btn-secondary {
+        width: 100%;
+        max-width: 300px;
+        text-align: center;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 430px) {
+    .hero-title {
+        font-size: 1.75rem;
+    }
+
+    .hero-description {
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 375px) {
+    .hero-title {
+        font-size: 1.55rem;
+    }
+}
+
+/* ─── Section Titles & Headers ──────────────────────────── */
+@media (max-width: 768px) {
+    .section-title {
+        font-size: 1.8rem;
+    }
+
+    .section-subtitle {
+        font-size: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .section-header {
+        margin-bottom: 2.5rem;
+    }
+}
+
+@media (max-width: 430px) {
+    .section-title {
+        font-size: 1.55rem;
+    }
+}
+
+/* ─── About (Home) ──────────────────────────────────────── */
+@media (max-width: 768px) {
+    .about {
+        padding: 4rem 0;
+    }
+
+    .about-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .about-features {
+        gap: 1rem;
+    }
+
+    .about-text p {
+        font-size: 1rem;
+    }
+}
+
+/* ─── Resources (Home) ──────────────────────────────────── */
+@media (max-width: 768px) {
+    .resources {
+        padding: 4rem 0;
+    }
+
+    .resources-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .partners-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 430px) {
+    .partners-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ─── Announcement ──────────────────────────────────────── */
+@media (max-width: 768px) {
+    .announcement {
+        padding: 4rem 0;
+    }
+
+    .announcement-card {
+        grid-template-columns: 1fr;
+    }
+
+    .announcement-image {
+        height: 220px;
+        overflow: hidden;
+    }
+
+    .announcement-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .announcement-content {
+        padding: 2rem 1.5rem;
+    }
+
+    .announcement-title {
+        font-size: 1.5rem;
+    }
+}
+
+/* ─── Advantage / Why Choose ────────────────────────────── */
+@media (max-width: 768px) {
+    .advantage {
+        padding: 4rem 0;
+    }
+
+    .advantage-card {
+        flex: 1 1 calc(50% - 1rem);
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .advantage-card {
+        flex: 1 1 100%;
+        max-width: 100%;
+    }
+}
+
+/* ─── Learning Approach (Home) ──────────────────────────── */
+@media (max-width: 768px) {
+    .learning-approach {
+        padding: 4rem 0;
+    }
+
+    .la-inner {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .la-image {
+        height: 260px;
+        order: -1;
+    }
+
+    .la-title {
+        font-size: 1.75rem;
+    }
+
+    .la-stats {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 430px) {
+    .la-stats {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+    }
+
+    .la-title {
+        font-size: 1.5rem;
+    }
+
+    .la-image {
+        height: 220px;
+    }
+}
+
+/* ─── Vision & Mission ──────────────────────────────────── */
+@media (max-width: 768px) {
+    .vision-mission {
+        padding: 4rem 0;
+    }
+
+    .vm-tile {
+        padding: 1.25rem;
+    }
+}
+
+/* ─── Featured Courses Carousel ─────────────────────────── */
+@media (max-width: 768px) {
+    .featured-courses {
+        padding: 4rem 0;
+    }
+
+    .carousel-wrapper {
+        min-height: 280px;
+    }
+
+    .carousel-btn {
+        width: 38px;
+        height: 38px;
+        font-size: 1rem;
+    }
+
+    .carousel-btn.prev {
+        left: 0.5rem;
+    }
+
+    .carousel-btn.next {
+        right: 0.5rem;
+    }
+}
+
+@media (max-width: 430px) {
+    .carousel-wrapper {
+        min-height: 220px;
+        aspect-ratio: auto;
+    }
+
+    .featured-course-hover-overlay {
+        background: rgba(11, 16, 34, 0.35);
+    }
+
+    .featured-course-hover-btn {
+        opacity: 1;
+        transform: none;
+        font-size: 0.85rem;
+        padding: 0.6rem 1.25rem;
+    }
+
+    .carousel-dots {
+        gap: 0.4rem;
+        margin-top: 1rem;
+    }
+}
+
+/* ─── Footer ────────────────────────────────────────────── */
+@media (max-width: 768px) {
+    .footer {
+        padding: 2rem 0 1rem;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+    }
+}
+
+/* ─── Theme Toggle ──────────────────────────────────────── */
+@media (max-width: 480px) {
+    .theme-toggle {
+        width: 44px;
+        height: 44px;
+        bottom: 16px;
+        right: 16px;
+        font-size: 1rem;
+    }
+}
+
+/* ─── Page Hero Banner (About / Courses / Contact etc.) ─── */
+@media (max-width: 768px) {
+    .page-hero {
+        padding: 110px 0 60px;
+    }
+
+    .page-hero-title {
+        font-size: 2rem;
+    }
+
+    .page-hero-subtitle {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 430px) {
+    .page-hero {
+        padding: 100px 0 50px;
+    }
+
+    .page-hero-title {
+        font-size: 1.65rem;
+    }
+}
+
+/* ─── About Page (Detailed) ─────────────────────────────── */
+@media (max-width: 768px) {
+    .about-detailed {
+        padding: 3rem 0;
+    }
+
+    .about-detailed .about-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .values-section {
+        padding: 3rem 0;
+    }
+
+    .values-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .values-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ─── Courses Page ──────────────────────────────────────── */
+@media (max-width: 768px) {
+    .courses-page-container {
+        padding: 2rem 0;
+    }
+
+    .category-tiles-wrapper {
+        margin-bottom: 2rem;
+    }
+
+    .category-tile {
+        min-width: 160px;
+        height: 140px;
+    }
+
+    .courses-grid-container {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+    }
+
+    /* Reset the desktop 80% left-push so the filter sits inline */
+    .filter-container {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .age-filter-section {
+        padding-left: 0;
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+
+    .age-filter-dropdown {
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .age-filter-button {
+        width: 100%;
+        justify-content: space-between;
+    }
+}
+
+
+@media (max-width: 430px) {
+    .category-tile {
+        min-width: 130px;
+        height: 110px;
+    }
+
+    .category-tile-overlay h3 {
+        font-size: 0.75rem;
+    }
+}
+
+/* ─── Course Advantages (Courses Page) ─────────────────── */
+@media (max-width: 768px) {
+    .course-advantages {
+        padding: 4rem 0;
+    }
+}
+
+/* ─── Course Detail Page ────────────────────────────────── */
+@media (max-width: 768px) {
+    .course-detail-hero {
+        padding: 2rem 0;
+    }
+
+    .course-detail-header {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .course-image-container {
+        height: 240px;
+    }
+
+    .course-name-hero {
+        font-size: 1.6rem;
+    }
+
+    .meta-item-hero {
+        font-size: 0.9rem;
+    }
+
+    .course-detail-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .enrollment-card {
+        position: static;
+    }
+
+    .course-info-cards {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+
+    .related-courses-section {
+        padding: 3rem 0;
+    }
+
+    .related-courses-grid {
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    }
+}
+
+@media (max-width: 480px) {
+    .course-image-container {
+        height: 200px;
+    }
+
+    .course-name-hero {
+        font-size: 1.4rem;
+    }
+
+    .course-info-cards {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+    }
+
+    .related-courses-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .course-description-section,
+    .course-highlights-section,
+    .contact-info-section,
+    .course-benefits-section,
+    .course-modules-section,
+    .course-pricing-section {
+        padding: 1.25rem;
+        border-radius: 10px;
+    }
+
+    .enrollment-card {
+        padding: 1.25rem;
+    }
+
+    .breadcrumb-section .container {
+        font-size: 0.8rem;
+    }
+}
+
+/* ─── Contact Page ──────────────────────────────────────── */
+@media (max-width: 768px) {
+    .contact-section {
+        padding: 3rem 0;
+    }
+
+    .contact-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .contact-form {
+        padding: 1.5rem;
+    }
+
+    .contact-methods {
+        gap: 1rem;
+    }
+
+    .faq-section {
+        padding: 3rem 0;
+    }
+}
+
+/* ─── Enrollment Page ───────────────────────────────────── */
+@media (max-width: 768px) {
+    .enrollment-section {
+        padding: 5rem 0 3rem;
+    }
+
+    .enrollment-header h1 {
+        font-size: 1.75rem;
+    }
+
+    .enrollment-container {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .enrollment-cart {
+        position: static;
+        padding: 1.5rem;
+    }
+
+    .enrollment-form-container {
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .enrollment-section {
+        padding: 4.5rem 0 2rem;
+    }
+
+    .enrollment-header h1 {
+        font-size: 1.5rem;
+    }
+
+    .enrollment-cart,
+    .enrollment-form-container {
+        padding: 1.25rem;
+        border-radius: 8px;
+    }
+
+    .cart-item {
+        padding: 0.75rem;
+    }
+
+    .btn-submit {
+        font-size: 0.95rem;
+        padding: 0.9rem 1rem;
+    }
+}
+
+/* ─── Enrollment Modal ──────────────────────────────────── */
+@media (max-width: 768px) {
+    .modal {
+        padding: 0.5rem;
+        align-items: flex-end;
+    }
+
+    .modal-content {
+        border-radius: 16px 16px 0 0;
+        max-height: 90vh;
+        width: 100%;
+    }
+
+    .modal-large {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .modal-body {
+        padding: 1.25rem;
+    }
+
+    .modal-header {
+        padding: 1rem 1.25rem;
+    }
+
+    .courses-search {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .courses-search select {
+        min-width: 100%;
+    }
+
+    .courses-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .courses-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .success-actions {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .success-actions .btn-primary,
+    .success-actions .btn-secondary {
+        width: 100%;
+    }
+}
+
+/* ─── Resources Page ────────────────────────────────────── */
+@media (max-width: 768px) {
+    .resource-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 1.25rem;
+    }
+
+    .resources-overview,
+    .resource-types {
+        padding: 3rem 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .resource-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ─── Dark theme nav menu mobile ───────────────────────── */
+html.dark-theme .nav-menu {
+    background: rgba(14, 21, 48, 0.98);
+    border-bottom-color: rgba(255, 255, 255, 0.06);
+}
+
+html.dark-theme .nav-menu .nav-link {
+    border-bottom-color: rgba(255, 255, 255, 0.05);
+    color: #94a8cc;
+}
+
+html.dark-theme .nav-menu .nav-link:hover {
+    color: #e8b923;
+}
+
+/* ─── iPhone landscape / small tablets ─────────────────── */
+@media (max-width: 900px) and (orientation: landscape) {
+    .hero {
+        min-height: auto;
+        padding: 80px 0 3rem;
+    }
+
+    .hero-content {
+        grid-template-columns: 1fr 1fr;
+        text-align: left;
+        gap: 2rem;
+    }
+
+    .hero-buttons {
+        justify-content: flex-start;
+    }
+
+    .hero-image {
+        max-width: 100%;
+    }
+
+    .nav-menu {
+        max-height: calc(100vh - 64px);
+        overflow-y: auto;
+    }
+}
+
+/* ─── Container padding on very small screens ───────────── */
+@media (max-width: 375px) {
+    .container {
+        padding: 0 0.75rem;
+    }
+
+    .logo-text {
+        font-size: 1rem;
+    }
+
+    .enrollment-cart,
+    .enrollment-form-container {
+        padding: 1rem;
+    }
+
+    .section-title {
+        font-size: 1.4rem;
+    }
+}
