@@ -183,23 +183,25 @@ function displayRelatedCourses(currentCourse) {
 
     const categoryColor = categoryColors[currentCourse.category] || categoryColors["All Categories"];
 
-    relatedCoursesGrid.innerHTML = relatedCourses.map(course => `
-        <div class="course-card-new">
-            <div class="course-card-header" style="background: ${categoryColor}">
-                <span class="course-category-badge">${course.category}</span>
-            </div>
-            <div class="course-card-body">
-                <h3 class="course-name">${course.name}</h3>
-                ${course.ages ? `<span class="course-age"><i class="fas fa-user"></i> ${course.ages} years</span>` : ''}
-                <div class="course-meta-info">
-                    <span class="course-fee">Rs. ${course.startingFee.toLocaleString()}</span>
-                    <span class="course-duration-new"><i class="fas fa-clock"></i> ${course.duration}</span>
+    relatedCoursesGrid.innerHTML = relatedCourses.map(course => {
+        const courseImagePath = `assets/images/courses/course-${course.id}.jpg`;
+        return `
+            <div class="course-card-new">
+                <div class="course-card-header" style="background-image: url('${courseImagePath}'), ${categoryColor}; background-size: cover; background-position: center;">
+                    <span class="course-category-badge">${course.category}</span>
                 </div>
-                ${course.about ? `<p class="course-about">${course.about}</p>` : ''}
-                <a href="course-detail.html?id=${course.id}" class="btn-view-course">View Course</a>
+                <div class="course-card-body">
+                    <h3 class="course-name">${course.name}</h3>
+                    ${course.ages ? `<span class="course-age"><i class="fas fa-user"></i> ${course.ages} years</span>` : ''}
+                    <div class="course-meta-info">
+                        <span class="course-fee">Rs. ${course.startingFee.toLocaleString()}</span>
+                        <span class="course-duration-new"><i class="fas fa-clock"></i> ${course.duration}</span>
+                    </div>
+                    <a href="course-detail.html?id=${course.id}" class="btn-view-course">View Course</a>
+                </div>
             </div>
-        </div>
-    `).join('');
+        `;
+    }).join('');
 }
 
 function handleEnroll(courseId, selectedPrice = '') {

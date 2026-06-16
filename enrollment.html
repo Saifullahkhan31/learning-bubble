@@ -85,49 +85,54 @@
                 <!-- Right Column: Enrollment Form -->
                 <div class="enrollment-form-container">
                     <h2>Your Information</h2>
-                    <form id="enrollmentForm" class="enrollment-form">
-                        <div class="form-group">
+                    <form id="enrollmentForm" class="enrollment-form" novalidate>
+                        <div class="form-group" id="fg-name">
                             <label for="name">Full Name *</label>
-                            <input type="text" id="name" name="name" required placeholder="Enter your full name">
+                            <input type="text" id="name" name="name" required minlength="2" placeholder="Enter your full name">
+                            <span class="field-error" id="err-name">Please enter your full name (at least 2 characters).</span>
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group" id="fg-email">
                             <label for="email">Email Address *</label>
                             <input type="email" id="email" name="email" required placeholder="your@email.com">
+                            <span class="field-error" id="err-email">Please enter a valid email address.</span>
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group" id="fg-phone">
                             <label for="phone">Phone Number (WhatsApp) *</label>
                             <input type="tel" id="phone" name="phone" required placeholder="03001234567"
-                                pattern="[0-9\+\-\s\(\)]+">
+                                pattern="[0-9\+\-\s\(\)]{7,15}">
                             <small>We'll contact you on this number via WhatsApp</small>
+                            <span class="field-error" id="err-phone">Please enter a valid phone number (digits only, 7–15 characters).</span>
                         </div>
 
-                        <div class="form-group">
-                            <label for="age">Age Group</label>
-                            <select id="age" name="age">
+                        <div class="form-group" id="fg-age">
+                            <label for="age">Age Group *</label>
+                            <select id="age" name="age" required>
                                 <option value="">Select age group</option>
                                 <option value="6-10">6-10 years</option>
                                 <option value="10-14">10-14 years</option>
                                 <option value="14-18">14-18 years</option>
                                 <option value="18+">18+ years</option>
                             </select>
+                            <span class="field-error" id="err-age">Please select an age group.</span>
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group" id="fg-parentName">
                             <label for="parentName">Parent/Guardian Name (if applicable)</label>
                             <input type="text" id="parentName" name="parentName" placeholder="Enter parent's name">
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group" id="fg-message">
                             <label for="message">Message (Optional)</label>
                             <textarea id="message" name="message" rows="4"
                                 placeholder="Any questions or special requests?"></textarea>
                         </div>
 
-                        <div class="form-group checkbox">
+                        <div class="form-group checkbox" id="fg-terms">
                             <input type="checkbox" id="terms" name="terms" required>
                             <label for="terms">I agree to be contacted for enrollment confirmation</label>
+                            <span class="field-error" id="err-terms">You must agree to be contacted before submitting.</span>
                         </div>
 
                         <button type="submit" class="btn-submit">Complete Enrollment</button>
@@ -201,7 +206,7 @@
                     <h4>Contact</h4>
                     <ul>
                         <li><i class="fas fa-envelope"></i> <a
-                                href="mailto:Learningbubblepk@gmail.com">Learningbubblepk@gmail.com</a></li>
+                                href="mailto:learningbubblepk@gmail.com">learningbubblepk@gmail.com</a></li>
                         <li><i class="fas fa-phone"></i>+92 321 2481610</li>
                     </ul>
                 </div>
@@ -216,7 +221,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2024 Learning Bubble. All rights reserved.</p>
+                <p>&copy; 2026 Learning Bubble. All rights reserved.</p>
             </div>
         </div>
     </footer>

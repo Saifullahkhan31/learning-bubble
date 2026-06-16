@@ -44,6 +44,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Render initial cart
     renderCart();
     populateCategories();
+    attachValidationListeners();
 
     // Event listeners
     document.getElementById('btnAddMore').addEventListener('click', openCoursesModal);
@@ -144,9 +145,10 @@ function renderCoursesInModal(courses) {
     const coursesGrid = document.getElementById('coursesGrid');
     coursesGrid.innerHTML = courses.map(course => {
         const isInCart = enrollmentCart.find(c => c.id === course.id);
+        const courseImagePath = `assets/images/courses/course-${course.id}.jpg`;
         return `
             <div class="course-card-enrollment">
-                <div class="course-card-header" style="background: ${getCategoryColor(course.category)}">
+                <div class="course-card-header" style="background-image: url('${courseImagePath}'), ${getCategoryColor(course.category)}; background-size: cover; background-position: center;">
                     <span class="course-category-badge">${course.category}</span>
                 </div>
                 <div class="course-card-body">
@@ -220,19 +222,107 @@ function filterCourses() {
     renderCoursesInModal(filtered);
 }
 
+// ─────────────────────────────────────────────────────────────────
+// FORM VALIDATION
+// ─────────────────────────────────────────────────────────────────
+
+/**
+ * Validate a single field by its input element.
+ * Returns true if valid, false if invalid (and marks error on parent .form-group).
+ */
+function validateField(el) {
+    const fg = el.closest('.form-group');
+    if (!fg) return true;
+
+    let valid = true;
+    const val = el.value.trim();
+
+    if (el.type === 'checkbox') {
+        valid = el.checked;
+    } else if (el.required && val === '') {
+        valid = false;
+    } else if (el.type === 'email' && val !== '') {
+        // Simple RFC-friendly email regex
+        valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
+    } else if (el.type === 'tel' && val !== '') {
+        // 7-15 digits/+/spaces/dashes/parens
+        const digitsOnly = val.replace(/[\s\(\)\-\+]/g, '');
+        valid = /^\d{7,15}$/.test(digitsOnly);
+    } else if (el.tagName === 'SELECT' && el.required) {
+        valid = val !== '';
+    } else if (el.minLength > 0 && val.length < el.minLength) {
+        valid = false;
+    }
+
+    fg.classList.toggle('error', !valid);
+    // Only show green tick on required fields that have been touched & are valid
+    if (el.required || el.type === 'email' || el.type === 'tel') {
+        fg.classList.toggle('valid', valid && val !== '' || (el.type === 'checkbox' && el.checked));
+    }
+    return valid;
+}
+
+// Attach real-time blur and input listeners to every validatable field
+function attachValidationListeners() {
+    const fields = document.querySelectorAll('#enrollmentForm input, #enrollmentForm select, #enrollmentForm textarea');
+    fields.forEach(el => {
+        // On blur: validate immediately
+        el.addEventListener('blur', () => validateField(el));
+        // On input: clear error once user starts correcting
+        el.addEventListener('input', () => {
+            const fg = el.closest('.form-group');
+            if (fg && fg.classList.contains('error')) validateField(el);
+        });
+        // Checkboxes need change event
+        if (el.type === 'checkbox') {
+            el.addEventListener('change', () => validateField(el));
+        }
+    });
+}
+
+// Trigger shake animation on a form-group
+function shakeField(fg) {
+    fg.classList.remove('shake');
+    // Force reflow so animation re-triggers
+    void fg.offsetWidth;
+    fg.classList.add('shake');
+    fg.addEventListener('animationend', () => fg.classList.remove('shake'), { once: true });
+}
+
 // Handle form submission
 function handleFormSubmit(e) {
     e.preventDefault();
 
-    // Validate cart
+    // 1. Cart check
     if (enrollmentCart.length === 0) {
         alert('Please add at least one course to your cart!');
         return;
     }
 
-    // Get form data
+    // 2. Validate all required fields
+    const fieldsToValidate = document.querySelectorAll(
+        '#enrollmentForm input[required], #enrollmentForm select[required], #enrollmentForm textarea[required]'
+    );
+
+    let firstInvalid = null;
+    fieldsToValidate.forEach(el => {
+        const ok = validateField(el);
+        if (!ok) {
+            const fg = el.closest('.form-group');
+            if (fg) shakeField(fg);
+            if (!firstInvalid) firstInvalid = el;
+        }
+    });
+
+    if (firstInvalid) {
+        firstInvalid.focus();
+        firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+    }
+
+    // 3. All valid — submit
     const formData = new FormData(document.getElementById('enrollmentForm'));
-    
+
     // Add cart data
     formData.append('courses', JSON.stringify(enrollmentCart));
     formData.append('totalAmount', document.getElementById('totalAmount').textContent);
@@ -245,12 +335,13 @@ function handleFormSubmit(e) {
     .then(response => response.json())
     .then(data => {
         if (data.success) {
-            // Show success modal
             document.getElementById('successPhone').textContent = formData.get('phone');
             document.getElementById('successModal').style.display = 'flex';
-            
-            // Reset form
             document.getElementById('enrollmentForm').reset();
+            // Clear all validation states after reset
+            document.querySelectorAll('#enrollmentForm .form-group').forEach(fg => {
+                fg.classList.remove('error', 'valid', 'shake');
+            });
             enrollmentCart = [];
             renderCart();
         } else {
@@ -262,6 +353,7 @@ function handleFormSubmit(e) {
         alert('An error occurred. Please try again.');
     });
 }
+
 
 // Close success modal
 document.addEventListener('DOMContentLoaded', function() {
