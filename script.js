@@ -100,7 +100,50 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
+    // ── Learning Approach — animated stat counters ────────────────────────
+    const laSection = document.querySelector('.learning-approach');
+    if (laSection) {
+        // Scroll-reveal for the whole section
+        laSection.style.opacity = '0';
+        laSection.style.transform = 'translateY(32px)';
+        const laObs = new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    // Fade the section in
+                    laSection.style.transition = 'opacity 0.7s ease, transform 0.7s cubic-bezier(0.22,1,0.36,1)';
+                    laSection.style.opacity = '1';
+                    laSection.style.transform = 'translateY(0)';
+
+                    // Animate each stat counter
+                    laSection.querySelectorAll('.la-stat-value').forEach((el, i) => {
+                        const target = parseInt(el.dataset.target, 10);
+                        setTimeout(() => {
+                            let current = 0;
+                            const duration = 1200; // ms
+                            const steps = 60;
+                            const inc = target / steps;
+                            const interval = duration / steps;
+                            const timer = setInterval(() => {
+                                current += inc;
+                                if (current >= target) {
+                                    el.textContent = target + '%';
+                                    clearInterval(timer);
+                                } else {
+                                    el.textContent = Math.floor(current) + '%';
+                                }
+                            }, interval);
+                        }, i * 180);
+                    });
+
+                    laObs.unobserve(laSection);
+                }
+            });
+        }, { threshold: 0.15 });
+        laObs.observe(laSection);
+    }
+
     // Counter animation for statistics (if we had any)
+
     function animateCounter(element, target) {
         let current = 0;
         const increment = target / 50;
@@ -870,46 +913,37 @@ function initFeaturedCoursesCarousel() {
     const featuredCourseIds = [1, 4, 9, 15, 18]; // Diverse course selection
     const featuredCourses = coursesData.filter(course => featuredCourseIds.includes(course.id));
     
-    // Motivational descriptions for each featured course
-    const motivationalDescriptions = {
-        1: "Unlock the detective within! Master deduction, logical thinking, and observational skills through the world's most famous detective.",
-        4: "Demystify AI and learn how technology is shaping our future. Explore real-world applications and create your own AI experiments.",
-        9: "Find your poetic voice! Discover the beauty of words, learn timeless techniques, and share your creative expression with confidence.",
-        15: "Break free and express yourself through art! Explore diverse mediums, styles, and techniques in a judgment-free creative space.",
-        18: "Ready to turn ideas into reality? Learn the essentials of entrepreneurship and launch your very own business venture."
-    };
-    
     let currentSlide = 0;
     let autoplayTimer = null;
     const AUTOPLAY_INTERVAL = 5000; // 5 seconds
     
+    // Map course ID to its banner image
+    const courseImages = {
+        1:  'assets/images/courses/course-1.jpg',
+        4:  'assets/images/courses/course-4.jpg',
+        9:  'assets/images/courses/course-9.jpg',
+        15: 'assets/images/courses/course-15.jpg',
+        18: 'assets/images/courses/course-18.jpg'
+    };
+    
     // Populate slides
     carouselSlides.innerHTML = featuredCourses.map((course, index) => {
-        const description = motivationalDescriptions[course.id] || course.about;
+        const imgSrc = courseImages[course.id] || null;
         const categoryGradient = categoryColors[course.category] || categoryColors['All Categories'];
         
         return `
             <div class="carousel-slide" data-slide="${index}">
-                <div class="featured-course-card" style="background: ${categoryGradient};">
-                    <div class="featured-course-overlay"></div>
-                    <div class="featured-course-content">
-                        <span class="featured-course-category">${course.category}</span>
-                        <h3 class="featured-course-title">${course.name}</h3>
-                        <p class="featured-course-description">${description}</p>
-                        <div class="featured-course-meta">
-                            <span><i class="fas fa-clock"></i> ${course.duration}</span>
-                            ${course.ages ? `<span><i class="fas fa-users"></i> Ages ${course.ages}</span>` : ''}
-                        </div>
-                        <div class="featured-course-footer">
-                            <div class="featured-course-price">
-                                Rs. ${course.startingFee.toLocaleString()}
-                            </div>
-                            <a href="course-detail.html?id=${course.id}" class="featured-course-btn">
-                                View Course
-                            </a>
-                        </div>
+                <a href="course-detail.html?id=${course.id}" class="featured-course-card" aria-label="View ${course.name}">
+                    ${imgSrc
+                        ? `<img src="${imgSrc}" alt="${course.name}" class="featured-course-bg-img" loading="${index === 0 ? 'eager' : 'lazy'}">`
+                        : `<div class="featured-course-bg-gradient" style="background: ${categoryGradient};"></div>`
+                    }
+                    <div class="featured-course-hover-overlay">
+                        <span class="featured-course-hover-btn">
+                            <i class="fas fa-arrow-right"></i> View Course
+                        </span>
                     </div>
-                </div>
+                </a>
             </div>
         `;
     }).join('');

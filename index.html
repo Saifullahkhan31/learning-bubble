@@ -11,7 +11,9 @@
     <link rel="apple-touch-icon" sizes="180x180" href="assets/images/logo.png">
     <link rel="shortcut icon" href="favicon.ico">
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <!-- Preload critical hero image so it's ready before the slide-in animation fires -->
     <link rel="preload" as="image" href="assets/images/heroSectionImage.png">
@@ -59,7 +61,7 @@
                     <h1 class="hero-title hero-animate" id="hero-title" data-delay="0">
                         Experiential, Immersive and
                         <span class="highlight">Fulfilling</span>
-                        Learning Experience
+                        <span class="highlight2">Learning Experience</span>
                     </h1>
                     <p class="hero-description hero-animate" data-delay="180">
                         Learning Bubble is an online interactive school for homeschooling and enhancement learning,
@@ -67,8 +69,9 @@
                     </p>
                     <div class="hero-buttons hero-animate" data-delay="340">
                         <div class="button-group">
-                            <button class="btn-primary" onclick="window.location.href='courses.html'">Enroll
-                                Now</button>
+                            <button class="btn-primary" onclick="window.location.href='courses.html'">
+                                <span class="hero-button-text">Enroll Now</span>
+                            </button>
                             <small class="button-subtitle">Start your online learning journey today</small>
                         </div>
                     </div>
@@ -103,6 +106,61 @@
 
             <div class="featured-cta">
                 <a class="btn-primary" href="courses.html">View All Courses</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Learning Approach Section -->
+    <section id="learning-approach" class="learning-approach">
+        <div class="container">
+            <div class="la-inner">
+                <!-- Left: image -->
+                <div class="la-image-col">
+                    <div class="la-image-wrapper">
+                        <img src="assets/images/heroSectionImage.png" alt="Student engaged in hands-on learning"
+                            class="la-image">
+                        <div class="la-image-badge">
+                            <i class="fas fa-star"></i>
+                            <span>Project-First Learning</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: content -->
+                <div class="la-content-col">
+                    <div class="la-label">Our Methodology</div>
+                    <h2 class="la-title">Learning <span class="la-title-accent">Approach</span></h2>
+                    <p class="la-description">
+                        Our courses emphasize hands-on project builds with a project-first approach to learning.
+                        Every session blends structured theory with creative practice — ensuring students don't just
+                        understand concepts, but truly experience them.
+                    </p>
+
+                    <!-- Stat cards -->
+                    <div class="la-stats">
+                        <div class="la-stat-card la-stat--practice">
+                            <span class="la-stat-value" data-target="70">0</span><span class="la-stat-pct">%</span>
+                            <span class="la-stat-label">Practice</span>
+                            <span class="la-stat-sub">Hands-on building</span>
+                        </div>
+                        <div class="la-stat-card la-stat--theory">
+                            <span class="la-stat-value" data-target="30">0</span><span class="la-stat-pct">%</span>
+                            <span class="la-stat-label">Theory</span>
+                            <span class="la-stat-sub">Core concepts</span>
+                        </div>
+                        <div class="la-stat-card la-stat--engagement">
+                            <span class="la-stat-value" data-target="100">0</span><span class="la-stat-pct">%</span>
+                            <span class="la-stat-label">Engagement</span>
+                            <span class="la-stat-sub">Every session</span>
+                        </div>
+                    </div>
+
+                    <!-- Tagline -->
+                    <p class="la-tagline">
+                        <i class="fas fa-gamepad"></i>
+                        Shaping Young Game Designers and Creators
+                    </p>
+                </div>
             </div>
         </div>
     </section>
