@@ -601,12 +601,15 @@ body {
 }
 
 .advantage-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
     gap: 2rem;
+    justify-content: center;
 }
 
 .advantage-card {
+    flex: 1 1 280px;
+    max-width: 360px;
     background: linear-gradient(135deg, #F9FAFB, #F3F4F6);
     padding: 2rem;
     border-radius: 15px;
@@ -1990,6 +1993,11 @@ body.page-enrollment a.register-btn::after {
     background: white;
 }
 
+html.dark-theme .course-advantages {
+    padding: 6rem 0;
+    background: #0e1530;
+}
+
 /* Contact Page Styles */
 .contact-section {
     padding: 6rem 0;
@@ -2467,6 +2475,10 @@ section {
     overflow: hidden;
 }
 
+html.dark-theme .category-tiles-wrapper .category-scroll-indicator {
+    background: linear-gradient(to left, rgb(49, 49, 49) 0%, rgba(32, 25, 25, 0.8) 40%, rgba(43, 43, 43, 0.3) 70%, transparent 100%);
+}
+
 .category-scroll-indicator.visible {
     opacity: 1;
 }
@@ -2480,12 +2492,20 @@ section {
     background: linear-gradient(to right, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.8) 40%, rgba(255, 255, 255, 0.3) 70%, transparent 100%);
 }
 
+html.dark-theme .category-scroll-indicator.left {
+    background: linear-gradient(to right, rgb(49, 49, 49) 0%, rgba(32, 25, 25, 0.8) 40%, rgba(43, 43, 43, 0.3) 70%, transparent 100%);
+}
+
 .category-scroll-indicator i {
     font-size: 1.5rem;
     color: #1c2f72;
     animation: pulse-arrow 2s ease-in-out infinite;
     pointer-events: auto;
     cursor: pointer;
+}
+
+html.dark-theme .category-scroll-indicator i {
+    color: #ffffff;
 }
 
 @keyframes pulse-arrow {
@@ -2517,7 +2537,7 @@ section {
 .age-filter-section {
 
     /* text-align: left; */
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
     padding-left: 80%;
 }
 
@@ -2581,7 +2601,7 @@ section {
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     padding: 0.5rem;
-    max-height: 350px;
+    max-height: 364.5px;
     overflow-y: auto;
     opacity: 0;
     visibility: hidden;
@@ -2623,10 +2643,15 @@ section {
     user-select: none;
 }
 
+/* Dark Filter Options */
+html.dark-theme .age-filter-option span {
+    color: #c9cdd2;
+}
+
 /* Age Filter Apply Button */
 .age-filter-apply {
-    margin-top: 0.5rem;
-    padding: 0.5rem;
+    margin-top: 0.2rem;
+    padding: 0.1rem;
     border-top: 1px solid #E5E7EB;
 }
 
@@ -2641,6 +2666,7 @@ section {
     font-weight: 500;
     cursor: pointer;
     transition: all 0.3s ease;
+    margin-top: 5.5px;
 }
 
 .age-filter-apply-button:hover {
@@ -4275,10 +4301,11 @@ html.dark-theme .nav-menu.active {
 
 /* ── Hero ───────────────────────────────────────────────── */
 html.dark-theme .hero {
-    background:
+    /* background:
         radial-gradient(ellipse at 75% 15%, rgba(255, 255, 255, 0.09) 0%, transparent 55%),
         radial-gradient(ellipse at 15% 85%, rgba(255, 255, 255, 0.04) 0%, transparent 45%),
-        linear-gradient(135deg, #060f2a 0%, #0f1e68 50%, #08133c 100%);
+        linear-gradient(135deg, #060f2a 0%, #0f1e68 50%, #08133c 100%); */
+    background: #111833
 }
 
 /* ── Page hero banners (About / Courses / etc.) ────────── */
@@ -4400,6 +4427,26 @@ html.dark-theme .announcement-card {
 }
 
 /* ── Text ───────────────────────────────────────────────── */
+
+html.dark-theme .hero-title {
+    color: #f0f4ff;
+}
+
+html.dark-theme .highlight2 {
+    background: linear-gradient(120deg, #f0f4ff 20%, #6477c9 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+html.dark-theme .hero-description {
+    color: #dce4f5;
+}
+
+html.dark-theme .button-subtitle {
+    color: #dce4f5;
+}
+
 html.dark-theme .section-title {
     color: #dce4f5;
 }
