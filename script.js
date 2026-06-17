@@ -3,7 +3,14 @@
 // Remove FOUC prevention class as soon as the synchronous script loads
 document.documentElement.classList.remove('fouc-prevent');
 
-document.addEventListener('DOMContentLoaded', function() {
+// Setup Turbo AbortController for clean event listener teardown
+window.appAbortController = new AbortController();
+document.addEventListener('turbo:before-render', () => {
+    if (window.appAbortController) window.appAbortController.abort();
+    window.appAbortController = new AbortController();
+});
+
+document.addEventListener('turbo:load', function() {
     
     // Mobile Navigation Toggle
     const hamburger = document.querySelector('.hamburger');
@@ -61,7 +68,7 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
             navbar.classList.remove('scrolled');
         }
-    });
+    }, { signal: window.appAbortController.signal });
 
     // ── Intersection Observer — scroll-triggered reveals ─────────────────
     const observerOptions = {
@@ -355,7 +362,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (heroBackground) {
             heroBackground.style.transform = `translateY(${scrolled * 0.5}px)`;
         }
-    });
+    }, { signal: window.appAbortController.signal });
 
     // ── Hero entry animations (staggered by data-delay) ──────────────────
     const heroAnimEls = document.querySelectorAll('.hero-animate');
@@ -577,7 +584,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     wrapper.classList.remove('open');
                     btn.setAttribute('aria-expanded', 'false');
                 }
-            });
+            }, { signal: window.appAbortController.signal });
 
             // Insert into DOM
             select.parentNode.insertBefore(wrapper, select);
@@ -692,7 +699,7 @@ function initCoursesPage() {
     
     // Check on load and resize
     updateScrollIndicator();
-    window.addEventListener('resize', updateScrollIndicator);
+    window.addEventListener('resize', updateScrollIndicator, { signal: window.appAbortController.signal });
     
     // Check after a short delay to ensure content is fully rendered
     setTimeout(updateScrollIndicator, 100);
@@ -751,7 +758,7 @@ function initCoursesPage() {
                 ageFilterDropdown.classList.remove('open');
                 ageFilterMenu.classList.remove('open');
             }
-        });
+        }, { signal: window.appAbortController.signal });
     }
     
     // Age checkbox handlers - don't apply immediately, just update UI
@@ -903,7 +910,7 @@ function initCoursesPage() {
 }
 
 // Initialize courses page when DOM is ready
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('turbo:load', function() {
     if (document.querySelector('.courses-page-container')) {
         initCoursesPage();
     }

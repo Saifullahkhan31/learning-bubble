@@ -7,6 +7,10 @@
 // INITIALIZATION FUNCTION
 // ============================================
 function initCourseDetail() {
+    if (!document.getElementById('courseBreadcrumb')) return;
+    if (document.body.dataset.courseDetailInitialized) return;
+    document.body.dataset.courseDetailInitialized = 'true';
+
     const urlParams = new URLSearchParams(window.location.search);
     const courseId = parseInt(urlParams.get('id'));
 
@@ -38,12 +42,8 @@ function initCourseDetail() {
         }
     };
 
-    // If DOM is still loading, wait for it
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', safeDisplay);
-    } else {
-        safeDisplay();
-    }
+    // Execute safe display
+    safeDisplay();
 }
 
 // ============================================
@@ -344,10 +344,8 @@ function showNotification(message, type = 'info') {
 // ============================================
 // RUN INITIALIZATION
 // ============================================
-// Ensure initialization runs after DOM is fully loaded
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initCourseDetail);
-} else {
-    // DOM is already loaded
-    initCourseDetail();
-}
+// Run immediately (since defer scripts load after DOM is parsed, and potentially after turbo:load on first visit)
+initCourseDetail();
+
+// Ensure initialization runs on future Turbo visits
+document.addEventListener('turbo:load', initCourseDetail);

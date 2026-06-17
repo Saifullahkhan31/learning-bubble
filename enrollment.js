@@ -14,11 +14,13 @@ function formatFee(fee) {
         }
         return fee;
     }
-    return String(fee);
 }
-
 // Initialize page
-document.addEventListener('DOMContentLoaded', function() {
+function initEnrollment() {
+    if (!document.getElementById('enrollmentForm')) return;
+    if (document.body.dataset.enrollmentInitialized) return;
+    document.body.dataset.enrollmentInitialized = 'true';
+
     // Check if there's a course ID in URL params (coming from course detail page)
     const urlParams = new URLSearchParams(window.location.search);
     const courseId = parseInt(urlParams.get('id'));
@@ -54,10 +56,10 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('categoryFilter').addEventListener('change', filterCourses);
 
     // Close modal when clicking outside
-    document.getElementById('coursesModal').addEventListener('click', function(e) {
+    document.getElementById('coursesModal').addEventListener('click', function (e) {
         if (e.target === this) closeCoursesModal();
     });
-});
+}
 
 // Add course to cart
 function addCourseToCart(course) {
@@ -196,7 +198,7 @@ function populateCategories() {
 
     const categories = [...new Set(coursesData.map(c => c.category))];
     const categoryFilter = document.getElementById('categoryFilter');
-    
+
     categories.forEach(category => {
         const option = document.createElement('option');
         option.value = category;
@@ -213,8 +215,8 @@ function filterCourses() {
     const selectedCategory = document.getElementById('categoryFilter').value;
 
     const filtered = coursesData.filter(course => {
-        const matchesSearch = course.name.toLowerCase().includes(searchTerm) || 
-                            course.category.toLowerCase().includes(searchTerm);
+        const matchesSearch = course.name.toLowerCase().includes(searchTerm) ||
+            course.category.toLowerCase().includes(searchTerm);
         const matchesCategory = !selectedCategory || course.category === selectedCategory;
         return matchesSearch && matchesCategory;
     });
@@ -332,37 +334,48 @@ function handleFormSubmit(e) {
         method: 'POST',
         body: formData
     })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            document.getElementById('successPhone').textContent = formData.get('phone');
-            document.getElementById('successModal').style.display = 'flex';
-            document.getElementById('enrollmentForm').reset();
-            // Clear all validation states after reset
-            document.querySelectorAll('#enrollmentForm .form-group').forEach(fg => {
-                fg.classList.remove('error', 'valid', 'shake');
-            });
-            enrollmentCart = [];
-            renderCart();
-        } else {
-            alert('Error: ' + data.message);
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        alert('An error occurred. Please try again.');
-    });
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                document.getElementById('successPhone').textContent = formData.get('phone');
+                document.getElementById('successModal').style.display = 'flex';
+                document.getElementById('enrollmentForm').reset();
+                // Clear all validation states after reset
+                document.querySelectorAll('#enrollmentForm .form-group').forEach(fg => {
+                    fg.classList.remove('error', 'valid', 'shake');
+                });
+                enrollmentCart = [];
+                renderCart();
+            } else {
+                alert('Error: ' + data.message);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('An error occurred. Please try again.');
+        });
 }
 
-
 // Close success modal
-document.addEventListener('DOMContentLoaded', function() {
+function initSuccessModal() {
+    if (!document.getElementById('enrollmentForm')) return;
+    if (document.body.dataset.successModalInitialized) return;
+    document.body.dataset.successModalInitialized = 'true';
+
     const successModal = document.getElementById('successModal');
     if (successModal) {
-        successModal.addEventListener('click', function(e) {
+        successModal.addEventListener('click', function (e) {
             if (e.target === this) {
                 this.style.display = 'none';
             }
         });
     }
-});
+}
+
+// Run initializations immediately (since defer scripts load after DOM is parsed)
+initEnrollment();
+initSuccessModal();
+
+// Ensure initializations run on future Turbo visits
+document.addEventListener('turbo:load', initEnrollment);
+document.addEventListener('turbo:load', initSuccessModal);
