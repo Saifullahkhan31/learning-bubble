@@ -1,5 +1,8 @@
 // Learning Bubble Interactive Features
 
+// Remove FOUC prevention class as soon as the synchronous script loads
+document.documentElement.classList.remove('fouc-prevent');
+
 document.addEventListener('DOMContentLoaded', function() {
     
     // Mobile Navigation Toggle
@@ -472,6 +475,14 @@ document.addEventListener('DOMContentLoaded', function() {
     // Check URL parameters for teacher application
     const urlParams = new URLSearchParams(window.location.search);
     const applicationType = urlParams.get('type');
+    const urlSubject = urlParams.get('subject');
+
+    if (urlSubject) {
+        const subjectSelect = document.getElementById('subject');
+        if (subjectSelect) {
+            subjectSelect.value = urlSubject;
+        }
+    }
     
     if (applicationType === 'teacher') {
         const subjectSelect = document.getElementById('subject');

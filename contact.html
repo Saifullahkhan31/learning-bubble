@@ -2,7 +2,12 @@
 <html lang="en">
 
 <head>
-    <script>if (localStorage.getItem('lb-theme') === "dark") document.documentElement.classList.add("dark-theme");</script>
+    <style>.fouc-prevent { visibility: hidden; opacity: 0; }</style>
+    <script>
+        document.documentElement.classList.add('fouc-prevent');
+        if (localStorage.getItem('lb-theme') === "dark") document.documentElement.classList.add("dark-theme");
+        setTimeout(() => document.documentElement.classList.remove('fouc-prevent'), 1000);
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact - Learning Bubble</title>
@@ -78,8 +83,8 @@
                             <select id="subject" name="subject" class="modern-select" required>
                                 <option value="">Select a subject</option>
                                 <option value="enrollment">Course Enrollment</option>
+                                <option value="general">Course Related Inquiry</option>
                                 <option value="technical">Technical Support</option>
-                                <option value="general">General Inquiry</option>
                                 <option value="feedback">Feedback</option>
                             </select>
                         </div>

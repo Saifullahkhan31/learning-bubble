@@ -2843,6 +2843,14 @@ html.dark-theme .age-filter-option span {
 }
 
 @media (max-width: 768px) {
+    .category-tiles-wrapper {
+        margin-bottom: 1rem;
+    }
+
+    .category-tiles-section {
+        min-height: 160px;
+    }
+
     .category-tile {
         flex: 1;
         min-width: 180px;
@@ -3138,11 +3146,25 @@ html.dark-theme.course-description-section {
     margin: 0 0 1.5rem 0;
 }
 
-.course-description-section p {
+.course-description-section p,
+.course-description-section .parsed-list li {
     color: #6B7280;
     font-size: 1.05rem;
     line-height: 1.8;
     margin: 0;
+}
+
+.course-description-section .parsed-list {
+    margin: 1rem 0 1rem 1.5rem;
+    list-style-type: disc;
+}
+
+.course-description-section .parsed-list li {
+    margin-bottom: 0.5rem;
+}
+
+.course-description-section .parsed-list li:last-child {
+    margin-bottom: 0;
 }
 
 /* Course Highlights Section */
@@ -4000,11 +4022,27 @@ html.dark-theme .related-courses-section {
 }
 
 @keyframes shake {
-    0%, 100% { transform: translateX(0); }
-    20%       { transform: translateX(-6px); }
-    40%       { transform: translateX(6px); }
-    60%       { transform: translateX(-4px); }
-    80%       { transform: translateX(4px); }
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    20% {
+        transform: translateX(-6px);
+    }
+
+    40% {
+        transform: translateX(6px);
+    }
+
+    60% {
+        transform: translateX(-4px);
+    }
+
+    80% {
+        transform: translateX(4px);
+    }
 }
 
 .form-group.shake {
@@ -5170,6 +5208,7 @@ html.dark-theme .course-objectives h2 {
 }
 
 html.dark-theme .course-description-section p,
+html.dark-theme .course-description-section .parsed-list li,
 html.dark-theme .course-objectives li {
     color: #7a90b8;
 }
@@ -5396,14 +5435,20 @@ html.dark-theme .la-tagline i {
    ============================================================ */
 
 /* ─── Global Safety ─────────────────────────────────────── */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
     -webkit-tap-highlight-color: transparent;
     -webkit-text-size-adjust: 100%;
 }
 
 /* Prevent inputs zooming on iOS Safari */
 @media (max-width: 768px) {
-    input, select, textarea, button {
+
+    input,
+    select,
+    textarea,
+    button {
         font-size: 16px !important;
     }
 }
@@ -5554,7 +5599,8 @@ html.dark-theme .la-tagline i {
         width: 100%;
     }
 
-    .btn-primary, .btn-secondary {
+    .btn-primary,
+    .btn-secondary {
         width: 100%;
         max-width: 300px;
         text-align: center;
@@ -6316,4 +6362,4 @@ html.dark-theme .nav-menu .nav-link:hover {
     .section-title {
         font-size: 1.4rem;
     }
-}
+}

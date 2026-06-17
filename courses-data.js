@@ -34,9 +34,9 @@ const coursesData = [
 
     // IGCSE ACADEMICS
     {
-        id: 22, name: "IGCSE ACADEMICS", category: "IGCSE ACADEMICS", fee: 2500, startingFee: 2500, duration: "Per class / 8–12 sessions per month", ages: "", about: "Focus on concept clarity, past papers, and exam readiness. Subjects: Physics, Biology, Chemistry, Mathematics, English, Islamiat, Pakistan Studies, Accounting, Economics, Business Studies. Group size: 2–5 students.", pricingOptions: [
+        id: 22, name: "IGCSE ACADEMICS", category: "IGCSE ACADEMICS", fee: 2500, startingFee: 2500, duration: "Per class / 8–12 sessions per month", ages: "", about: "Focus on concept clarity, past papers, and exam readiness. Subjects: Physics, Biology, Chemistry, Mathematics, English, Islamiat, Pakistan Studies, Accounting, Economics, Business Studies. Group size: 3–5 students.", pricingOptions: [
             { label: "Individual Class", price: 2500, description: "PKR 2,500 per class" },
-            { label: "Per Session", price: 1200, description: "Group of 3-5" },
+            { label: "Per Session", price: 1200, description: "Per session for a group of 3-5" },
             { label: "Full 4 month Course", price: 50000, description: "PKR 50,000 for full 4 month course, 3 session per week." }
         ]
     },
@@ -58,7 +58,29 @@ const coursesData = [
             // { label: "All Modules", price: 75000, description: "PKR 75,000 for all 4 modules" }
         ]
     },
-    { id: 25, name: "SAT Prep (Group Tuition)", category: "Test Preparation", fee: 50000, startingFee: 50000, duration: "4 months", ages: "", about: "Group size: 4–10 students. University admission test plans coming soon.", pricingOptions: null },
+    {
+        id: 25, name: "SAT Prep (Group Tuition)", category: "Test Preparation", fee: 50000, startingFee: 2000, duration: "4 months", ages: "",
+        about: `Our comprehensive SAT preparation program includes 3 sessions per week for 4 months (approximately 48 sessions) and is designed to help students achieve their target scores through structured instruction and personalized support.
+
+The program includes:
+
+* Expert guidance in both SAT English and Math
+* Development of effective test- taking strategies
+* Focused work on individual weak areas
+* Practice materials and curated online resources
+* Regular skill - building exercises and performance tracking
+* Ongoing academic support throughout the preparation period`,
+        pricingOptions:
+            [
+                {
+                    label: "Per Session", price: 2000, description: "Individual per session class"
+                },
+                {
+                    label: "4 month package", price: 50000, description: "PKR 50,000 for full 4 month course, 3 session per week."
+                }
+            ]
+
+    },
 
     // English Language Courses
     { id: 26, name: "English Language – Basic", category: "English Language Courses", fee: 12000, startingFee: 12000, duration: "10 sessions", ages: "", about: "", pricingOptions: null },

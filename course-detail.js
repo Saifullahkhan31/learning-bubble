@@ -50,6 +50,43 @@ function initCourseDetail() {
 // DISPLAY FUNCTIONS
 // ============================================
 
+// Helper to convert basic markdown/text list structure to HTML
+function parseMarkdownToHtml(text) {
+    if (!text) return '';
+    const lines = text.split('\n');
+    let htmlResult = '';
+    let inList = false;
+    
+    for (let i = 0; i < lines.length; i++) {
+        const line = lines[i].trim();
+        
+        if (line.startsWith('*') || line.startsWith('-')) {
+            if (!inList) {
+                htmlResult += '<ul class="parsed-list">';
+                inList = true;
+            }
+            const listContent = line.substring(1).trim();
+            htmlResult += `<li>${listContent}</li>`;
+        } else {
+            if (inList) {
+                htmlResult += '</ul>';
+                inList = false;
+            }
+            if (line === '') {
+                htmlResult += '<br>';
+            } else {
+                htmlResult += `<p>${line}</p>`;
+            }
+        }
+    }
+    
+    if (inList) {
+        htmlResult += '</ul>';
+    }
+    
+    return htmlResult;
+}
+
 function displayCourseDetails(course) {
     const categoryColor = categoryColors[course.category] || categoryColors["All Categories"];
 
@@ -101,7 +138,7 @@ function displayCourseDetails(course) {
 
         // Update description with placeholder if needed
         const description = course.about || `This is a comprehensive course designed to help students master ${course.name}. Through engaging lessons and hands-on activities, you'll develop essential skills and knowledge in this subject. Our experienced instructors will guide you through each step of your learning journey, ensuring you get the most out of this course.`;
-        document.getElementById('courseDescription').textContent = description;
+        document.getElementById('courseDescription').innerHTML = parseMarkdownToHtml(description);
 
         // Update sidebar
         const sidebarPriceEl = document.getElementById('sidebarPrice');
@@ -131,14 +168,37 @@ function displayCourseDetails(course) {
                     o.value = typeof opt.price === 'number' ? opt.price : opt.price.toString();
                     o.textContent = `${opt.label} — ${opt.price}`;
                     o.dataset.label = opt.label;
+                    if (opt.description) o.dataset.description = opt.description;
                     select.appendChild(o);
                 });
 
                 priceOptionsContainer.appendChild(select);
+                
+                // Description element to show below the dropdown
+                const descEl = document.createElement('div');
+                descEl.className = 'price-option-description';
+                descEl.style.fontSize = '0.85rem';
+                descEl.style.color = 'var(--text-light, #6B7280)';
+                descEl.style.marginTop = '0.5rem';
+                descEl.style.marginBottom = '1rem';
+                descEl.style.fontStyle = 'italic';
+                descEl.style.display = 'none'; // hide initially
+                priceOptionsContainer.appendChild(descEl);
 
-                // Update sidebar price when selection changes
+                // Update sidebar price and description when selection changes
                 select.addEventListener('change', function () {
                     const val = this.value;
+                    const selectedOpt = this.options[this.selectedIndex];
+                    const desc = selectedOpt.dataset.description;
+                    
+                    if (desc) {
+                        descEl.textContent = desc;
+                        descEl.style.display = 'block';
+                    } else {
+                        descEl.textContent = '';
+                        descEl.style.display = 'none';
+                    }
+
                     if (!val) {
                         sidebarPriceEl.textContent = `Rs. ${course.startingFee.toLocaleString()}`;
                     } else {

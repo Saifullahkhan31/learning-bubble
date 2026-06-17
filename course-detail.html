@@ -2,7 +2,12 @@
 <html lang="en">
 
 <head>
-    <script>if (localStorage.getItem('lb-theme') === "dark") document.documentElement.classList.add("dark-theme");</script>
+    <style>.fouc-prevent { visibility: hidden; opacity: 0; }</style>
+    <script>
+        document.documentElement.classList.add('fouc-prevent');
+        if (localStorage.getItem('lb-theme') === "dark") document.documentElement.classList.add("dark-theme");
+        setTimeout(() => document.documentElement.classList.remove('fouc-prevent'), 1000);
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Course Details - Learning Bubble</title>
@@ -123,9 +128,9 @@
                     <!-- Course Description -->
                     <div class="course-description-section">
                         <h2>About This Course</h2>
-                        <p id="courseDescription">This course is designed to introduce students to the fundamentals of
+                        <div id="courseDescription" class="course-description-text">This course is designed to introduce students to the fundamentals of
                             programming in a fun and engaging way. Through hands-on projects and interactive lessons,
-                            students will learn core coding concepts and build their programming foundation.</p>
+                            students will learn core coding concepts and build their programming foundation.</div>
                     </div>
 
                     <!-- Course Highlights -->
@@ -144,7 +149,7 @@
                     <div class="contact-info-section">
                         <h2>Have Questions?</h2>
                         <p>Get in touch with our team for more information about this course.</p>
-                        <a href="contact.html" class="btn-contact-main">Contact Us</a>
+                        <a href="contact.html?subject=general" class="btn-contact-main">Contact Us</a>
                     </div>
 
                     <!-- What You'll Learn -->
