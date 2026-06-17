@@ -88,7 +88,7 @@ body {
     height: 60px;
     object-fit: contain;
     border-radius: 8px !important;
-    background: rgba(255, 255, 255, 0.1);
+    background: transparent;
     padding: 2px;
 }
 
@@ -682,7 +682,7 @@ body {
     height: 60px;
     object-fit: contain;
     border-radius: 8px !important;
-    background: rgba(255, 255, 255, 0.1);
+    background: transparent;
     padding: 2px;
 }
 
@@ -6303,18 +6303,20 @@ html.dark-theme .la-tagline i {
 }
 
 /* ─── Dark theme nav menu mobile ───────────────────────── */
-html.dark-theme .nav-menu {
-    background: rgba(14, 21, 48, 0.98);
-    border-bottom-color: rgba(255, 255, 255, 0.06);
-}
+@media (max-width: 768px) {
+    html.dark-theme .nav-menu {
+        background: rgba(14, 21, 48, 0.98);
+        border-bottom-color: rgba(255, 255, 255, 0.06);
+    }
 
-html.dark-theme .nav-menu .nav-link {
-    border-bottom-color: rgba(255, 255, 255, 0.05);
-    color: #94a8cc;
-}
+    html.dark-theme .nav-menu .nav-link {
+        border-bottom-color: rgba(255, 255, 255, 0.05);
+        color: #94a8cc;
+    }
 
-html.dark-theme .nav-menu .nav-link:hover {
-    color: #e8b923;
+    html.dark-theme .nav-menu .nav-link:hover {
+        color: #e8b923;
+    }
 }
 
 /* ─── iPhone landscape / small tablets ─────────────────── */
