@@ -2874,15 +2874,37 @@ html.dark-theme .age-filter-option span {
     .age-filter-section {
         padding-left: 0;
         width: 100%;
+        display: flex;
+        justify-content: flex-end;
     }
 
     .age-filter-dropdown {
-        max-width: 100%;
-        width: 100%;
+        max-width: 220px;
+        width: auto;
+        position: relative;
+    }
+
+    .age-filter-button {
+        width: auto;
+        white-space: nowrap;
+        justify-content: space-between;
+        gap: 0.75rem;
+        padding: 0.6rem 0.85rem;
+        font-size: 0.85rem;
+    }
+
+    .age-filter-menu {
+        width: 220px;
+        left: auto;
+        right: 0;
     }
 }
 
 @media (max-width: 480px) {
+    .category-tiles-section {
+        min-height: 140px;
+    }
+
     .category-tile {
         flex: 1;
         min-width: 150px;
@@ -3565,16 +3587,64 @@ html.dark-theme .related-courses-section {
     }
 
     .course-detail-grid {
-        grid-template-columns: 1fr;
-        gap: 2rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
     }
 
-    .enrollment-card {
-        position: static;
+    .course-detail-main,
+    .course-detail-sidebar {
+        display: contents;
     }
 
     .course-info-cards {
+        order: 1;
+        display: grid;
         grid-template-columns: repeat(2, 1fr);
+        gap: 0.75rem;
+        margin-bottom: 1.25rem;
+    }
+
+    .course-info-cards .info-card {
+        padding: 1rem;
+        gap: 0.75rem;
+    }
+
+    .course-info-cards .info-card:first-child {
+        grid-column: 1 / -1;
+    }
+
+    .info-card-icon {
+        width: 42px;
+        height: 42px;
+        font-size: 1.25rem;
+    }
+
+    .enrollment-card {
+        order: 2;
+        position: static;
+        width: 100%;
+        margin-bottom: 1.5rem;
+    }
+
+    .course-description-section {
+        order: 3;
+    }
+
+    .course-highlights-section {
+        order: 4;
+    }
+
+    .course-benefits-section {
+        order: 5;
+    }
+
+    .course-modules-section {
+        order: 6;
+    }
+
+    .contact-info-section {
+        order: 7;
     }
 
     .course-highlights-section ul {
@@ -3597,11 +3667,6 @@ html.dark-theme .related-courses-section {
 
     .meta-item-hero {
         font-size: 0.95rem;
-    }
-
-    .course-info-cards {
-        grid-template-columns: 1fr;
-        gap: 1rem;
     }
 
     .course-description-section,
@@ -5800,7 +5865,16 @@ html.dark-theme .la-tagline i {
     }
 
     .category-tiles-wrapper {
-        margin-bottom: 2rem;
+        margin-bottom: 1rem;
+    }
+
+    .category-tiles-section {
+        min-height: 160px;
+    }
+
+    .category-tiles-wrapper .category-scroll-indicator {
+        height: 140px;
+        max-height: 140px;
     }
 
     .category-tile {
@@ -5816,28 +5890,50 @@ html.dark-theme .la-tagline i {
     /* Reset the desktop 80% left-push so the filter sits inline */
     .filter-container {
         flex-direction: column;
-        gap: 0.75rem;
+        gap: 0.5rem;
     }
 
     .age-filter-section {
         padding-left: 0;
         width: 100%;
-        margin-bottom: 1rem;
+        display: flex;
+        justify-content: flex-end;
+        margin-bottom: 0.75rem;
     }
 
     .age-filter-dropdown {
-        max-width: 100%;
-        width: 100%;
+        max-width: 220px;
+        width: auto;
+        position: relative;
     }
 
     .age-filter-button {
-        width: 100%;
+        width: auto;
+        white-space: nowrap;
         justify-content: space-between;
+        gap: 0.75rem;
+        padding: 0.6rem 0.85rem;
+        font-size: 0.85rem;
+    }
+
+    .age-filter-menu {
+        width: 220px;
+        left: auto;
+        right: 0;
     }
 }
 
 
 @media (max-width: 430px) {
+    .category-tiles-section {
+        min-height: 130px;
+    }
+
+    .category-tiles-wrapper .category-scroll-indicator {
+        height: 110px;
+        max-height: 110px;
+    }
+
     .category-tile {
         min-width: 130px;
         height: 110px;
@@ -5879,17 +5975,64 @@ html.dark-theme .la-tagline i {
     }
 
     .course-detail-grid {
-        grid-template-columns: 1fr;
+        display: flex;
+        flex-direction: column;
         gap: 1.5rem;
     }
 
-    .enrollment-card {
-        position: static;
+    .course-detail-main,
+    .course-detail-sidebar {
+        display: contents;
     }
 
     .course-info-cards {
+        order: 1;
+        display: grid;
         grid-template-columns: repeat(2, 1fr);
-        gap: 1rem;
+        gap: 0.75rem;
+        margin-bottom: 1.25rem;
+    }
+
+    .course-info-cards .info-card {
+        padding: 1rem;
+        gap: 0.75rem;
+    }
+
+    .course-info-cards .info-card:first-child {
+        grid-column: 1 / -1;
+    }
+
+    .info-card-icon {
+        width: 42px;
+        height: 42px;
+        font-size: 1.25rem;
+    }
+
+    .enrollment-card {
+        order: 2;
+        position: static;
+        width: 100%;
+        margin-bottom: 1.5rem;
+    }
+
+    .course-description-section {
+        order: 3;
+    }
+
+    .course-highlights-section {
+        order: 4;
+    }
+
+    .course-benefits-section {
+        order: 5;
+    }
+
+    .course-modules-section {
+        order: 6;
+    }
+
+    .contact-info-section {
+        order: 7;
     }
 
     .related-courses-section {
@@ -5908,11 +6051,6 @@ html.dark-theme .la-tagline i {
 
     .course-name-hero {
         font-size: 1.4rem;
-    }
-
-    .course-info-cards {
-        grid-template-columns: 1fr;
-        gap: 0.75rem;
     }
 
     .related-courses-grid {
