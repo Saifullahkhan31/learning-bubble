@@ -92,8 +92,12 @@ function displayCourseDetails(course) {
     try {
         // Update course info cards
         document.getElementById('courseCategory').textContent = course.category;
-        document.getElementById('courseDuration').textContent = course.duration;
-        document.getElementById('courseAgeGroup').textContent = course.ages || 'All Ages';
+        
+        const formatDuration = (dur) => dur ? dur.replace(' | ', ' |\n') : '';
+        const formatAges = (ages) => ages ? ages.replace(' years', '\nyears') : 'All Ages';
+        
+        document.getElementById('courseDuration').textContent = formatDuration(course.duration);
+        document.getElementById('courseAgeGroup').textContent = formatAges(course.ages);
 
         // Update description with placeholder if needed
         const description = course.about || `This is a comprehensive course designed to help students master ${course.name}. Through engaging lessons and hands-on activities, you'll develop essential skills and knowledge in this subject. Our experienced instructors will guide you through each step of your learning journey, ensuring you get the most out of this course.`;
