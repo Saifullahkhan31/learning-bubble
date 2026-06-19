@@ -323,37 +323,174 @@ function handleFormSubmit(e) {
     }
 
     // 3. All valid — submit
-    const formData = new FormData(document.getElementById('enrollmentForm'));
+    const formEl = document.getElementById('enrollmentForm');
+    const formData = new FormData(formEl);
+    const submitBtn = formEl.querySelector('button[type="submit"]');
 
-    // Add cart data
-    formData.append('courses', JSON.stringify(enrollmentCart));
-    formData.append('totalAmount', document.getElementById('totalAmount').textContent);
+    // ==========================================
+    // EMAILJS CONFIGURATION (UPDATE THESE!)
+    // ==========================================
+    const PUBLIC_KEY = "yBmuEhP3n6A3Js8Z-"; // From EmailJS Account > General
+    const SERVICE_ID = "service_6dpbx4c"; // From EmailJS Email Services
+    const TEMPLATE_ID = "template_nyrjctb"; // From EmailJS Email Templates
+    // ==========================================
 
-    // Submit to PHP handler
-    fetch('enrollment.php', {
-        method: 'POST',
-        body: formData
-    })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                document.getElementById('successPhone').textContent = formData.get('phone');
-                document.getElementById('successModal').style.display = 'flex';
-                document.getElementById('enrollmentForm').reset();
-                // Clear all validation states after reset
-                document.querySelectorAll('#enrollmentForm .form-group').forEach(fg => {
-                    fg.classList.remove('error', 'valid', 'shake');
-                });
-                enrollmentCart = [];
-                renderCart();
-            } else {
-                alert('Error: ' + data.message);
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert('An error occurred. Please try again.');
+    const adminWhatsAppNumber = "923212481610";
+    
+    let coursesListHTML = '';
+    const courseNames = [];
+    enrollmentCart.forEach(course => {
+        coursesListHTML += `<div class="course-item">- ${course.name} (Rs. ${formatFee(course.startingFee)})</div>`;
+        courseNames.push(course.name);
+    });
+
+    const coursesString = courseNames.join(', ');
+    const totalAmount = document.getElementById('totalAmount').textContent;
+    const name = formData.get('name');
+    const email = formData.get('email');
+    const phone = formData.get('phone');
+    const age = formData.get('age');
+    const parentName = formData.get('parentName');
+    const message = formData.get('message');
+    
+    // RECONSTRUCT EXACT PHP HTML BODY FOR ADMIN
+    const adminEmailHTML = `
+<html>
+<head>
+    <style>
+        body { font-family: Arial, sans-serif; color: #333; }
+        .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; text-align: center; }
+        .content { padding: 20px; }
+        .section { margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 15px; }
+        .section h3 { color: #667eea; margin-top: 0; }
+        .enrollment-details { background: #f9fafb; padding: 15px; border-radius: 5px; margin: 10px 0; }
+        .course-item { padding: 8px 0; border-bottom: 1px solid #e5e7eb; }
+        .course-item:last-child { border-bottom: none; }
+        .total { font-weight: bold; font-size: 1.1em; color: #667eea; }
+        .contact-button { display: inline-block; background: #25D366; color: white; padding: 12px 20px; text-decoration: none; border-radius: 5px; margin-top: 10px; font-weight: bold; }
+        .footer { background: #f3f4f6; padding: 15px; text-align: center; font-size: 12px; color: #6b7280; }
+    </style>
+</head>
+<body>
+    <div class="header"><h1>New Course Enrollment</h1></div>
+    <div class="content">
+        <div class="section">
+            <h3>Student Information</h3>
+            <p><strong>Name:</strong> ${name}</p>
+            <p><strong>Email:</strong> ${email}</p>
+            <p><strong>Phone (WhatsApp):</strong> ${phone}</p>
+            ${age ? `<p><strong>Age Group:</strong> ${age}</p>` : ''}
+            ${parentName ? `<p><strong>Parent/Guardian:</strong> ${parentName}</p>` : ''}
+        </div>
+        <div class="section">
+            <h3>Enrolled Courses</h3>
+            <div class="enrollment-details">
+                ${coursesListHTML}
+                <div class="course-item total">Total: ${totalAmount}</div>
+            </div>
+        </div>
+        ${message ? `<div class="section"><h3>Student Message</h3><p>${message.replace(/\n/g, '<br>')}</p></div>` : ''}
+        <div class="section">
+            <h3>Next Steps</h3>
+            <p>Contact the student on WhatsApp to share payment details:</p>
+            <a href="https://wa.me/${adminWhatsAppNumber}?text=Hi%20${encodeURIComponent(name)}!%20Thank%20you%20for%20enrolling%20in%20${encodeURIComponent(coursesString)}.%20Here%20are%20the%20payment%20details%20for%20Rs.%20${totalAmount.replace('Rs. ', '')}" class="contact-button">
+                <i>📱 Contact on WhatsApp</i>
+            </a>
+        </div>
+        <div class="section">
+            <h3>Quick Reference</h3>
+            <p><strong>Enrollment Details to Share:</strong></p>
+            <div class="enrollment-details">
+                <strong>Courses:</strong> ${coursesString}<br>
+                <strong>Amount:</strong> ${totalAmount}<br>
+                <strong>Contact:</strong> ${phone}
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <p>Learning Bubble - Enrollment System</p>
+        <p>This is an automated message. Student contact: ${phone}</p>
+    </div>
+</body>
+</html>`;
+
+    // ==========================================
+    // RECONSTRUCT EXACT PHP HTML BODY FOR STUDENT CONFIRMATION
+    // (Commented out as we are skipping the student auto-reply email)
+    // ==========================================
+    /*
+    const studentEmailHTML = `
+<html>
+<head>
+    <style>
+        body { font-family: Arial, sans-serif; color: #333; }
+        .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; text-align: center; }
+        .content { padding: 20px; }
+        .section { margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+    <div class="header"><h1>Enrollment Confirmation</h1></div>
+    <div class="content">
+        <p>Hi ${name},</p>
+        <p>Thank you for enrolling with Learning Bubble! We're excited to have you join us.</p>
+        <div class="section">
+            <h3>Your Enrollment Details:</h3>
+            <p>${courseNames.map(c => `- ${c}`).join('<br>')}</p>
+            <p><strong>Total Amount: ${totalAmount}</strong></p>
+        </div>
+        <div class="section">
+            <h3>What's Next?</h3>
+            <p>We'll contact you shortly on WhatsApp at <strong>${phone}</strong> with payment instructions and further details about your courses.</p>
+            <p>If you have any questions in the meantime, feel free to reach out to us through:</p>
+            <ul>
+                <li>Email: learningbubblepk@gmail.com</li>
+                <li>WhatsApp: ${adminWhatsAppNumber}</li>
+            </ul>
+        </div>
+        <p>Looking forward to supporting your learning journey!</p>
+        <p>Best regards,<br><strong>Learning Bubble Team</strong></p>
+    </div>
+</body>
+</html>`;
+    */
+
+    submitBtn.textContent = 'Submitting...';
+    submitBtn.disabled = true;
+
+    // Send via EmailJS
+    emailjs.send(
+        SERVICE_ID,
+        TEMPLATE_ID,
+        {
+            to_name: "Admin",
+            from_name: name,
+            reply_to: email,
+            student_email: email, 
+            subject: `New Enrollment: ${coursesString}`,
+            admin_message: adminEmailHTML
+            // student_message: studentEmailHTML // Commented out
+        },
+        PUBLIC_KEY
+    )
+    .then(() => {
+        document.getElementById('successPhone').textContent = phone;
+        document.getElementById('successModal').style.display = 'flex';
+        formEl.reset();
+        document.querySelectorAll('#enrollmentForm .form-group').forEach(fg => {
+            fg.classList.remove('error', 'valid', 'shake');
         });
+        enrollmentCart = [];
+        renderCart();
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+        alert('An error occurred while sending the email. Please try again.');
+    })
+    .finally(() => {
+        submitBtn.textContent = 'Complete Enrollment';
+        submitBtn.disabled = false;
+    });
 }
 
 // Close success modal
