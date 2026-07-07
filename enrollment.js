@@ -327,13 +327,6 @@ function handleFormSubmit(e) {
     const formData = new FormData(formEl);
     const submitBtn = formEl.querySelector('button[type="submit"]');
 
-    // ==========================================
-    // EMAILJS CONFIGURATION (UPDATE THESE!)
-    // ==========================================
-    const PUBLIC_KEY = "yBmuEhP3n6A3Js8Z-"; // From EmailJS Account > General
-    const SERVICE_ID = "service_buihc7j"; // From EmailJS Email Services
-    const TEMPLATE_ID = "template_nyrjctb"; // From EmailJS Email Templates
-    // ==========================================
 
 
     let coursesListHTML = '';
@@ -475,22 +468,23 @@ Learning Bubble`;
     submitBtn.textContent = 'Submitting...';
     submitBtn.disabled = true;
 
-    // Send via EmailJS
-    emailjs.send(
-        SERVICE_ID,
-        TEMPLATE_ID,
-        {
-            to_name: "Admin",
-            from_name: name,
-            reply_to: email,
-            student_email: email,
-            subject: `New Enrollment: ${coursesString}`,
-            admin_message: adminEmailHTML
-            // student_message: studentEmailHTML // Commented out
+    // Send via Cloudflare Functions & Resend
+    fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
         },
-        PUBLIC_KEY
-    )
-        .then(() => {
+        body: JSON.stringify({
+            subject: `New Enrollment: ${coursesString}`,
+            replyTo: email,
+            html: adminEmailHTML
+        })
+    })
+        .then(async (response) => {
+            if (!response.ok) {
+                const err = await response.json();
+                throw new Error(err.error || 'Network response was not ok');
+            }
             document.getElementById('successPhone').textContent = phone;
             document.getElementById('successModal').style.display = 'flex';
             formEl.reset();

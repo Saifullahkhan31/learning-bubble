@@ -657,25 +657,23 @@ document.addEventListener('turbo:load', function () {
 </body>
 </html>`;
 
-            // EmailJS Configuration
-            const PUBLIC_KEY = "yBmuEhP3n6A3Js8Z-";
-            const SERVICE_ID = "service_buihc7j";
-            const TEMPLATE_ID = "template_2wzz1wb"; // User's Contact Template ID
-
-            // Send via EmailJS
-            emailjs.send(
-                SERVICE_ID,
-                TEMPLATE_ID,
-                {
-                    to_name: "Admin",
-                    from_name: name,
-                    reply_to: email,
-                    subject: subjectText,
-                    message: contactEmailHTML
+            // Send via Cloudflare Functions & Resend
+            fetch('/api/send-email', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
                 },
-                PUBLIC_KEY
-            )
-                .then(() => {
+                body: JSON.stringify({
+                    subject: subjectText,
+                    replyTo: email,
+                    html: contactEmailHTML
+                })
+            })
+                .then(async (response) => {
+                    if (!response.ok) {
+                        const err = await response.json();
+                        throw new Error(err.error || 'Network response was not ok');
+                    }
                     showNotification('Thank you! Your message has been sent successfully.', 'success');
                     contactForm.reset();
                     // Reset custom select UI if present
