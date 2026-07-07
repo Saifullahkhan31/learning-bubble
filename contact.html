@@ -28,6 +28,7 @@
     <link rel="prefetch" href="about.html">
     <link rel="prefetch" href="courses.html">
     <link rel="prefetch" href="resources.html">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script defer src="script.js"></script>
     <script type="module" src="https://cdn.jsdelivr.net/npm/@hotwired/turbo@8.0.4/+esm"></script>
 </head>
@@ -72,7 +73,7 @@
             <div class="contact-content">
                 <div class="contact-form-container">
                     <h2>Send us a Message</h2>
-                    <form class="contact-form">
+                    <form class="contact-form" data-turbo="false">
                         <div class="form-group">
                             <label for="name">Full Name</label>
                             <input type="text" id="name" name="name" required>

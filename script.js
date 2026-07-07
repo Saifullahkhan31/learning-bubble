@@ -10,14 +10,14 @@ document.addEventListener('turbo:before-render', () => {
     window.appAbortController = new AbortController();
 });
 
-document.addEventListener('turbo:load', function() {
-    
+document.addEventListener('turbo:load', function () {
+
     // Mobile Navigation Toggle
     const hamburger = document.querySelector('.hamburger');
     const navMenu = document.querySelector('.nav-menu');
     const navbar = document.querySelector('.navbar');
 
-    hamburger?.addEventListener('click', function() {
+    hamburger?.addEventListener('click', function () {
         hamburger.classList.toggle('active');
         navMenu.classList.toggle('active');
     });
@@ -43,7 +43,7 @@ document.addEventListener('turbo:load', function() {
             }
         });
     });
-    
+
     // Set active navigation link based on current page
     const currentPage = window.location.pathname.split('/').pop() || 'index.html';
     const navLinks = document.querySelectorAll('.nav-link');
@@ -62,7 +62,7 @@ document.addEventListener('turbo:load', function() {
     }
 
     // Navbar scroll effect
-    window.addEventListener('scroll', function() {
+    window.addEventListener('scroll', function () {
         if (window.scrollY > 50) {
             navbar.classList.add('scrolled');
         } else {
@@ -76,7 +76,7 @@ document.addEventListener('turbo:load', function() {
         rootMargin: '0px 0px -40px 0px'
     };
 
-    const observer = new IntersectionObserver(function(entries) {
+    const observer = new IntersectionObserver(function (entries) {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('fade-in-up');
@@ -170,11 +170,11 @@ document.addEventListener('turbo:load', function() {
     // Add hover effects to cards
     const cards = document.querySelectorAll('.feature-card, .advantage-card, .partner-card');
     cards.forEach(card => {
-        card.addEventListener('mouseenter', function() {
+        card.addEventListener('mouseenter', function () {
             this.style.transform = 'translateY(-10px)';
         });
-        
-        card.addEventListener('mouseleave', function() {
+
+        card.addEventListener('mouseleave', function () {
             this.style.transform = 'translateY(0)';
         });
     });
@@ -183,7 +183,7 @@ document.addEventListener('turbo:load', function() {
     // Add data-demo-notify="true" on any element to enable this temporary popup
     const demoButtons = document.querySelectorAll('[data-demo-notify="true"]');
     demoButtons.forEach(button => {
-        button.addEventListener('click', function(e) {
+        button.addEventListener('click', function (e) {
             e.preventDefault();
 
             // Add ripple effect
@@ -213,12 +213,12 @@ document.addEventListener('turbo:load', function() {
     function showNotification(message, type = 'info') {
         const notification = document.createElement('div');
         notification.className = `notification ${type}`;
-        
+
         // Set icon and colors based on type
         let icon = 'fa-info-circle';
         let bgColor = '#1c2f72';
-        
-        switch(type) {
+
+        switch (type) {
             case 'success':
                 icon = 'fa-check-circle';
                 bgColor = '#10B981';
@@ -235,13 +235,13 @@ document.addEventListener('turbo:load', function() {
                 icon = 'fa-info-circle';
                 bgColor = '#1c2f72';
         }
-        
+
         notification.innerHTML = `
             <i class="fas ${icon}"></i>
             <span>${message}</span>
             <button class="notification-close">&times;</button>
         `;
-        
+
         // Add styles
         notification.style.cssText = `
             position: fixed;
@@ -259,9 +259,9 @@ document.addEventListener('turbo:load', function() {
             max-width: 300px;
             animation: slideIn 0.3s ease;
         `;
-        
+
         document.body.appendChild(notification);
-        
+
         // Auto remove after 3 seconds
         setTimeout(() => {
             notification.style.animation = 'slideOut 0.3s ease';
@@ -269,7 +269,7 @@ document.addEventListener('turbo:load', function() {
                 notification.remove();
             }, 300);
         }, 3000);
-        
+
         // Manual close
         notification.querySelector('.notification-close').addEventListener('click', () => {
             notification.remove();
@@ -356,7 +356,7 @@ document.addEventListener('turbo:load', function() {
     document.head.appendChild(style);
 
     // Parallax effect for hero section
-    window.addEventListener('scroll', function() {
+    window.addEventListener('scroll', function () {
         const scrolled = window.pageYOffset;
         const heroBackground = document.querySelector('.hero-background');
         if (heroBackground) {
@@ -381,7 +381,7 @@ document.addEventListener('turbo:load', function() {
                     }, BASE_DELAY + extra);
                 };
                 if (img && !img.complete) {
-                    img.addEventListener('load',  triggerSlide, { once: true });
+                    img.addEventListener('load', triggerSlide, { once: true });
                     img.addEventListener('error', triggerSlide, { once: true }); // still animate on broken img
                 } else {
                     triggerSlide(); // already in cache
@@ -400,7 +400,7 @@ document.addEventListener('turbo:load', function() {
 
         setInterval(() => {
             // Fade & slide out
-            highlightEl.style.opacity   = '0';
+            highlightEl.style.opacity = '0';
             highlightEl.style.transform = 'translateY(-8px)';
 
             setTimeout(() => {
@@ -412,7 +412,7 @@ document.addEventListener('turbo:load', function() {
                 // Force a reflow so the transition fires
                 void highlightEl.offsetWidth;
 
-                highlightEl.style.opacity   = '1';
+                highlightEl.style.opacity = '1';
                 highlightEl.style.transform = 'translateY(0)';
             }, 320); // matches the CSS transition duration
         }, 2800); // swap every 2.8 s
@@ -433,14 +433,14 @@ document.addEventListener('turbo:load', function() {
 
     images.forEach(img => imageObserver.observe(img));
 
-    // Add loading states to buttons (excluding filter buttons)
+    // Add loading states to buttons (excluding filter and submit buttons)
     document.querySelectorAll('button').forEach(button => {
-        if (!button.classList.contains('age-filter-button')) {
-            button.addEventListener('click', function() {
+        if (!button.classList.contains('age-filter-button') && button.type !== 'submit') {
+            button.addEventListener('click', function () {
                 const originalText = this.textContent;
                 this.textContent = 'Loading...';
                 this.disabled = true;
-                
+
                 setTimeout(() => {
                     this.textContent = originalText;
                     this.disabled = false;
@@ -490,12 +490,12 @@ document.addEventListener('turbo:load', function() {
             subjectSelect.value = urlSubject;
         }
     }
-    
+
     if (applicationType === 'teacher') {
         const subjectSelect = document.getElementById('subject');
         const messageTextarea = document.getElementById('message');
         const teacherSection = document.getElementById('teacher-info');
-        
+
         if (subjectSelect) {
             subjectSelect.value = 'teacher';
             // Sync custom select UI if present
@@ -509,11 +509,11 @@ document.addEventListener('turbo:load', function() {
                 });
             }
         }
-        
+
         if (messageTextarea) {
             messageTextarea.placeholder = 'Tell us about your teaching experience, subjects you specialize in, and why you want to join Learning Bubble...';
         }
-        
+
         if (teacherSection) {
             teacherSection.style.display = 'block';
         }
@@ -525,7 +525,7 @@ document.addEventListener('turbo:load', function() {
             }, 600);
         }
     }
-    
+
     // Transform modern selects into custom glass dropdowns
     (function initCustomSelects() {
         const selects = document.querySelectorAll('select.modern-select');
@@ -597,38 +597,102 @@ document.addEventListener('turbo:load', function() {
     // Contact form handling
     const contactForm = document.querySelector('.contact-form');
     if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
+        contactForm.addEventListener('submit', function (e) {
             e.preventDefault();
-            
+
             // Get form data
             const formData = new FormData(contactForm);
             const name = formData.get('name');
             const email = formData.get('email');
-            const subject = formData.get('subject');
+            const phone = formData.get('phone') || 'Not provided';
             const message = formData.get('message');
             
+            // Get the actual text of the selected subject instead of the value
+            const subjectElement = contactForm.querySelector('#subject');
+            const subjectText = subjectElement.options[subjectElement.selectedIndex].text;
+            const subjectValue = subjectElement.value; // for validation
+
             // Simple validation
-            if (!name || !email || !subject || !message) {
+            if (!name || !email || !subjectValue || !message) {
                 showNotification('Please fill in all required fields.', 'error');
                 return;
             }
-            
+
             // Show loading state
             const submitBtn = contactForm.querySelector('button[type="submit"]');
             const originalText = submitBtn.textContent;
             submitBtn.textContent = 'Sending...';
             submitBtn.disabled = true;
-            
-            // Simulate form submission (replace with actual form handling)
-            setTimeout(() => {
-                showNotification('Thank you! Your message has been sent successfully.', 'success');
-                contactForm.reset();
-                submitBtn.textContent = originalText;
-                submitBtn.disabled = false;
-            }, 2000);
+
+            // Build Beautiful HTML Email
+            const contactEmailHTML = `
+<html>
+<head>
+    <style>
+        body { font-family: Arial, sans-serif; color: #333; }
+        .header { background: linear-gradient(135deg, #1c2f72 0%, #10B981 100%); color: white; padding: 20px; text-align: center; }
+        .content { padding: 20px; }
+        .section { margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 15px; }
+        .section h3 { color: #1c2f72; margin-top: 0; }
+        .details { background: #f9fafb; padding: 15px; border-radius: 5px; margin: 10px 0; }
+    </style>
+</head>
+<body>
+    <div class="header"><h1>New Contact Message</h1></div>
+    <div class="content">
+        <div class="section">
+            <h3>Sender Information</h3>
+            <div class="details">
+                <p><strong>Name:</strong> ${name}</p>
+                <p><strong>Email:</strong> ${email}</p>
+                <p><strong>Phone:</strong> ${phone}</p>
+                <p><strong>Subject:</strong> ${subjectText}</p>
+            </div>
+        </div>
+        <div class="section">
+            <h3>Message</h3>
+            <p>${message.replace(/\n/g, '<br>')}</p>
+        </div>
+    </div>
+</body>
+</html>`;
+
+            // EmailJS Configuration
+            const PUBLIC_KEY = "yBmuEhP3n6A3Js8Z-";
+            const SERVICE_ID = "service_buihc7j";
+            const TEMPLATE_ID = "template_2wzz1wb"; // User's Contact Template ID
+
+            // Send via EmailJS
+            emailjs.send(
+                SERVICE_ID,
+                TEMPLATE_ID,
+                {
+                    to_name: "Admin",
+                    from_name: name,
+                    reply_to: email,
+                    subject: subjectText,
+                    message: contactEmailHTML
+                },
+                PUBLIC_KEY
+            )
+                .then(() => {
+                    showNotification('Thank you! Your message has been sent successfully.', 'success');
+                    contactForm.reset();
+                    // Reset custom select UI if present
+                    const selectDisplay = contactForm.querySelector('.select-selected');
+                    if (selectDisplay) selectDisplay.textContent = 'Select a subject';
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                    showNotification('An error occurred while sending the message. Please try again.', 'error');
+                })
+                .finally(() => {
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                });
         });
     }
-    
+
     console.log('Learning Bubble: Interactive features loaded successfully!');
 });
 
@@ -646,7 +710,7 @@ function debounce(func, wait) {
 }
 
 // Performance optimized scroll handler
-const optimizedScroll = debounce(function() {
+const optimizedScroll = debounce(function () {
     // Add any scroll-based functionality here
 }, 100);
 
@@ -663,21 +727,21 @@ function initCoursesPage() {
     const ageFilterMenu = document.querySelector('.age-filter-menu');
     const ageCheckboxes = document.querySelectorAll('.age-checkbox');
     const coursesContainer = document.querySelector('.courses-grid-container');
-    
+
     let selectedCategory = 'All Categories';
     let selectedAges = ['All Ages'];
-    
+
     // Initialize: Show all courses
     renderCourses(coursesData);
-    
+
     // Handle scroll indicator visibility
     function updateScrollIndicator() {
         if (!categoryTilesSection || !scrollIndicator) return;
-        
+
         const isScrollable = categoryTilesSection.scrollWidth > categoryTilesSection.clientWidth;
         const isAtStart = categoryTilesSection.scrollLeft <= 10;
         const isAtEnd = categoryTilesSection.scrollLeft + categoryTilesSection.clientWidth >= categoryTilesSection.scrollWidth - 10;
-        
+
         if (isScrollable) {
             if (!isAtEnd) {
                 // Show right arrow
@@ -696,22 +760,22 @@ function initCoursesPage() {
             scrollIndicator.classList.remove('visible');
         }
     }
-    
+
     // Check on load and resize
     updateScrollIndicator();
     window.addEventListener('resize', updateScrollIndicator, { signal: window.appAbortController.signal });
-    
+
     // Check after a short delay to ensure content is fully rendered
     setTimeout(updateScrollIndicator, 100);
-    
+
     // Check on scroll
     if (categoryTilesSection) {
         categoryTilesSection.addEventListener('scroll', updateScrollIndicator);
     }
-    
+
     // Scroll indicator click handler
     if (scrollIndicator) {
-        scrollIndicator.addEventListener('click', function() {
+        scrollIndicator.addEventListener('click', function () {
             if (categoryTilesSection) {
                 if (scrollIndicator.classList.contains('left')) {
                     categoryTilesSection.scrollTo({ left: 0, behavior: 'smooth' });
@@ -721,14 +785,14 @@ function initCoursesPage() {
             }
         });
     }
-    
+
     // Category tile click handlers
     if (categoryTiles.length > 0) {
         categoryTiles.forEach(tile => {
-            tile.addEventListener('click', function() {
+            tile.addEventListener('click', function () {
                 const category = this.dataset.category;
                 selectedCategory = category;
-                
+
                 // Update active state
                 categoryTiles.forEach(t => {
                     if (t.dataset.category === category) {
@@ -737,36 +801,36 @@ function initCoursesPage() {
                         t.classList.remove('active');
                     }
                 });
-                
+
                 // Filter and render courses
                 filterAndRenderCourses();
             });
         });
     }
-    
+
     // Age filter dropdown toggle
     if (ageFilterButton && ageFilterMenu && ageFilterDropdown) {
-        ageFilterButton.addEventListener('click', function(e) {
+        ageFilterButton.addEventListener('click', function (e) {
             e.stopPropagation();
             ageFilterDropdown.classList.toggle('open');
             ageFilterMenu.classList.toggle('open');
         });
-        
+
         // Close dropdown when clicking outside
-        document.addEventListener('click', function(e) {
+        document.addEventListener('click', function (e) {
             if (!ageFilterDropdown.contains(e.target)) {
                 ageFilterDropdown.classList.remove('open');
                 ageFilterMenu.classList.remove('open');
             }
         }, { signal: window.appAbortController.signal });
     }
-    
+
     // Age checkbox handlers - don't apply immediately, just update UI
     if (ageCheckboxes.length > 0) {
         ageCheckboxes.forEach(checkbox => {
-            checkbox.addEventListener('change', function() {
+            checkbox.addEventListener('change', function () {
                 const ageValue = this.value;
-                
+
                 if (ageValue === 'all') {
                     // If "All Ages" is checked, uncheck others
                     if (this.checked) {
@@ -781,30 +845,30 @@ function initCoursesPage() {
                         allAgesCheckbox.checked = false;
                     }
                 }
-                
+
                 // Update button preview (but don't apply filter yet)
                 updateAgeFilterButtonPreview();
             });
         });
     }
-    
+
     // Apply filter button handler
     const applyFilterButton = document.querySelector('.age-filter-apply-button');
     if (applyFilterButton) {
-        applyFilterButton.addEventListener('click', function() {
+        applyFilterButton.addEventListener('click', function () {
             // Get selected ages from checkboxes
             const checkedBoxes = Array.from(ageCheckboxes).filter(cb => cb.checked);
-            
+
             if (checkedBoxes.length === 0 || checkedBoxes.some(cb => cb.value === 'all')) {
                 selectedAges = ['All Ages'];
             } else {
                 selectedAges = checkedBoxes.map(cb => cb.value);
             }
-            
+
             // Apply the filter
             updateAgeFilterButton();
             filterAndRenderCourses();
-            
+
             // Close dropdown
             if (ageFilterMenu && ageFilterDropdown) {
                 ageFilterMenu.classList.remove('open');
@@ -812,12 +876,12 @@ function initCoursesPage() {
             }
         });
     }
-    
+
     function updateAgeFilterButtonPreview() {
         if (ageFilterButton) {
             const checkedBoxes = Array.from(ageCheckboxes).filter(cb => cb.checked && cb.value !== 'all');
             const count = checkedBoxes.length;
-            
+
             ageFilterButton.querySelector('.filter-text').textContent = 'Filter by Age Group';
             if (count === 0 || document.querySelector('.age-checkbox[value="all"]').checked) {
                 ageFilterButton.querySelector('.filter-count').textContent = '';
@@ -826,7 +890,7 @@ function initCoursesPage() {
             }
         }
     }
-    
+
     function updateAgeFilterButton() {
         if (ageFilterButton) {
             const count = selectedAges.length;
@@ -838,15 +902,15 @@ function initCoursesPage() {
             }
         }
     }
-    
+
     function filterAndRenderCourses() {
         let filtered = coursesData;
-        
+
         // Filter by category
         if (selectedCategory !== 'All Categories') {
             filtered = filtered.filter(course => course.category === selectedCategory);
         }
-        
+
         // Filter by age
         if (!selectedAges.includes('All Ages') && selectedAges.length > 0) {
             filtered = filtered.filter(course => {
@@ -864,13 +928,13 @@ function initCoursesPage() {
                 });
             });
         }
-        
+
         renderCourses(filtered);
     }
-    
+
     function renderCourses(courses) {
         if (!coursesContainer) return;
-        
+
         if (courses.length === 0) {
             coursesContainer.innerHTML = `
                 <div class="no-courses-message">
@@ -881,14 +945,14 @@ function initCoursesPage() {
             `;
             return;
         }
-        
+
         coursesContainer.innerHTML = courses.map(course => {
             const categoryColor = categoryColors[course.category] || categoryColors["All Categories"];
             const ageDisplay = course.ages ? `<span class="course-age"><i class="fas fa-user"></i> ${course.ages} years</span>` : '';
-            
+
             // Try to load course image, fallback to gradient if not found
             const courseImagePath = `assets/images/courses/course-${course.id}.jpg`;
-            
+
             return `
                 <div class="course-card-new" data-course-id="${course.id}">
                     <div class="course-card-header" style="background-image: url('${courseImagePath}'), ${categoryColor}; background-size: cover; background-position: center;">
@@ -910,11 +974,11 @@ function initCoursesPage() {
 }
 
 // Initialize courses page when DOM is ready
-document.addEventListener('turbo:load', function() {
+document.addEventListener('turbo:load', function () {
     if (document.querySelector('.courses-page-container')) {
         initCoursesPage();
     }
-    
+
     // Initialize Featured Courses Carousel
     initFeaturedCoursesCarousel();
 });
@@ -924,38 +988,38 @@ function initFeaturedCoursesCarousel() {
     const carouselSlides = document.getElementById('carousel-slides');
     const carouselDots = document.getElementById('carousel-dots');
     const carouselWrapper = document.querySelector('.carousel-wrapper');
-    
+
     if (!carouselSlides) return; // Exit if carousel not on page
-    
+
     // Featured courses: select 5 diverse courses
     const featuredCourseIds = [1, 4, 9, 15, 18]; // Diverse course selection
     const featuredCourses = coursesData.filter(course => featuredCourseIds.includes(course.id));
-    
+
     let currentSlide = 0;
     let autoplayTimer = null;
     const AUTOPLAY_INTERVAL = 5000; // 5 seconds
-    
+
     // Map course ID to its banner image
     const courseImages = {
-        1:  'assets/images/courses/course-1.jpg',
-        4:  'assets/images/courses/course-4.jpg',
-        9:  'assets/images/courses/course-9.jpg',
+        1: 'assets/images/courses/course-1.jpg',
+        4: 'assets/images/courses/course-4.jpg',
+        9: 'assets/images/courses/course-9.jpg',
         15: 'assets/images/courses/course-15.jpg',
         18: 'assets/images/courses/course-18.jpg'
     };
-    
+
     // Populate slides
     carouselSlides.innerHTML = featuredCourses.map((course, index) => {
         const imgSrc = courseImages[course.id] || null;
         const categoryGradient = categoryColors[course.category] || categoryColors['All Categories'];
-        
+
         return `
             <div class="carousel-slide" data-slide="${index}">
                 <a href="course-detail.html?id=${course.id}" class="featured-course-card" aria-label="View ${course.name}">
                     ${imgSrc
-                        ? `<img src="${imgSrc}" alt="${course.name}" class="featured-course-bg-img" loading="${index === 0 ? 'eager' : 'lazy'}">`
-                        : `<div class="featured-course-bg-gradient" style="background: ${categoryGradient};"></div>`
-                    }
+                ? `<img src="${imgSrc}" alt="${course.name}" class="featured-course-bg-img" loading="${index === 0 ? 'eager' : 'lazy'}">`
+                : `<div class="featured-course-bg-gradient" style="background: ${categoryGradient};"></div>`
+            }
                     <div class="featured-course-hover-overlay">
                         <span class="featured-course-hover-btn">
                             <i class="fas fa-arrow-right"></i> View Course
@@ -965,17 +1029,17 @@ function initFeaturedCoursesCarousel() {
             </div>
         `;
     }).join('');
-    
+
     // Populate dots
     carouselDots.innerHTML = featuredCourses.map((_, index) => `
         <button class="carousel-dot ${index === 0 ? 'active' : ''}" data-slide="${index}" aria-label="Go to slide ${index + 1}"></button>
     `).join('');
-    
+
     // Show slide function
     function showSlide(n) {
         const slides = carouselSlides.querySelectorAll('.carousel-slide');
         const dots = carouselDots.querySelectorAll('.carousel-dot');
-        
+
         // Wrap around
         if (n >= slides.length) {
             currentSlide = 0;
@@ -984,10 +1048,10 @@ function initFeaturedCoursesCarousel() {
         } else {
             currentSlide = n;
         }
-        
+
         // Update transform
         carouselSlides.style.transform = `translateX(-${currentSlide * 100}%)`;
-        
+
         // Update active dot and restart progress animation
         dots.forEach((dot, index) => {
             if (index === currentSlide) {
@@ -1003,14 +1067,14 @@ function initFeaturedCoursesCarousel() {
             }
         });
     }
-    
+
     // Auto-advance slides
     function startAutoplay() {
         autoplayTimer = setInterval(() => {
             showSlide(currentSlide + 1);
         }, AUTOPLAY_INTERVAL);
     }
-    
+
     function stopAutoplay() {
         if (autoplayTimer) {
             clearInterval(autoplayTimer);
@@ -1022,7 +1086,7 @@ function initFeaturedCoursesCarousel() {
             activeDot.classList.add('paused');
         }
     }
-    
+
     function resumeAutoplay() {
         // Resume the progress animation on active dot
         const activeDot = carouselDots.querySelector('.carousel-dot.active');
@@ -1031,7 +1095,7 @@ function initFeaturedCoursesCarousel() {
         }
         startAutoplay();
     }
-    
+
     // Dot click listeners
     carouselDots.querySelectorAll('.carousel-dot').forEach((dot, index) => {
         dot.addEventListener('click', () => {
@@ -1040,11 +1104,11 @@ function initFeaturedCoursesCarousel() {
             resumeAutoplay();
         });
     });
-    
+
     // Pause autoplay on hover, resume on mouse leave
     carouselWrapper?.addEventListener('mouseenter', stopAutoplay);
     carouselWrapper?.addEventListener('mouseleave', resumeAutoplay);
-    
+
     // Initialize first slide and start autoplay
     showSlide(0);
     startAutoplay();

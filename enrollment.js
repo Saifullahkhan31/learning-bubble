@@ -331,12 +331,11 @@ function handleFormSubmit(e) {
     // EMAILJS CONFIGURATION (UPDATE THESE!)
     // ==========================================
     const PUBLIC_KEY = "yBmuEhP3n6A3Js8Z-"; // From EmailJS Account > General
-    const SERVICE_ID = "service_6dpbx4c"; // From EmailJS Email Services
+    const SERVICE_ID = "service_buihc7j"; // From EmailJS Email Services
     const TEMPLATE_ID = "template_nyrjctb"; // From EmailJS Email Templates
     // ==========================================
 
-    const adminWhatsAppNumber = "923212481610";
-    
+
     let coursesListHTML = '';
     const courseNames = [];
     enrollmentCart.forEach(course => {
@@ -352,7 +351,25 @@ function handleFormSubmit(e) {
     const age = formData.get('age');
     const parentName = formData.get('parentName');
     const message = formData.get('message');
-    
+
+    // Create the WhatsApp message template
+    const whatsappMessage = `Hi ${name}! 👋
+
+Thank you for enrolling in the ${coursesString} course. To finalize your registration, please complete your payment using the details below:
+
+Bank: NayaPay
+Account Name: Boss
+Account Number: 0321 2481610
+
+Please reply with a screenshot or proof of payment here so we can instantly verify and activate your course access.
+
+Happy learning!
+Learning Bubble`;
+
+    const encodedWhatsAppMessage = encodeURIComponent(whatsappMessage);
+    // Sanitize the phone number for the wa.me link (remove spaces, dashes, etc.)
+    const cleanPhone = phone ? phone.replace(/[^0-9]/g, '') : '';
+
     // RECONSTRUCT EXACT PHP HTML BODY FOR ADMIN
     const adminEmailHTML = `
 <html>
@@ -393,7 +410,7 @@ function handleFormSubmit(e) {
         <div class="section">
             <h3>Next Steps</h3>
             <p>Contact the student on WhatsApp to share payment details:</p>
-            <a href="https://wa.me/${adminWhatsAppNumber}?text=Hi%20${encodeURIComponent(name)}!%20Thank%20you%20for%20enrolling%20in%20${encodeURIComponent(coursesString)}.%20Here%20are%20the%20payment%20details%20for%20Rs.%20${totalAmount.replace('Rs. ', '')}" class="contact-button">
+            <a href="https://wa.me/${cleanPhone}?text=${encodedWhatsAppMessage}" class="contact-button">
                 <i>📱 Contact on WhatsApp</i>
             </a>
         </div>
@@ -466,31 +483,31 @@ function handleFormSubmit(e) {
             to_name: "Admin",
             from_name: name,
             reply_to: email,
-            student_email: email, 
+            student_email: email,
             subject: `New Enrollment: ${coursesString}`,
             admin_message: adminEmailHTML
             // student_message: studentEmailHTML // Commented out
         },
         PUBLIC_KEY
     )
-    .then(() => {
-        document.getElementById('successPhone').textContent = phone;
-        document.getElementById('successModal').style.display = 'flex';
-        formEl.reset();
-        document.querySelectorAll('#enrollmentForm .form-group').forEach(fg => {
-            fg.classList.remove('error', 'valid', 'shake');
+        .then(() => {
+            document.getElementById('successPhone').textContent = phone;
+            document.getElementById('successModal').style.display = 'flex';
+            formEl.reset();
+            document.querySelectorAll('#enrollmentForm .form-group').forEach(fg => {
+                fg.classList.remove('error', 'valid', 'shake');
+            });
+            enrollmentCart = [];
+            renderCart();
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+            alert('An error occurred while sending the email. Please try again.');
+        })
+        .finally(() => {
+            submitBtn.textContent = 'Complete Enrollment';
+            submitBtn.disabled = false;
         });
-        enrollmentCart = [];
-        renderCart();
-    })
-    .catch((error) => {
-        console.error('Error:', error);
-        alert('An error occurred while sending the email. Please try again.');
-    })
-    .finally(() => {
-        submitBtn.textContent = 'Complete Enrollment';
-        submitBtn.disabled = false;
-    });
 }
 
 // Close success modal
