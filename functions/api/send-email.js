@@ -19,7 +19,7 @@ export async function onRequestPost(context) {
                 'Authorization': `Bearer ${API_KEY}`
             },
             body: JSON.stringify({
-                from: 'onboarding@resend.dev',
+                from: 'Learning Bubble <info@learningbubble.org>',
                 to: 'learningbubblepk@gmail.com',
                 reply_to: replyTo,
                 subject: subject,
