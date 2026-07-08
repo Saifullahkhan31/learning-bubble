@@ -346,7 +346,7 @@ function handleFormSubmit(e) {
     const message = formData.get('message');
 
     // Create the WhatsApp message template
-    const whatsappMessage = `Hi ${name}! 👋
+    const whatsappMessage = `Hi ${name}! \u{1F44B}
 
 Thank you for enrolling in the ${coursesString} course. To finalize your registration, please complete your payment using the details below:
 
