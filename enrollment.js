@@ -361,7 +361,13 @@ Learning Bubble`;
 
     const encodedWhatsAppMessage = encodeURIComponent(whatsappMessage);
     // Sanitize the phone number for the wa.me link (remove spaces, dashes, etc.)
-    const cleanPhone = phone ? phone.replace(/[^0-9]/g, '') : '';
+    let cleanPhone = phone ? phone.replace(/[^0-9]/g, '') : '';
+    // If it's a local Pakistani number starting with 0 (e.g., 0300...), convert to 92300...
+    if (cleanPhone.startsWith('0') && cleanPhone.length === 11) {
+        cleanPhone = '92' + cleanPhone.substring(1);
+    } else if (cleanPhone.startsWith('0092')) {
+        cleanPhone = cleanPhone.substring(2);
+    }
 
     // RECONSTRUCT EXACT PHP HTML BODY FOR ADMIN
     const adminEmailHTML = `
