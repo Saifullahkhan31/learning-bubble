@@ -45,11 +45,14 @@ document.addEventListener('turbo:load', function () {
     });
 
     // Set active navigation link based on current page
-    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    let currentPage = window.location.pathname.split('/').pop();
+    if (!currentPage || currentPage === '') currentPage = 'index.html';
+    if (!currentPage.endsWith('.html')) currentPage += '.html';
+    
     const navLinks = document.querySelectorAll('.nav-link');
     navLinks.forEach(link => {
         const linkPage = link.getAttribute('href');
-        if (linkPage === currentPage || (currentPage === '' && linkPage === 'index.html')) {
+        if (linkPage === currentPage) {
             link.classList.add('active');
         } else {
             link.classList.remove('active');

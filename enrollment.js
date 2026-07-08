@@ -454,7 +454,7 @@ Learning Bubble`;
             <p>We'll contact you shortly on WhatsApp at <strong>${phone}</strong> with payment instructions and further details about your courses.</p>
             <p>If you have any questions in the meantime, feel free to reach out to us through:</p>
             <ul>
-                <li>Email: learningbubblepk@gmail.com</li>
+                <li>Email: info@learningbubble.org</li>
                 <li>WhatsApp: ${adminWhatsAppNumber}</li>
             </ul>
         </div>
