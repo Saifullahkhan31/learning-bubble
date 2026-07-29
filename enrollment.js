@@ -493,6 +493,12 @@ Learning Bubble`;
             }
             document.getElementById('successPhone').textContent = phone;
             document.getElementById('successModal').style.display = 'flex';
+            
+            // Fire Meta Pixel Lead Event
+            if (typeof fbq === 'function') {
+                fbq('track', 'Lead');
+            }
+            
             formEl.reset();
             document.querySelectorAll('#enrollmentForm .form-group').forEach(fg => {
                 fg.classList.remove('error', 'valid', 'shake');
