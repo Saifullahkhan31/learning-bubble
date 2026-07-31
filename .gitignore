@@ -2,3 +2,9 @@
 *.env
 *.pdf
 Learning-Bubble-Courses-List.pdf
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+!.env.example
